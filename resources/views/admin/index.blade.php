@@ -12,7 +12,7 @@
                         </div>
                         <div>
                             <p class="text-mute mt-20 mb-0 font-size-16">New Customers</p>
-                            <h3 class="text-white mb-0 font-weight-500">3400 <small class="text-success"><i class="fa fa-caret-up"></i> +2.5%</small></h3>
+                            <h3 class=" mb-0 font-weight-500">3400 <small class="text-success"><i class="fa fa-caret-up"></i> +2.5%</small></h3>
                         </div>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                         </div>
                         <div>
                             <p class="text-mute mt-20 mb-0 font-size-16">Sold Cars</p>
-                            <h3 class="text-white mb-0 font-weight-500">3400 <small class="text-success"><i class="fa fa-caret-up"></i> +2.5%</small></h3>
+                            <h3 class=" mb-0 font-weight-500">3400 <small class="text-success"><i class="fa fa-caret-up"></i> +2.5%</small></h3>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                         </div>
                         <div>
                             <p class="text-mute mt-20 mb-0 font-size-16">Sales Lost</p>
-                            <h3 class="text-white mb-0 font-weight-500">$1,250 <small class="text-danger"><i class="fa fa-caret-down"></i> -0.5%</small></h3>
+                            <h3 class=" mb-0 font-weight-500">$1,250 <small class="text-danger"><i class="fa fa-caret-down"></i> -0.5%</small></h3>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         </div>
                         <div>
                             <p class="text-mute mt-20 mb-0 font-size-16">Inbound Call</p>
-                            <h3 class="text-white mb-0 font-weight-500">1,460 <small class="text-danger"><i class="fa fa-caret-up"></i> -1.5%</small></h3>
+                            <h3 class=" mb-0 font-weight-500">1,460 <small class="text-danger"><i class="fa fa-caret-up"></i> -1.5%</small></h3>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                         </div>
                         <div>
                             <p class="text-mute mt-20 mb-0 font-size-16">Outbound Call</p>
-                            <h3 class="text-white mb-0 font-weight-500">1,700 <small class="text-success"><i class="fa fa-caret-up"></i> +0.5%</small></h3>
+                            <h3 class=" mb-0 font-weight-500">1,700 <small class="text-success"><i class="fa fa-caret-up"></i> +0.5%</small></h3>
                         </div>
                     </div>
                 </div>
@@ -73,11 +73,11 @@
                 <div class="box overflow-hidden pull-up">
                     <div class="box-body">							
                         <div class="icon bg-light rounded w-60 h-60">
-                            <i class="text-white mr-0 font-size-24 mdi mdi-chart-line"></i>
+                            <i class=" mr-0 font-size-24 mdi mdi-chart-line"></i>
                         </div>
                         <div>
                             <p class="text-mute mt-20 mb-0 font-size-16">Total Revune</p>
-                            <h3 class="text-white mb-0 font-weight-500">$4,500k <small class="text-success"><i class="fa fa-caret-up"></i> +2.5%</small></h3>
+                            <h3 class=" mb-0 font-weight-500">$4,500k <small class="text-success"><i class="fa fa-caret-up"></i> +2.5%</small></h3>
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                                             </div>
                                             <div>
                                                 <h5>Top Order</h5>
-                                                <h4 class="text-white my-0 font-weight-500">$39k</h4>
+                                                <h4 class=" my-0 font-weight-500">$39k</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -115,7 +115,7 @@
                                             </div>
                                             <div>
                                                 <h5>Average Order</h5>
-                                                <h4 class="text-white my-0 font-weight-500">$24k</h4>
+                                                <h4 class=" my-0 font-weight-500">$24k</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -131,8 +131,8 @@
                     <div class="box-body text-center">							
                         <img src="../images/trophy.png" class="mt-50" alt="" />
                         <div class="max-w-500 mx-auto">
-                            <h2 class="text-white mb-20 font-weight-500">Best Employee Johen,</h2>
-                            <p class="text-white-50 mb-10 font-size-20">You've got 50.5% more sales today. You've reached 8th milestone, checkout author section</p>
+                            <h2 class=" mb-20 font-weight-500">Best Employee Johen,</h2>
+                            <p class="-50 mb-10 font-size-20">You've got 50.5% more sales today. You've reached 8th milestone, checkout author section</p>
                         </div>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                         <div class="box overflow-hidden">
                             <div class="box-body pb-0">	
                                 <div>
-                                    <h2 class="text-white mb-0 font-weight-500">18.8k</h2>
+                                    <h2 class=" mb-0 font-weight-500">18.8k</h2>
                                     <p class="text-mute mb-0 font-size-20">Total users</p>
                                 </div>
                             </div>
@@ -154,7 +154,7 @@
                         <div class="box overflow-hidden">
                             <div class="box-body pb-0">	
                                 <div>
-                                    <h2 class="text-white mb-0 font-weight-500">35.8k</h2>
+                                    <h2 class=" mb-0 font-weight-500">35.8k</h2>
                                     <p class="text-mute mb-0 font-size-20">Average reach per post</p>
                                 </div>
                             </div>
@@ -258,7 +258,7 @@
                             <table class="table no-border">
                                 <thead>
                                     <tr class="text-uppercase bg-lightest">
-                                        <th style="min-width: 250px"><span class="text-white">products</span></th>
+                                        <th style="min-width: 250px"><span class="">products</span></th>
                                         <th style="min-width: 100px"><span class="text-fade">pruce</span></th>
                                         <th style="min-width: 100px"><span class="text-fade">deposit</span></th>
                                         <th style="min-width: 150px"><span class="text-fade">agent</span></th>
@@ -275,7 +275,7 @@
                                                 </div>
 
                                                 <div>
-                                                    <a href="#" class="text-white font-weight-600 hover-primary mb-1 font-size-16">Vivamus consectetur</a>
+                                                    <a href="#" class=" font-weight-600 hover-primary mb-1 font-size-16">Vivamus consectetur</a>
                                                     <span class="text-fade d-block">Pharetra, Nulla , Nec, Aliquet</span>
                                                 </div>
                                             </div>
@@ -284,7 +284,7 @@
                                             <span class="text-fade font-weight-600 d-block font-size-16">
                                                 Paid
                                             </span>
-                                            <span class="text-white font-weight-600 d-block font-size-16">
+                                            <span class=" font-weight-600 d-block font-size-16">
                                                 $45,800k
                                             </span>
                                         </td>
@@ -292,7 +292,7 @@
                                             <span class="text-fade font-weight-600 d-block font-size-16">
                                                 Paid
                                             </span>
-                                            <span class="text-white font-weight-600 d-block font-size-16">
+                                            <span class=" font-weight-600 d-block font-size-16">
                                                 $45k
                                             </span>
                                         </td>
@@ -300,7 +300,7 @@
                                             <span class="text-fade font-weight-600 d-block font-size-16">
                                                 Sophia
                                             </span>
-                                            <span class="text-white font-weight-600 d-block font-size-16">
+                                            <span class=" font-weight-600 d-block font-size-16">
                                                 Pharetra
                                             </span>
                                         </td>
@@ -320,7 +320,7 @@
                                                 </div>
 
                                                 <div>
-                                                    <a href="#" class="text-white font-weight-600 hover-primary mb-1 font-size-16">Vivamus consectetur</a>
+                                                    <a href="#" class=" font-weight-600 hover-primary mb-1 font-size-16">Vivamus consectetur</a>
                                                     <span class="text-fade d-block">Pharetra, Nulla , Nec, Aliquet</span>
                                                 </div>
                                             </div>
@@ -329,7 +329,7 @@
                                             <span class="text-fade font-weight-600 d-block font-size-16">
                                                 Paid
                                             </span>
-                                            <span class="text-white font-weight-600 d-block font-size-16">
+                                            <span class=" font-weight-600 d-block font-size-16">
                                                 $45,800k
                                             </span>
                                         </td>
@@ -337,7 +337,7 @@
                                             <span class="text-fade font-weight-600 d-block font-size-16">
                                                 Paid
                                             </span>
-                                            <span class="text-white font-weight-600 d-block font-size-16">
+                                            <span class=" font-weight-600 d-block font-size-16">
                                                 $45k
                                             </span>
                                         </td>
@@ -345,7 +345,7 @@
                                             <span class="text-fade font-weight-600 d-block font-size-16">
                                                 Sophia
                                             </span>
-                                            <span class="text-white font-weight-600 d-block font-size-16">
+                                            <span class=" font-weight-600 d-block font-size-16">
                                                 Pharetra
                                             </span>
                                         </td>
@@ -365,7 +365,7 @@
                                                 </div>
 
                                                 <div>
-                                                    <a href="#" class="text-white font-weight-600 hover-primary mb-1 font-size-16">Vivamus consectetur</a>
+                                                    <a href="#" class=" font-weight-600 hover-primary mb-1 font-size-16">Vivamus consectetur</a>
                                                     <span class="text-fade d-block">Pharetra, Nulla , Nec, Aliquet</span>
                                                 </div>
                                             </div>
@@ -374,7 +374,7 @@
                                             <span class="text-fade font-weight-600 d-block font-size-16">
                                                 Paid
                                             </span>
-                                            <span class="text-white font-weight-600 d-block font-size-16">
+                                            <span class=" font-weight-600 d-block font-size-16">
                                                 $45,800k
                                             </span>
                                         </td>
@@ -382,7 +382,7 @@
                                             <span class="text-fade font-weight-600 d-block font-size-16">
                                                 Paid
                                             </span>
-                                            <span class="text-white font-weight-600 d-block font-size-16">
+                                            <span class=" font-weight-600 d-block font-size-16">
                                                 $45k
                                             </span>
                                         </td>
@@ -390,7 +390,7 @@
                                             <span class="text-fade font-weight-600 d-block font-size-16">
                                                 Sophia
                                             </span>
-                                            <span class="text-white font-weight-600 d-block font-size-16">
+                                            <span class=" font-weight-600 d-block font-size-16">
                                                 Pharetra
                                             </span>
                                         </td>
@@ -410,7 +410,7 @@
                                                 </div>
 
                                                 <div>
-                                                    <a href="#" class="text-white font-weight-600 hover-primary mb-1 font-size-16">Vivamus consectetur</a>
+                                                    <a href="#" class=" font-weight-600 hover-primary mb-1 font-size-16">Vivamus consectetur</a>
                                                     <span class="text-fade d-block">Pharetra, Nulla , Nec, Aliquet</span>
                                                 </div>
                                             </div>
@@ -419,7 +419,7 @@
                                             <span class="text-fade font-weight-600 d-block font-size-16">
                                                 Paid
                                             </span>
-                                            <span class="text-white font-weight-600 d-block font-size-16">
+                                            <span class=" font-weight-600 d-block font-size-16">
                                                 $45,800k
                                             </span>
                                         </td>
@@ -427,7 +427,7 @@
                                             <span class="text-fade font-weight-600 d-block font-size-16">
                                                 Paid
                                             </span>
-                                            <span class="text-white font-weight-600 d-block font-size-16">
+                                            <span class=" font-weight-600 d-block font-size-16">
                                                 $45k
                                             </span>
                                         </td>
@@ -435,7 +435,7 @@
                                             <span class="text-fade font-weight-600 d-block font-size-16">
                                                 Sophia
                                             </span>
-                                            <span class="text-white font-weight-600 d-block font-size-16">
+                                            <span class=" font-weight-600 d-block font-size-16">
                                                 Pharetra
                                             </span>
                                         </td>
@@ -455,7 +455,7 @@
                                                 </div>
 
                                                 <div>
-                                                    <a href="#" class="text-white font-weight-600 hover-primary mb-1 font-size-16">Vivamus consectetur</a>
+                                                    <a href="#" class=" font-weight-600 hover-primary mb-1 font-size-16">Vivamus consectetur</a>
                                                     <span class="text-fade d-block">Pharetra, Nulla , Nec, Aliquet</span>
                                                 </div>
                                             </div>
@@ -464,7 +464,7 @@
                                             <span class="text-fade font-weight-600 d-block font-size-16">
                                                 Paid
                                             </span>
-                                            <span class="text-white font-weight-600 d-block font-size-16">
+                                            <span class=" font-weight-600 d-block font-size-16">
                                                 $45,800k
                                             </span>
                                         </td>
@@ -472,7 +472,7 @@
                                             <span class="text-fade font-weight-600 d-block font-size-16">
                                                 Paid
                                             </span>
-                                            <span class="text-white font-weight-600 d-block font-size-16">
+                                            <span class=" font-weight-600 d-block font-size-16">
                                                 $45k
                                             </span>
                                         </td>
@@ -480,7 +480,7 @@
                                             <span class="text-fade font-weight-600 d-block font-size-16">
                                                 Sophia
                                             </span>
-                                            <span class="text-white font-weight-600 d-block font-size-16">
+                                            <span class=" font-weight-600 d-block font-size-16">
                                                 Pharetra
                                             </span>
                                         </td>

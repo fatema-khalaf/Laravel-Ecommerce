@@ -17,10 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+//NOTE: Admin Route
 Route::group(['prefix'=>'admin','middleware'=>['admin:admin']],function(){
     Route::get('/login',[AdminController::class, 'loginForm']);
     Route::post('/login', [AdminController::class,'store'])->name('admin.login');
 });
+
+Route::get('/admin/logout',[AdminController::class, 'destroy'])->name('admin.logout');
 
 
 Route::middleware([
@@ -33,6 +37,9 @@ Route::middleware([
     })->name('dashboard');
 });
 
+
+
+//NOTE: User Route
 Route::middleware([
     'auth:sanctum,web',
     config('jetstream.auth_session'),
