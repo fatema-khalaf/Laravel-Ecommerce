@@ -23,7 +23,7 @@
     .navbar{
         @include transition(margin-left .3s ease-in-out);
         margin-left: $sid-bar-w;
-        background: rgba($dark3, 1);
+        background: rgba($theme-primary-info, 1); // it was $dark2
         min-height: $main-hed-nav + 10;
         padding: 0;
         -webkit-box-shadow: 0 0 21px 0 rgba(89,102,122,0.1);
