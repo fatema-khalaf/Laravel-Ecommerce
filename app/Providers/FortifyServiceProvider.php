@@ -1,6 +1,11 @@
 <?php
-
 namespace App\Providers;
+//Edited:
+use App\Actions\Fortify\AttemptToAuthenticate;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
+use App\Http\controllers\AdminController;
+use Auth;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
@@ -21,7 +26,12 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        //Edited: crete aguard to the Admins table
+        $this->app->when([AdminController::class,  AttemptToAuthenticate::class,RedirectIfTwoFactorAuthenticatable::class])
+        ->needs(StatefulGuard::class)
+        ->give(function(){
+            return Auth::guard('admin');
+        });
     }
 
     /**
