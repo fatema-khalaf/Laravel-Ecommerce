@@ -39,7 +39,7 @@ class AdminController extends Controller
     }
 //Note: this function is written by me, the aothers copyed
 public function loginForm(){
-return view('auth.login', ['guard' => 'admin']);
+return view('auth.admin_login', ['guard' => 'admin']);
 }
 
 
