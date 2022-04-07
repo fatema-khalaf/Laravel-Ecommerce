@@ -35,7 +35,9 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col">
-                        <form novalidate="">
+                        <form method="post" action="{{route('admin.profile.store')}}" enctype="multipart/form-data">
+                            @csrf
+
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
@@ -62,7 +64,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group text-center">
-                                        <img id="showImage" class="rounded-circle" src="{{(!empty($editData->profile_phto_path))?
+                                        <img id="showImage" class="rounded-circle" src="{{(!empty($editData->profile_photo_path))?
                                             url('upload/admin_images/'.$editData->profile_photo_path): 
                                             url('upload/no_image.jpg')}}" alt="User Avatar"
                                             style="width : 150px; height:150px;">
@@ -87,7 +89,7 @@
     <!-- /.content -->
 </div>
 
-{{-- Note: this jquery code to read the uploaded image file and display it to the user immedetly --}}
+{{-- Note: this jquery code to read the uploaded image file and display it to the user immediately --}}
 <script type="text/javascript">
     $(document).ready(function(){
         $('#image').change(function(e){
