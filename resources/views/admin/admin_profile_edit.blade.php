@@ -1,5 +1,8 @@
 @extends('admin.admin_master')
 @section('admin')
+{{-- NOTE: add jquery cdn to enable jquery reding --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <div class="container-full">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -35,7 +38,6 @@
                         <form novalidate="">
                             <div class="row">
                                 <div class="col-12">
-
                                     <div class="form-group">
                                         <h5>User Name <span class="text-danger">*</span></h5>
                                         <div class="controls">
@@ -55,14 +57,15 @@
                                     <div class="form-group">
                                         <h5>Profile Image <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="file" name="profile_photo_path" class="form-control"
+                                            <input id="image" type="file" name="profile_photo_path" class="form-control"
                                                 required="">
                                         </div>
                                     </div>
                                     <div class="form-group text-center">
-                                        <img class="rounded-circle" src="{{(!empty($editData->profile_phto_path))?
+                                        <img id="showImage" class="rounded-circle" src="{{(!empty($editData->profile_phto_path))?
                                             url('upload/admin_images/'.$editData->profile_photo_path): 
-                                            url('upload/no_image.jpg')}}" alt="User Avatar">
+                                            url('upload/no_image.jpg')}}" alt="User Avatar"
+                                            style="width : 150px; height:150px;">
                                     </div>
                                     <div class="text-xs-right">
                                         <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update">
@@ -83,4 +86,17 @@
     </section>
     <!-- /.content -->
 </div>
+
+{{-- Note: this jquery code to read the uploaded image file and display it to the user immedetly --}}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#image').change(function(e){
+            var reader = new FileReader();
+            reader.onload = function(e){
+                $('#showImage').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(e.target.files['0']);
+        });
+    });
+</script>
 @endsection
