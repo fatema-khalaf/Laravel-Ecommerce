@@ -59,8 +59,8 @@
                                     <div class="form-group">
                                         <h5>Profile Image <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input id="image" type="file" name="profile_photo_path" class="form-control"
-                                                required="">
+                                            <input id="image" type="file" name="profile_photo_path"
+                                                class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group text-center">

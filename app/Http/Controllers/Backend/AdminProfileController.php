@@ -23,17 +23,21 @@ class AdminProfileController extends Controller
     public function AdminProfileStore(Request $request)
     {
         $data = Admin::find(1);
-
         $data->name = $request->name;
         $data->email = $request->email;
         if ($request->file("profile_photo_path")) {
             $file = $request->file("profile_photo_path");
             @unlink(public_path('upload/admin_images/'.$data->profile_photo_path));
             $fileName = date("YmdHi") . $file->getClientOriginalName();
-            $file->move(public_path("upload/admin_images"), $fileName);
-            $data["profile_photo_path"] = $fileName;
+            $file->move(public_path("upload/admin_images"),$fileName);
+            $data["profile_photo_path"] = $fileName; // same as $data->profile_photo_path 
         }
         $data->save();
-        return redirect()->route('admin.profile');
+
+        $notification= array(
+            'message' => 'Admin profile Updated successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.profile')->with($notification);
     }
 }
