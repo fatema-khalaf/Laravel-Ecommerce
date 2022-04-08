@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Frontend\IndexController;
 
-Route::get("/", function () {
-    return view("welcome");
-});
+// Route::get("/", function () {
+//     return view("welcome");
+// });
 
 //NOTE: Admin Route
 Route::group(
@@ -70,3 +71,5 @@ Route::middleware([
         return view("dashboard");
     })->name("dashboard");
 });
+
+Route::get("/", [IndexController::class, "index"]);
