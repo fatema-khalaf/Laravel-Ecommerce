@@ -37,7 +37,19 @@ Route::post("/admin/profile/edit", [
     "AdminProfileStore",
 ])->name("admin.profile.store");
 
-// Login 
+// View Change admin password 
+Route::get("/admin/change/password", [
+    AdminProfileController::class,
+    "AdminChangePassword",
+    ])->name("admin.change.password");
+    
+// Store new password    
+Route::post("/update/change/password", [
+    AdminProfileController::class,
+    "AdminUpdateChangePassword",
+])->name("update.change.password");
+
+// Login Admin
 Route::middleware([
     "auth:sanctum,admin",
     config("jetstream.auth_session"),

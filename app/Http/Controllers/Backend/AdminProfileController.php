@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\models\Admin;
+use Illuminate\Support\Facades\Hash;
+use Auth;
+
 class AdminProfileController extends Controller
 {
     // View profile
@@ -39,5 +42,30 @@ class AdminProfileController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('admin.profile')->with($notification);
+    }
+
+    // View change password
+    public function AdminChangePassword(){
+        return view("admin.admin_change_password");
+    }
+
+    // Store new password
+    public function AdminUpdateChangePassword(Request $request){
+        // NOTE: $request has many default methods, e.x -> validate
+        $validateData = $request->validate([ 
+           'oldPassword' => 'required',
+           'password'=> 'required|confirmed'
+        ]);
+        $hashedPassword = Admin::find(1)->password;
+        if(Hash::check($request->oldPassword, $hashedPassword)){ // Hash::check laravel build in method
+            $admin = Admin::find(1);
+            $admin->password = Hash::make($request->password);
+            $admin->save();
+            Auth::logout();
+            return redirect()->route('admin.logout');
+        } else{
+            return redirect()->back();
+        }
+
     }
 }
