@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Models\User;
 
 // Route::get("/", function () {
 //     return view("welcome");
@@ -62,14 +63,27 @@ Route::middleware([
 });
 
 //NOTE: User Route
+//View user account
 Route::middleware([
     "auth:sanctum,web",
     config("jetstream.auth_session"),
     "verified",
 ])->group(function () {
     Route::get("/dashboard", function () {
-        return view("dashboard");
+        $id= Auth::user()->id;
+        $user = User::find($id);
+        return view("dashboard",compact('user'));
     })->name("dashboard");
 });
-
+// View Home page
 Route::get("/", [IndexController::class, "index"]);
+// Log out user
+Route::get("/user/logout", [IndexController::class, "UserLogout"])->name('user.logout');
+// View user profile
+Route::get("/user/profile", [IndexController::class, "UserProfile"])->name('user.profile');
+// Store updated user data
+Route::post("/user/profile/store", [IndexController::class, "UserProfileStore"])->name('user.profile.store');
+// View Change passwrod
+Route::get("/user/change/password", [IndexController::class, "UserChangePassword"])->name('change.password');
+// Store new password
+Route::post("/user/password/update", [IndexController::class, "UserUpdateChangePassword"])->name('user.password.update');
