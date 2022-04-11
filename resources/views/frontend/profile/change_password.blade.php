@@ -27,12 +27,18 @@ $user = DB::table('users')->where('id',Auth::user()->id)->first();
                 <div class="card-body">
                     <form method="post" action="{{route('user.password.update')}}">
                         @csrf
+
                         <div class="form-group">
                             <label class="info-title" for="exampleInputEmaill">Current password <span> </span></label>
                             <input id="current_password" name="oldPassword" type="password" class="form-control">
-                            @error('oldPassword')
+                            {{-- Note: the next error handler work with all errors --}}
+                            @if($errors->any())
+                            <span class="text-danger">{{$errors->first()}}</span>
+                            @endif
+                            {{-- Note: the next error handler work only with requierd feild --}}
+                            {{-- @error('oldPassword')
                             <span class="text-danger">{{$message}}</span>
-                            @enderror
+                            @enderror --}}
                         </div>
                         <div class="form-group">
                             <label class="info-title" for="exampleInputEmail1">New password <span> </span></label>

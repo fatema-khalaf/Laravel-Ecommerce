@@ -67,7 +67,8 @@ class IndexController extends Controller
          if($changed){
              return redirect()->route('user.logout');        
         } else{
-            return redirect()->back()->with('error', 'Password is invalid');
+            return redirect()->back()->withErrors(['msg' => 'Password is invalid']);
+
         }
     }  
 }
