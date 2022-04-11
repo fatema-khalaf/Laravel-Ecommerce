@@ -6,10 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Traits\ChangePasswordTrait;
+use App\Traits\ReplaceImageTrait;
 use Auth;
 
 class IndexController extends Controller
 {
+    // Use Change password trait
+    use ChangePasswordTrait;
+    // Use replace Image trait
+    use ReplaceImageTrait;
+
     // View home page
     public function Index(){
         return view('frontend.index');
@@ -32,13 +39,10 @@ class IndexController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        // dd($request->file('profile_photo_path'));
         if($request->file('profile_photo_path')){
             $file = $request->file('profile_photo_path');
-            $filename= $this->saveImage($file,$user->profile_photo_path,'upload/user_images');
-            // @unlink(public_path('upload/user_images/'.$user->profile_photo_path));
-            // $filename = date('YmdHi').$file->getClientOriginalName();
-            // $file->move(public_path('upload/user_images'),$filename);
+            // Note: this code writtem by me using trait; 
+            $filename= $this->replaceImage($user->profile_photo_path,$file,'upload/user_images'); // oldfile, newFile , path
             $user['profile_photo_path']=$filename;
         }
         $user->save();
@@ -55,54 +59,16 @@ class IndexController extends Controller
         return view('frontend.profile.change_password', compact('user'));
     }
 
-      // Store new password
-      public function UserUpdateChangePassword(Request $request){
+    // Store new password
+    public function UserUpdateChangePassword(Request $request){
         // Note: this code writtem by me using trait; 
-        $res = $this->passwordCreate($request);
-         if($res){
+        $user = User::find(Auth::user()->id); // Auth::user()->id same as Auth::id()
+        $changed = $this->ValidateChangePassword($request, $user);
+         if($changed){
              return redirect()->route('user.logout');        
         } else{
-            return redirect()->back();
+            return redirect()->back()->with('error', 'Password is invalid');
         }
-        // note: this code work the same 
-        // $validateData = $request->validate([ 
-        //    'oldPassword' => 'required',
-        //    'password'=> 'required|confirmed'
-        // ]);
-        // $hashedPassword = Auth::user()->password;
-        // if(Hash::check($request->oldPassword, $hashedPassword)){ // Hash::check laravel build in method
-        //     $user = User::find(Auth::user()->id); // Auth::user()->id same as Auth::id()
-        //     $user->password = Hash::make($request->password);
-        //     $user->save();
-        //     Auth::logout();
-        //     return redirect()->route('user.logout');
-        // } else{
-        //     return redirect()->back();
-        // }
-    }
-
-    protected function saveImage($file,$oldFile, $path){
-        @unlink(public_path($path.'/'.$oldFile));
-        $filename = date('YmdHi').$file->getClientOriginalName();
-        $file->move(public_path($path),$filename);
-        return $filename;
-    }
-
-    protected function passwordCreate(Request $request){
-        $validateData = $request->validate([ 
-            'oldPassword' => 'required',
-            'password'=> 'required|confirmed'
-         ]);
-         $hashedPassword = Auth::user()->password;
-         if(Hash::check($request->oldPassword, $hashedPassword)){ // Hash::check laravel build in method
-             $user = User::find(Auth::user()->id); // Auth::user()->id same as Auth::id()
-             $user->password = Hash::make($request->password);
-             $user->save();
-             Auth::logout();
-             return true;
-         } else{
-             return false;
-         }
-    }
+    }  
 }
  
