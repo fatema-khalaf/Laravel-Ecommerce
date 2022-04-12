@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\User;
 
@@ -61,6 +62,21 @@ Route::middleware([
         return view("admin.index");
     })->name("dashboard");
 });
+
+// Note: Brands All routes
+Route::prefix('brand')->group(function(){
+    // View All Brands
+    Route::get("/view", [BrandController::class, "BrandView"])->name('all.brands');
+    // Add new brand
+    Route::post("/store", [BrandController::class, "BrandStore"])->name('brand.store');
+    // View Edit brand
+    Route::get("/edit/{id}", [BrandController::class, "BrandEdite"])->name('brand.edit');
+    // Store updated data
+    Route::post("/update", [BrandController::class, "BrandUpdate"])->name('brand.update');
+    // Delet brand
+    Route::get("/delete/{id}", [BrandController::class, "BrandDelete"])->name('brand.delete');
+});
+
 
 //NOTE: User Route
 //View user account
