@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Brand;
+use App\Traits\StoreTrait;
 use Image;
 class BrandController extends Controller
 {
+    use StoreTrait;
     //View all brands
     public function BrandView(){
         $brands = Brand::latest()->get();
@@ -16,31 +18,22 @@ class BrandController extends Controller
 
     // Store new brand
     public function BrandStore(Request $request){
-        $request->validate([
-            'brand_name_en' => 'required',
-            'brand_name_ar' => 'required',
-            'brand_image' => 'required',
-        ],[
-            'brand_name_en.required' =>'This field can\'t be empty',
-            'brand_name_ar.required' =>'This field can\'t be empty',
+        $inputs = array('brand_name_en',"brand_name_ar",'brand_image');
+        $slugs= array('brand_slug_en'=>'brand_name_en','brand_slug_ar'=>'brand_name_ar');
+        // Store trait
+        $this->Store([
+            'request'=> $request,
+            'inputs'=>$inputs,
+            'image_path'=>'upload/brand/',
+            'model'=>'App\Models\Brand',
+            'slugs'=>$slugs,
+            'inputs_required'=> true
         ]);
-        $image = $request-> file('brand_image');
-        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(300,300)->save('upload/brand/'.$name_gen);
-        $save_url = 'upload/brand/'.$name_gen;
-        Brand::insert([
-            'brand_name_en' => $request->brand_name_en,
-            'brand_name_ar' => $request->brand_name_ar,
-            'brand_slug_en' => strtolower(str_replace(' ','-', $request->brand_name_en)), 
-            'brand_slug_ar' => strtolower(str_replace(' ','-', $request->brand_name_ar)), 
-            'brand_image' => $save_url,
-        ]);
-        $notification = array(
-            'message'=>'Brand add successfully',
-            'alert-type' => 'success'
-        );
+        // Added notification trait
+        $notification =  $this->AddedNotification('Brand');
         return redirect()->back()->with($notification);
     }
+
     // View Edit brand page
     public function BrandEdite($id){
         $brand = Brand::findOrFail($id);
