@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\Brand;
 use App\Traits\StoreTrait;
 use App\Traits\UpdateTrait;
+use App\Traits\DeleteTrait;
 use Image;
 class BrandController extends Controller
 {
     use StoreTrait;
     use UpdateTrait;
+    use DeleteTrait;
     //View all brands
     public function BrandView(){
         $brands = Brand::latest()->get();
@@ -39,7 +41,7 @@ class BrandController extends Controller
         $brand = Brand::findOrFail($id);
         return view('backend.brand.brand_edit', compact('brand'));
     }
-    
+
     // Update Edited data
     public function BrandUpdate(Request $request){
         $inputs = array('brand_name_en',"brand_name_ar"); // Dont include image input tage
@@ -60,14 +62,9 @@ class BrandController extends Controller
 
     // Delete brand
     public function BrandDelete($id){
-        $brand = Brand::findOrFail($id);
-        $image= $brand->brand_image;
-        unlink($image);
-        Brand::findOrFail($id)->delete();
-        $notification = array(
-            'message'=>'Brand Deleted successfully',
-            'alert-type' => 'success'
-        );
+        //Optional image input tag name 
+        //Optional notification message
+        $notification = $this->Delete('App\Models\Brand',$id,'brand_image', 'Brand deleted successfully');
         return redirect()->back()->with($notification);
     }
 }
