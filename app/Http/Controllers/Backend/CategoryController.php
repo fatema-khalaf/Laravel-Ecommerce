@@ -8,7 +8,7 @@ use App\Models\Category;
 use App\Traits\StoreTrait;
 use App\Traits\UpdateTrait;
 use App\Traits\DeleteTrait;
-use Image;
+
 class CategoryController extends Controller
 {
     use StoreTrait;
@@ -21,7 +21,6 @@ class CategoryController extends Controller
         return view('backend.category.category_view', compact('categories'));
     }
 
-
     // Store new category
     public function CategoryStore(Request $request){
         $inputs = array('category_name_en',"category_name_ar",'category_image');
@@ -30,8 +29,6 @@ class CategoryController extends Controller
         $notification = $this->Store([
             'request'=> $request,
             'inputs'=>$inputs,
-            // 'image_path'=>'upload/category/',
-            // 'new_image'=>'category_image', //Optional
             'model'=>'App\Models\Category',
             'slugs'=>$slugs,
             'inputs_required'=> true
@@ -54,9 +51,7 @@ class CategoryController extends Controller
                 'request'=> $request,
                 'inputs'=>$inputs,
                 'model'=>'App\Models\Category',
-                // 'new_image'=>'category_image', //Optional
-                // 'image_path'=>'upload/category/', //Optional
-                'slugs'=>$slugs, //Optional
+                 'slugs'=>$slugs, //Optional
                 'message'=>'Category Updated successfully', //Optional
                 'inputs_required'=> false , //Optional
             ]);
@@ -65,8 +60,6 @@ class CategoryController extends Controller
 
     // Delete category
     public function CategoryDelete($id){
-        //Optional image input tag name 
-        //Optional notification message
         $notification = $this->Delete('App\Models\Category',$id,false ,'Category deleted successfully');
         return redirect()->back()->with($notification);
     }

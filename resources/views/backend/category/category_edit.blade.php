@@ -26,7 +26,7 @@
             <div class="col-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Edit category</h3>
+                        <h3 class="box-title">Edit Category</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -39,7 +39,7 @@
                                             <input type="hidden" name="id" value="{{$category->id}}">
                                             <input type="hidden" name="old_image" value="{{$category->category_image}}">
                                             <div class="form-group">
-                                                <h5>category name English <span class="text-danger">*</span></h5>
+                                                <h5>Category name English <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" name="category_name_en" class="form-control"
                                                         value="{{$category->category_name_en}}" required>
@@ -49,7 +49,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <h5>category name arabic <span class="text-danger">*</span></h5>
+                                                <h5>Category name arabic <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" name="category_name_ar" class="form-control"
                                                         value="{{$category->category_name_ar}}" required>
@@ -59,7 +59,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <h5>category image <span class="text-danger">*</span></h5>
+                                                <h5>Category icon <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" name="category_image" class="form-control"
                                                         value="{{$category->category_image}}" required>
