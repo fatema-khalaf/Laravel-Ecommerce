@@ -29,6 +29,7 @@ class BrandController extends Controller
             'request'=> $request,
             'inputs'=>$inputs,
             'image_path'=>'upload/brand/',
+            'new_image'=>'brand_image', //Optional
             'model'=>'App\Models\Brand',
             'slugs'=>$slugs,
             'inputs_required'=> true
