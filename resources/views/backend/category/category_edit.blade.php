@@ -1,25 +1,7 @@
 @extends('admin.admin_master')
 @section('admin')
 <div class="container-full">
-    <div class="content-header">
-        <div class="d-flex align-items-center">
-            <div class="mr-auto">
-                <h3 class="page-title">Manage Categories</h3>
-                <div class="d-inline-block align-items-center">
-                    <nav>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{url('admin/dashboard')}}"><i
-                                        class="mdi mdi-home-outline"></i></a>
-                            </li>
-                            <li class="breadcrumb-item" aria-current="page">Categories</li>
-                            <li class="breadcrumb-item active" aria-current="page">All Categories</li>
-                            <li class="breadcrumb-item active" aria-current="page">Edit Category</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
+    <x-address title='Manage Categories' route='admin/dashboard' page='Categories' subpage='Edit Category' />
     <section class="content">
         <div class="row">
             {{-- Edit category form --}}

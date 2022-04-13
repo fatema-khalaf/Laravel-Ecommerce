@@ -1,24 +1,8 @@
 @extends('admin.admin_master')
 @section('admin')
 <div class="container-full">
-    <div class="content-header">
-        <div class="d-flex align-items-center">
-            <div class="mr-auto">
-                <h3 class="page-title">Manage Brands</h3>
-                <div class="d-inline-block align-items-center">
-                    <nav>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{url('admin/dashboard')}}"><i
-                                        class="mdi mdi-home-outline"></i></a>
-                            </li>
-                            <li class="breadcrumb-item" aria-current="page">Brands</li>
-                            <li class="breadcrumb-item active" aria-current="page">All Brands</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
+    <x-address title='Manage Brands' route='admin/dashboard' page='Brands' subpage='All Brands' />
+
     <section class="content">
         <div class="row">
             <div class="col-8">
@@ -31,7 +15,7 @@
                         <div class="table-responsive">
                             <div id="example1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
                                 <div class="row">
-                                    <div class="colsm-12">
+                                    <div class="col-sm-12">
                                         <table id="example1" class="table table-bordered table-striped dataTable"
                                             role="grid" aria-describedby="example1_info">
                                             <thead>
@@ -62,12 +46,15 @@
                                                     <td><img src="{{asset($brand->brand_image)}}"
                                                             style="height: 70px; width:70px;"></td>
                                                     <td>
-                                                        <a href="{{route('brand.edit',$brand->id)}}"
-                                                            class="btn btn-info" title="Edit"><i
-                                                                class="fa fa-pencil "></i></a>
-                                                        <a id="delete" href="{{route('brand.delete',$brand->id)}}"
-                                                            class="btn btn-danger" title="Delete"><i
-                                                                class="fa fa-trash"></i></a>
+                                                        <div style="display: flex;     justify-content: space-evenly;
+                                                        ">
+                                                            <a href="{{route('brand.edit',$brand->id)}}"
+                                                                class="btn btn-info" title="Edit"><i
+                                                                    class="fa fa-pencil "></i></a>
+                                                            <a id="delete" href="{{route('brand.delete',$brand->id)}}"
+                                                                class="btn btn-danger" title="Delete"><i
+                                                                    class="fa fa-trash"></i></a>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 @endforeach

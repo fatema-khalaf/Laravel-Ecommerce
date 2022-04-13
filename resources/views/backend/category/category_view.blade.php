@@ -14,7 +14,7 @@
                         <div class="table-responsive">
                             <div id="example1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
                                 <div class="row">
-                                    <div class="colsm-12">
+                                    <div class="col-sm-12">
                                         <table id="example1" class="table table-bordered table-striped dataTable"
                                             role="grid" aria-describedby="example1_info">
                                             <thead>
@@ -45,12 +45,16 @@
                                                     <td><span><i class="{{$category->category_image}}"></i></span>
                                                     </td>
                                                     <td>
-                                                        <a href="{{route('category.edit',$category->id)}}"
-                                                            class="btn btn-info" title="Edit"><i
-                                                                class="fa fa-pencil "></i></a>
-                                                        <a id="delete" href="{{route('category.delete',$category->id)}}"
-                                                            class="btn btn-danger" title="Delete"><i
-                                                                class="fa fa-trash"></i></a>
+                                                        <div style="display: flex;    justify-content: space-evenly;
+                                                        ">
+                                                            <a href="{{route('category.edit',$category->id)}}"
+                                                                class="btn btn-info" title="Edit"><i
+                                                                    class="fa fa-pencil "></i></a>
+                                                            <a id="delete"
+                                                                href="{{route('category.delete',$category->id)}}"
+                                                                class="btn btn-danger" title="Delete"><i
+                                                                    class="fa fa-trash"></i></a>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 @endforeach
