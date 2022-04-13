@@ -27,11 +27,11 @@
                         <h3 class="box-title">Brand List</h3>
                     </div>
                     <!-- /.box-header -->
-                    <div class="box-body">
+                    <div class="box-body">-
                         <div class="table-responsive">
                             <div id="example1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
                                 <div class="row">
-                                    <div class="col-sm-12">
+                                    <div class="colsm-12">
                                         <table id="example1" class="table table-bordered table-striped dataTable"
                                             role="grid" aria-describedby="example1_info">
                                             <thead>
@@ -64,10 +64,10 @@
                                                     <td>
                                                         <a href="{{route('brand.edit',$brand->id)}}"
                                                             class="btn btn-info" title="Edit"><i
-                                                                class="fa fa-trash"></i></a>
+                                                                class="fa fa-pencil "></i></a>
                                                         <a id="delete" href="{{route('brand.delete',$brand->id)}}"
                                                             class="btn btn-danger" title="Delete"><i
-                                                                class="fa fa-pencil"></i></a>
+                                                                class="fa fa-trash"></i></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

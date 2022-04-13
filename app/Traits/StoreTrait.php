@@ -4,13 +4,14 @@ use Image;
 
 Trait StoreTrait{
     // request , image path, model ,inputs fild names , slugs names and referances, boolean validation needed
-    function Store($my_arry){ 
-    $request= $my_arry['request'];
-    $model= $my_arry['model'];
-    $inputs= $my_arry['inputs'];
-    $path= $my_arry['image_path'];
-    $slugs= isset($my_arry['slugs'])? $my_arry['slugs']:[];
-    $inputs_required= isset($my_arry['inputs_required'])? $my_arry['inputs_required']: false ;    
+    function Store($attr_arr){ 
+    $request= $attr_arr['request'];
+    $model= $attr_arr['model'];
+    $inputs= $attr_arr['inputs'];
+    $path= $attr_arr['image_path'];
+    $message=isset($attr_arr['message'])?$attr_arr['message']:'Added successfully'; // Notification message
+    $slugs= isset($attr_arr['slugs'])? $attr_arr['slugs']:[];
+    $inputs_required= isset($attr_arr['inputs_required'])? $attr_arr['inputs_required']: false ;    
         if($inputs_required){
             $required_inputs=[];
             foreach($inputs as $item){
@@ -37,22 +38,8 @@ Trait StoreTrait{
         }
         // insert
         $model::insert($data);
-        return null;
-    }
-
-    // Add success Notification
-    function AddedNotification( $name){
         $notification = array(
-            'message'=>$name.' added successfully',
-            'alert-type' => 'success'
-        );
-        return $notification;
-    }
-
-    // Update success Notification
-    function UpdatedNotification($name){
-        $notification = array(
-            'message'=>$name.' updated successfully',
+            'message'=>$message,
             'alert-type' => 'success'
         );
         return $notification;
