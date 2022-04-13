@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\User;
 
@@ -73,8 +74,22 @@ Route::prefix('brand')->group(function(){
     Route::get("/edit/{id}", [BrandController::class, "BrandEdite"])->name('brand.edit');
     // Store updated data
     Route::post("/update", [BrandController::class, "BrandUpdate"])->name('brand.update');
-    // Delet brand
+    // Delete brand
     Route::get("/delete/{id}", [BrandController::class, "BrandDelete"])->name('brand.delete');
+});
+
+// Note: Categories All routes
+Route::prefix('category')->group(function(){
+    // View all Catigories
+    Route::get('/view', [CategoryController::class , 'CatigoryView'])->name('all.categories');
+    // Add new category
+    Route::post("/store", [CategoryController::class, "CategoryStore"])->name('category.store');
+    // View Edit category
+    Route::get("/edit/{id}", [CategoryController::class, "CategoryEdite"])->name('category.edit');
+    // Store updated data
+    Route::post("/update", [CategoryController::class, "CategoryUpdate"])->name('category.update');
+    // Delete category
+    Route::get("/delete/{id}", [CategoryController::class, "CategoryDelete"])->name('category.delete');
 });
 
 

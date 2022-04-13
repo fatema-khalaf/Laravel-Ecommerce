@@ -22,7 +22,7 @@ class BrandController extends Controller
 
     // Store new brand
     public function BrandStore(Request $request){
-        $inputs = array('brand_name_en',"brand_name_ar",'brand_image');
+        $inputs = array('brand_name_en',"brand_name_ar");
         $slugs= array('brand_slug_en'=>'brand_name_en','brand_slug_ar'=>'brand_name_ar');
         // Store trait
         $notification = $this->Store([

@@ -13,8 +13,8 @@ trait StoreTrait
         $inputs = $attr_arr["inputs"]; // Note: inputs must not contain image input tag name
         $new_image = isset($attr_arr["new_image"])
             ? $attr_arr["new_image"]
-            : false; // image input tag name
-        $path = $attr_arr["image_path"];
+            : null; // image input tag name
+        $path =isset($attr_arr["image_path"])? $attr_arr["image_path"] : null;
         $message = isset($attr_arr["message"])
             ? $attr_arr["message"]
             : "Added successfully"; // Notification message
@@ -30,9 +30,13 @@ trait StoreTrait
             foreach ($inputs as $item) {
                 $required_inputs += [$item => "required"];
             }
+            if($new_image){
+                $required_inputs += [$new_image => "required"];
+            }
             $request->validate($required_inputs);
         }
         // If there is an image file
+        // dd($request);
         if ($request->file($new_image)) {
             $image = $request->file($new_image);
             $name_gen =
@@ -41,7 +45,7 @@ trait StoreTrait
                 ->resize(300, 300)
                 ->save($path . $name_gen);
             $save_url = $path . $name_gen;
-            $data += [$item => $save_url];
+            $data += [$new_image => $save_url];
         }
         // Add inputs data
         foreach ($inputs as $item) {
