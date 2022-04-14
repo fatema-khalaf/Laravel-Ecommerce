@@ -44,7 +44,7 @@ class CategoryController extends Controller
 
     // Update Edited data
     public function CategoryUpdate(Request $request){
-        $inputs = array('category_name_en',"category_name_ar",'category_image'); // Dont include image input tage
+        $inputs = array('category_name_en',"category_name_ar",'category_image'); // Dont include image input tage the image here is only icon name not image file name
         $slugs= array('category_slug_en'=>'category_name_en','category_slug_ar'=>'category_name_ar');
         // Update trait
         $notification=$this->Update([

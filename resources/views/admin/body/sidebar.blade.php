@@ -50,10 +50,12 @@ $route = Route::current()->getName();
           </span>
         </a>
         <ul class="treeview-menu">
-          <li class="{{($route == 'all.brands' )? 'active' : ''}}"><a href="{{route('all.categories')}}"><i
+          <li class="{{($route == 'all.categories' )? 'active' : ''}}"><a href="{{route('all.categories')}}"><i
                 class="ti-more"></i>All Categories</a></li>
-          <li><a href="mailbox_compose.html"><i class="ti-more"></i>Compose</a></li>
-          <li><a href="mailbox_read_mail.html"><i class="ti-more"></i>Read</a></li>
+          <li class="{{($route == 'all.subcategories' )? 'active' : ''}}"><a href="{{route('all.subcategories')}}"><i
+                class="ti-more"></i>All Subcategories</a></li>
+
+
         </ul>
       </li>
 
