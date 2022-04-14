@@ -26,7 +26,7 @@
                                                     <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending"
-                                                        style="width: 231.47px;">Category Name Ar</th>
+                                                        style="width: 144.63px; ">Category Name Ar</th>
                                                     <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Office: activate to sort column ascending"
@@ -34,7 +34,7 @@
                                                     <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Age: activate to sort column ascending"
-                                                        style="width: 46.7361px;">Actions</th>
+                                                        style="width: 100.7361px;">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
