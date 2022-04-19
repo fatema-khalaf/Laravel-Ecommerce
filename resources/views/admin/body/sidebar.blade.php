@@ -56,11 +56,24 @@ $route = Route::current()->getName();
                 class="ti-more"></i>All Subcategories</a></li>
           <li class="{{($route == 'all.subsubcategories' )? 'active' : ''}}"><a
               href="{{route('all.subsubcategories')}}"><i class="ti-more"></i>All Sub-subcategories</a></li>
-
-
         </ul>
       </li>
 
+      <li class="treeview {{($prefix == '/product' )? 'active' : ''}}">
+        <a href="#">
+          <i data-feather="mail"></i> <span>Products</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{($route == 'add.product' )? 'active' : ''}}"><a href="{{route('add.product')}}"><i
+                class="ti-more"></i>Add Products</a></li>
+          <li class="{{($route == 'all.subcategories' )? 'active' : ''}}"><a href="{{route('all.subcategories')}}"><i
+                class="ti-more"></i>Manage Products</a></li>
+
+        </ul>
+      </li>
       <li class="treeview">
         <a href="#">
           <i data-feather="file"></i>

@@ -1,6 +1,7 @@
 <?php
 namespace App\Traits;
 use Image;
+use Carbon\Carbon;
 
 trait StoreTrait
 {
@@ -23,7 +24,8 @@ trait StoreTrait
         ? $attr_arr["inputs_required"]
         : false;
         // Final Updated data
-        $data = [];
+        $data = ['created_at' => Carbon::now(),];
+        
         // validate inputs
         if ($inputs_required) {
             $required_inputs = [];

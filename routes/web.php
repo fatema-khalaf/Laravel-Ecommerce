@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubcategoryController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\User;
 
@@ -111,7 +112,7 @@ Route::prefix('category')->group(function(){
     Route::get('/sub/sub/view', [SubcategoryController::class , 'SubSubcatigoryView'])->name('all.subsubcategories');
     //Note: ajax route
     Route::get('/subcategory/ajax/{category_id}', [SubcategoryController::class, 'GetSubCategory']);
-
+    Route::get('/sub-subcategory/ajax/{subcategory_id}', [SubCategoryController::class, 'GetSubSubCategory']);
     // Add new sub-subcategory
     Route::post("/sub/sub/store", [SubcategoryController::class, "SubSubcategoryStore"])->name('subsubcategory.store');
     // View Edit sub-subcategory
@@ -120,7 +121,24 @@ Route::prefix('category')->group(function(){
     Route::post("/sub/sub/update", [SubcategoryController::class, "SubSubcategoryUpdate"])->name('subsubcategory.update');
     // Delete sub-subcategory
     Route::get("/sub/sub/delete/{id}", [SubcategoryController::class, "SubSubcategoryDelete"])->name('subsubcategory.delete');
+});
 
+Route::prefix('product')->group(function(){
+    
+    // View add Product page
+    Route::get('/add', [ProductController::class , 'AddProduct'])->name('add.product');
+    // Add new Product
+    Route::post("/store", [ProductController::class, "ProductStore"])->name('product.store');
+    
+    
+    // View all Catigories
+    Route::get('/view', [CategoryController::class , 'CatigoryView'])->name('all.categories');
+    // View Edit category
+    Route::get("/edit/{id}", [CategoryController::class, "CategoryEdite"])->name('category.edit');
+    // Store updated data
+    Route::post("/update", [CategoryController::class, "CategoryUpdate"])->name('category.update');
+    // Delete category
+    Route::get("/delete/{id}", [CategoryController::class, "CategoryDelete"])->name('category.delete');
 });
 
 
