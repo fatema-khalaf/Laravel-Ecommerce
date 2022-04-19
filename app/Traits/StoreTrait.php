@@ -15,6 +15,12 @@ trait StoreTrait
         $new_image = isset($attr_arr["new_image"])
             ? $attr_arr["new_image"]
             : null; // image input tag name
+        $image_width = isset($attr_arr["image_width"])
+        ? $attr_arr["image_width"]
+        : 300; // resize image width
+        $image_height = isset($attr_arr["image_height"])
+        ? $attr_arr["image_height"]
+        : 300; // resize image height
         $path =isset($attr_arr["image_path"])? $attr_arr["image_path"] : null;
         $message = isset($attr_arr["message"])
             ? $attr_arr["message"]
@@ -44,7 +50,7 @@ trait StoreTrait
             $name_gen =
                 hexdec(uniqid()) . "." . $image->getClientOriginalExtension();
             Image::make($image)
-                ->resize(300, 300)
+                ->resize($image_width, $image_height)
                 ->save($path . $name_gen);
             $save_url = $path . $name_gen;
             $data += [$new_image => $save_url];
@@ -59,12 +65,12 @@ trait StoreTrait
             $data += [$key => $slg];
         }
         // Insert
-        $model::insert($data);
+        $id = $model::insertGetId($data);
         // Add notifications
         $notification = [
             "message" => $message,
             "alert-type" => "success",
         ];
-        return $notification;
+        return ['notification' =>$notification,'id' => $id];
     }
 }

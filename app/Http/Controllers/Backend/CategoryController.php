@@ -26,14 +26,14 @@ class CategoryController extends Controller
         $inputs = array('category_name_en',"category_name_ar",'category_image');
         $slugs= array('category_slug_en'=>'category_name_en','category_slug_ar'=>'category_name_ar');
         // Store trait
-        $notification = $this->Store([
+        $res = $this->Store([
             'request'=> $request,
             'inputs'=>$inputs,
             'model'=>'App\Models\Category',
             'slugs'=>$slugs,
             'inputs_required'=> true
         ]);
-        return redirect()->back()->with($notification);
+        return redirect()->back()->with($res['notification']);
     }
 
     // View Edit category page

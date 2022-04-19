@@ -37,7 +37,7 @@ class SubcategoryController extends Controller
             "subcategory_slug_ar" => "subcategory_name_ar",
         ];
         // Store trait
-        $notification = $this->Store([
+        $res = $this->Store([
             "request" => $request,
             "inputs" => $inputs,
             "model" => "App\Models\SubCategory",
@@ -46,7 +46,7 @@ class SubcategoryController extends Controller
         ]);
         return redirect()
             ->back()
-            ->with($notification);
+            ->with($res['notification']);
     }
 
     // View Edit category page
@@ -129,7 +129,7 @@ class SubcategoryController extends Controller
             "subsubcategory_slug_ar" => "subsubcategory_name_ar",
         ];
         // Store trait
-        $notification = $this->Store([
+        $res = $this->Store([
             "request" => $request,
             "inputs" => $inputs,
             "model" => "App\Models\SubSubcategory",
@@ -138,7 +138,7 @@ class SubcategoryController extends Controller
         ]);
         return redirect()
             ->back()
-            ->with($notification);
+            ->with($res['notification']);
     }
 
     // View Edit category page

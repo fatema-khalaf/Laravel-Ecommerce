@@ -25,7 +25,7 @@ class BrandController extends Controller
         $inputs = array('brand_name_en',"brand_name_ar");
         $slugs= array('brand_slug_en'=>'brand_name_en','brand_slug_ar'=>'brand_name_ar');
         // Store trait
-        $notification = $this->Store([
+        $res = $this->Store([
             'request'=> $request,
             'inputs'=>$inputs,
             'image_path'=>'upload/brand/',
@@ -34,7 +34,7 @@ class BrandController extends Controller
             'slugs'=>$slugs,
             'inputs_required'=> true
         ]);
-        return redirect()->back()->with($notification);
+        return redirect()->back()->with($res['notification']);
     }
 
     // View Edit brand page
