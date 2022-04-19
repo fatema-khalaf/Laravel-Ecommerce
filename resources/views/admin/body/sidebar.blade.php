@@ -37,7 +37,7 @@ $route = Route::current()->getName();
         </a>
         <ul class="treeview-menu">
           <li class="  {{($route == 'all.brands' )? 'active' : ''}}"><a href="{{route('all.brands')}}"><i
-                class="ti-more"></i>All
+                class="ti-more"></i>Manage
               Brands</a></li>
         </ul>
       </li>
@@ -51,11 +51,11 @@ $route = Route::current()->getName();
         </a>
         <ul class="treeview-menu">
           <li class="{{($route == 'all.categories' )? 'active' : ''}}"><a href="{{route('all.categories')}}"><i
-                class="ti-more"></i>All Categories</a></li>
+                class="ti-more"></i>Manage Categories</a></li>
           <li class="{{($route == 'all.subcategories' )? 'active' : ''}}"><a href="{{route('all.subcategories')}}"><i
-                class="ti-more"></i>All Subcategories</a></li>
+                class="ti-more"></i>Manage Subcategories</a></li>
           <li class="{{($route == 'all.subsubcategories' )? 'active' : ''}}"><a
-              href="{{route('all.subsubcategories')}}"><i class="ti-more"></i>All Sub-subcategories</a></li>
+              href="{{route('all.subsubcategories')}}"><i class="ti-more"></i>Manage Sub-subcategories</a></li>
         </ul>
       </li>
 
@@ -69,7 +69,7 @@ $route = Route::current()->getName();
         <ul class="treeview-menu">
           <li class="{{($route == 'add.product' )? 'active' : ''}}"><a href="{{route('add.product')}}"><i
                 class="ti-more"></i>Add Products</a></li>
-          <li class="{{($route == 'all.subcategories' )? 'active' : ''}}"><a href="{{route('all.subcategories')}}"><i
+          <li class="{{($route == 'all.products' )? 'active' : ''}}"><a href="{{route('all.products')}}"><i
                 class="ti-more"></i>Manage Products</a></li>
 
         </ul>
