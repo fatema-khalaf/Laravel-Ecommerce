@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubcategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\User;
 
@@ -123,8 +124,9 @@ Route::prefix('category')->group(function(){
     Route::get("/sub/sub/delete/{id}", [SubcategoryController::class, "SubSubcategoryDelete"])->name('subsubcategory.delete');
 });
 
+// Note: Products All routes
 Route::prefix('product')->group(function(){
-    
+
     // View add Product page
     Route::get('/add', [ProductController::class , 'AddProduct'])->name('add.product');
     // Add new Product
@@ -150,8 +152,25 @@ Route::prefix('product')->group(function(){
 });
 
 
+// Note: Slider All routes
+Route::prefix('slider')->group(function(){
+    // View All Sliders
+    Route::get("/view", [SliderController::class, "SliderView"])->name('all.sliders');
+    // Add new slider
+    Route::post("/store", [SliderController::class, "SliderStore"])->name('slider.store');
+    // View Edit slider
+    Route::get("/edit/{id}", [SliderController::class, "SliderEdite"])->name('slider.edit');
+    // Store updated data
+    Route::post("/update", [SliderController::class, "SliderUpdate"])->name('slider.update');
+    // Delete slider
+    Route::get("/delete/{id}", [SliderController::class, "SliderDelete"])->name('slider.delete');
+    // Activate slider
+    Route::get('/activate/slider/{id}', [SliderController::class, 'SliderActivate'])->name('slider.activate');
+    // Inactivate slider
+    Route::get('/inactivate/slider/{id}', [SliderController::class, 'SliderInactivate'])->name('slider.inactivate');
+});
 
-//NOTE: User Route
+//NOTE: User Route 
 //View user account
 Route::middleware([
     "auth:sanctum,web",

@@ -15,6 +15,12 @@ trait UpdateTrait
         $new_image = isset($attr_arr["new_image"])
             ? $attr_arr["new_image"]
             : false; // new image input tag name
+        $image_width = isset($attr_arr["image_width"])
+        ? $attr_arr["image_width"]
+        : 300; // resize image width
+        $image_height = isset($attr_arr["image_height"])
+        ? $attr_arr["image_height"]
+        : 300; // resize image height
         $message = isset($attr_arr["message"])
             ? $attr_arr["message"]
             : "Updated successfully"; // Notification message
@@ -41,7 +47,7 @@ trait UpdateTrait
             $name_gen =
                 hexdec(uniqid()) . "." . $image->getClientOriginalExtension();
             Image::make($image)
-                ->resize(300, 300)
+                ->resize($image_width, $image_height)
                 ->save($path . $name_gen);
             $save_url = $path . $name_gen;
             $data += [$new_image => $save_url];
