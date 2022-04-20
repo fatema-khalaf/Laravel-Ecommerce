@@ -22,7 +22,7 @@
 
 </head>
 
-<body class="hold-transition dark-skin sidebar-mini theme-primary fixed">
+<body class="hold-transition dark-skin sidebar-mini theme-primary fixed sidebar-collapse">
 
   <div class="wrapper">
 

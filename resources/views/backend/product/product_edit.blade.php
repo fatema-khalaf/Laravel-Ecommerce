@@ -494,44 +494,52 @@
                 <div class="box-header">
                     <h4 class="box-title">Product Multiple Image <strong>Update</strong></h4>
                 </div>
-                <form method="post" action="{{route('product.image.update')}}" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row row-sm">
-                        @foreach($multiImgs as $img)
-                        <div class="col-md-3">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col">
+                            <form method="post" action="{{route('product.image.update')}}"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="row row-sm">
+                                    @foreach($multiImgs as $img)
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="card">
+                                                <img src="{{ asset($img->photo_name) }}" class="card-img-top"
+                                                    style="width: 100%;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">
+                                                        <a href="{{ route('product.multiImg.delete',$img->id) }}"
+                                                            class="btn btn-sm btn-danger" id="delete"
+                                                            title="Delete Data"><i class="fa fa-trash"></i> </a>
+                                                    </h5>
+                                                    <p class="card-text">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">Change Image <span
+                                                                class="tx-danger">*</span></label>
+                                                        {{-- new idea this will send an array called
+                                                        multi_img each element has 'img->id' as key
+                                                        and the input file as a value 👇 --}}
+                                                        <input class="form-control" type="file"
+                                                            name="multi_img[ {{$img->id}} ]">
+                                                    </div>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--  end col md 3		 -->
+                                    @endforeach
 
-                            <div class="card">
-                                <img src="{{ asset($img->photo_name) }}" class="card-img-top"
-                                    style="height: 130px; width: 280px;">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <a href="{{ route('product.multiImg.delete',$img->id) }}"
-                                            class="btn btn-sm btn-danger" id="delete" title="Delete Data"><i
-                                                class="fa fa-trash"></i> </a>
-                                    </h5>
-                                    <p class="card-text">
-                                    <div class="form-group">
-                                        <label class="form-control-label">Change Image <span
-                                                class="tx-danger">*</span></label>
-                                        {{-- new idea this will send an array called
-                                        multi_img each element has 'img->id' as key
-                                        and the input file as a value 👇 --}}
-                                        <input class="form-control" type="file" name="multi_img[ {{$img->id}} ]">
-                                    </div>
-                                    </p>
                                 </div>
-                            </div>
 
-                        </div><!--  end col md 3		 -->
-                        @endforeach
-
+                                <div class="text-xs-right">
+                                    <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update Image">
+                                </div>
+                                <br><br>
+                            </form>
+                        </div>
                     </div>
-
-                    <div class="text-xs-right">
-                        <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update Image">
-                    </div>
-                    <br><br>
-                </form>
+                </div>
             </div>
         </div>
     </div> <!-- // end row  -->
@@ -547,41 +555,48 @@
                 <div class="box-header">
                     <h4 class="box-title">Product Thambnail Image <strong>Update</strong></h4>
                 </div>
-                <form method="post" action="{{ route('product.thambnail.update') }}" enctype="multipart/form-data">
-                    @csrf
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col">
+                            <form method="post" action="{{ route('product.thambnail.update') }}"
+                                enctype="multipart/form-data">
+                                @csrf
 
-                    <input type="hidden" name="id" value="{{ $product->id }}">
-                    <input type="hidden" name="old_img" value="{{ $product->product_thambnail }}">
+                                <input type="hidden" name="id" value="{{ $product->id }}">
+                                <input type="hidden" name="old_img" value="{{ $product->product_thambnail }}">
 
-                    <div class="row row-sm">
+                                <div class="row row-sm">
 
-                        <div class="col-md-3">
+                                    <div class="col-md-3">
 
-                            <div class="card">
-                                <img id="mainThmb" src="{{ asset($product->product_thambnail) }}" class="card-img-top"
-                                    style="height: 130px; width: 280px;">
-                                <div class="card-body">
+                                        <div class="card">
+                                            <img id="mainThmb" src="{{ asset($product->product_thambnail) }}"
+                                                class="card-img-top" style="width: 100%;">
+                                            <div class="card-body">
 
-                                    <p class="card-text">
-                                    <div class="form-group">
-                                        <label class="form-control-label">Change Image <span
-                                                class="tx-danger">*</span></label>
-                                        <input type="file" name="product_thambnail" class="form-control"
-                                            onChange="mainThamUrl(this)">
-                                    </div>
-                                    </p>
+                                                <p class="card-text">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">Change Image <span
+                                                            class="tx-danger">*</span></label>
+                                                    <input type="file" name="product_thambnail" class="form-control"
+                                                        onChange="mainThamUrl(this)">
+                                                </div>
+                                                </p>
 
+                                            </div>
+                                        </div>
+
+                                    </div><!--  end col md 3		 -->
                                 </div>
-                            </div>
 
-                        </div><!--  end col md 3		 -->
+                                <div class="text-xs-right">
+                                    <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update Image">
+                                </div>
+                                <br><br>
+                            </form>
+                        </div>
                     </div>
-
-                    <div class="text-xs-right">
-                        <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update Image">
-                    </div>
-                    <br><br>
-                </form>
+                </div>
             </div>
         </div>
     </div> <!-- // end row  -->
@@ -639,7 +654,7 @@
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
 			reader.onload = function(e){
-				$('#mainThmb').attr('src',e.target.result).width(280).height(130);
+				$('#mainThmb').attr('src',e.target.result).width(100%);
 			};
 			reader.readAsDataURL(input.files[0]);
 		}
