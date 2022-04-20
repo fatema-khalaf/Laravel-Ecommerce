@@ -27,6 +27,9 @@ Route::group(
 );
 
 Route::get("/admin/logout", [AdminController::class, "destroy"])->name("admin.logout");
+
+Route::middleware(['auth:admin'])->group(function(){
+
 // View profile
 Route::get("/admin/profile", [
     AdminProfileController::class,
@@ -64,9 +67,9 @@ Route::middleware([
 ])->group(function () {
     Route::get("admin/dashboard", function () {
         return view("admin.index");
-    })->name("dashboard");
+    })->name("dashboard")->middleware('auth:admin');
 });
-
+});
 // Note: Brands All routes
 Route::prefix('brand')->group(function(){
     // View All Brands
