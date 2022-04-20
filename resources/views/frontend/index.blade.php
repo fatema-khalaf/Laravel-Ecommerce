@@ -8,7 +8,9 @@
 
                 <!-- ================================== TOP NAVIGATION ================================== -->
                 <div class="side-menu animate-dropdown outer-bottom-xs">
-                    <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Categories</div>
+                    <div class="head"><i class="icon fa fa-align-justify fa-fw"></i>
+                        @if(session()->get('language')=='arabic') الفئات @else Categories
+                        @endif</div>
                     <nav class="yamm megamenu-horizontal">
                         <ul class="nav">
                             <li class="dropdown menu-item"> <a href="#" class="dropdown-toggle"

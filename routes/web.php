@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\SubcategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\LanguageController; 
 use App\Models\User;
 
 // Route::get("/", function () {
@@ -198,3 +199,10 @@ Route::post("/user/profile/store", [IndexController::class, "UserProfileStore"])
 Route::get("/user/change/password", [IndexController::class, "UserChangePassword"])->name('change.password');
 // Store new password
 Route::post("/user/password/update", [IndexController::class, "UserUpdateChangePassword"])->name('user.password.update');
+
+//  ============================================== FRONT END : ROUTES ============================================== -->
+
+//NOTE: Multi language Routes
+
+Route::get("/english/language", [LanguageController::class, "English"])->name('english.language');
+Route::get("/arabic/language", [LanguageController::class, "Arabic"])->name('arabic.language');
