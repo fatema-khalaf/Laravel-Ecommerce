@@ -1,5 +1,8 @@
 @extends('frontend.main_master')
 @section('content')
+@section('title')
+{{$product->product_name_en}}
+@endsection
 <div class="breadcrumb">
     <div class="container">
         <div class="breadcrumb-inner">
