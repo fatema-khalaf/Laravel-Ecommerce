@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Category;
+use App\Models\Slider;
+use App\Models\Product;
 use Illuminate\Support\Facades\Hash;
 use App\Traits\ChangePasswordTrait;
 use App\Traits\ReplaceImageTrait;
@@ -19,8 +22,17 @@ class IndexController extends Controller
 
     // View home page
     public function Index(){
-        return view('frontend.index');
+        $products = Product::orderBy('id', 'DESC')->limit(6)->get();
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        $sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
+        return view('frontend.index', compact('categories', 'sliders', 'products'));
     }
+    // View product details
+    public function ProductDetails($id,$slug){
+		$product = Product::findOrFail($id);
+	 	return view('frontend.product.product_details',compact('product'));
+
+	}
     // Logout user
     public function UserLogout(){
         Auth::logout();
