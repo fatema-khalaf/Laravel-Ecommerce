@@ -7,9 +7,17 @@
     <div class="container">
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Clothing</a></li>
-                <li class="active"> @if (session()->get('language') == 'arabic')
+                <li><a href="{{url('/')}}">
+                        Home</a></li>
+                <li><a href="#">
+                        @if (session()->get('language') == 'arabic')
+                        {{$product['category']['category_name_ar']}}
+                        @else
+                        {{$product['category']['category_name_en'] }}
+                        @endif
+                    </a></li>
+                <li class="active">
+                    @if (session()->get('language') == 'arabic')
                     {{$product->product_name_ar}}
                     @else
                     {{$product->product_name_en}}
@@ -504,7 +512,7 @@
                                                 @if ($product->discount_price == NULL)
                                                 <span class="price">${{ $product->selling_price }}</span>
                                                 @else
-                                                <span class="price">${{ $amount }}</span>
+                                                <span class="price">${{ $product->discount_price }}</span>
                                                 <span class="price-strike">${{ $product->selling_price }}</span>
                                                 @endif
                                             </div>
