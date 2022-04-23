@@ -11,6 +11,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Hash;
 use App\Traits\ChangePasswordTrait;
 use App\Traits\ReplaceImageTrait;
+use App\Models\MultiImg;
 use Auth;
 
 class IndexController extends Controller
@@ -29,9 +30,9 @@ class IndexController extends Controller
     }
     // View product details
     public function ProductDetails($id,$slug){
+		$multiImg = MultiImg::where('product_id',$id)->get();
 		$product = Product::findOrFail($id);
-	 	return view('frontend.product.product_details',compact('product'));
-
+	 	return view('frontend.product.product_details',compact('product', 'multiImg'));
 	}
     // Logout user
     public function UserLogout(){

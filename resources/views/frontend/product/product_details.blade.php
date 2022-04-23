@@ -9,7 +9,11 @@
             <ul class="list-inline list-unstyled">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Clothing</a></li>
-                <li class="active">Floral Print Buttoned</li>
+                <li class="active"> @if (session()->get('language') == 'arabic')
+                    {{$product->product_name_ar}}
+                    @else
+                    {{$product->product_name_en}}
+                    @endif</li>
             </ul>
         </div><!-- /.breadcrumb-inner -->
     </div><!-- /.container -->
@@ -76,7 +80,12 @@
                                                 </div><!-- /.hot-deal-wrapper -->
 
                                                 <div class="product-info text-left m-t-20">
-                                                    <h3 class="name"><a href="detail.html">Floral Print Buttoned</a>
+                                                    <h3 class="name"><a href="detail.html">
+                                                            @if(session()->get('language') == 'arabic')
+                                                            {{$product->product_name_ar}}
+                                                            @else
+                                                            {{$product->product_name_en}}
+                                                            @endif</a>
                                                     </h3>
                                                     <div class="rating rateit-small rateit"><button id="rateit-reset-2"
                                                             data-role="none" class="rateit-reset"
@@ -161,7 +170,13 @@
                                                 </div><!-- /.hot-deal-wrapper -->
 
                                                 <div class="product-info text-left m-t-20">
-                                                    <h3 class="name"><a href="detail.html">Floral Print Buttoned</a>
+                                                    <h3 class="name"><a
+                                                            href="detail.html">@if(session()->get('language') ==
+                                                            'arabic')
+                                                            {{$product->product_name_ar}}
+                                                            @else
+                                                            {{$product->product_name_en}}
+                                                            @endif</a></a>
                                                     </h3>
                                                     <div class="rating rateit-small rateit"><button id="rateit-reset-3"
                                                             data-role="none" class="rateit-reset"
@@ -367,22 +382,6 @@
                                     </div>
                                 </div>
                             </div><!-- /.item -->
-
-                            <!-- /.item -->
-
-                            <!-- /.item -->
-
-                            <div class="owl-controls clickable">
-                                <div class="owl-pagination">
-                                    <div class="owl-page active"><span class=""></span></div>
-                                    <div class="owl-page"><span class=""></span></div>
-                                    <div class="owl-page"><span class=""></span></div>
-                                </div>
-                                <div class="owl-buttons">
-                                    <div class="owl-prev"></div>
-                                    <div class="owl-next"></div>
-                                </div>
-                            </div>
                         </div><!-- /.owl-carousel -->
                     </div>
 
@@ -394,246 +393,41 @@
             </div><!-- /.sidebar -->
             <div class="col-md-9">
                 <div class="detail-block">
-                    <div class="row  wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+                    <div class="row  wow fadeInUp animated">
 
                         <div class="col-xs-12 col-sm-6 col-md-5 gallery-holder">
                             <div class="product-item-holder size-big single-product-gallery small-gallery">
 
-                                <div id="owl-single-product" class="owl-carousel owl-theme"
-                                    style="opacity: 1; display: block;">
-                                    <div class="owl-wrapper-outer">
-                                        <div class="owl-wrapper"
-                                            style="width: 5742px; left: 0px; display: block; transition: all 0ms ease 0s; transform: translate3d(0px, 0px, 0px);">
-                                            <div class="owl-item" style="width: 319px;">
-                                                <div class="single-product-gallery-item" id="slide1">
-                                                    <a data-lightbox="image-1" data-title="Gallery"
-                                                        href="assets/images/products/p8.jpg">
-                                                        <img class="img-responsive" alt=""
-                                                            src="assets/images/products/p8.jpg">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="owl-item" style="width: 319px;">
-                                                <div class="single-product-gallery-item" id="slide2">
-                                                    <a data-lightbox="image-1" data-title="Gallery"
-                                                        href="assets/images/products/p9.jpg">
-                                                        <img class="img-responsive" alt=""
-                                                            src="assets/images/products/p9.jpg">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="owl-item" style="width: 319px;">
-                                                <div class="single-product-gallery-item" id="slide3">
-                                                    <a data-lightbox="image-1" data-title="Gallery"
-                                                        href="assets/images/products/p10.jpg">
-                                                        <img class="img-responsive" alt=""
-                                                            src="assets/images/products/p10.jpg">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="owl-item" style="width: 319px;">
-                                                <div class="single-product-gallery-item" id="slide4">
-                                                    <a data-lightbox="image-1" data-title="Gallery"
-                                                        href="assets/images/products/p11.jpg">
-                                                        <img class="img-responsive" alt=""
-                                                            src="assets/images/products/p11.jpg">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="owl-item" style="width: 319px;">
-                                                <div class="single-product-gallery-item" id="slide5">
-                                                    <a data-lightbox="image-1" data-title="Gallery"
-                                                        href="assets/images/products/p12.jpg">
-                                                        <img class="img-responsive" alt=""
-                                                            src="assets/images/products/p12.jpg">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="owl-item" style="width: 319px;">
-                                                <div class="single-product-gallery-item" id="slide6">
-                                                    <a data-lightbox="image-1" data-title="Gallery"
-                                                        href="assets/images/products/p13.jpg">
-                                                        <img class="img-responsive" alt=""
-                                                            src="assets/images/products/p13.jpg">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="owl-item" style="width: 319px;">
-                                                <div class="single-product-gallery-item" id="slide7">
-                                                    <a data-lightbox="image-1" data-title="Gallery"
-                                                        href="assets/images/products/p14.jpg">
-                                                        <img class="img-responsive" alt=""
-                                                            src="assets/images/products/p14.jpg">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="owl-item" style="width: 319px;">
-                                                <div class="single-product-gallery-item" id="slide8">
-                                                    <a data-lightbox="image-1" data-title="Gallery"
-                                                        href="assets/images/products/p15.jpg">
-                                                        <img class="img-responsive" alt=""
-                                                            src="assets/images/products/p15.jpg">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="owl-item" style="width: 319px;">
-                                                <div class="single-product-gallery-item" id="slide9">
-                                                    <a data-lightbox="image-1" data-title="Gallery"
-                                                        href="assets/images/products/p16.jpg">
-                                                        <img class="img-responsive" alt=""
-                                                            src="assets/images/products/p16.jpg">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div><!-- /.single-product-gallery-item -->
-
-                                    <!-- /.single-product-gallery-item -->
-
-                                    <!-- /.single-product-gallery-item -->
-
-                                    <!-- /.single-product-gallery-item -->
-
-                                    <!-- /.single-product-gallery-item -->
-
-                                    <!-- /.single-product-gallery-item -->
-
-                                    <!-- /.single-product-gallery-item -->
-
-                                    <!-- /.single-product-gallery-item -->
-
-                                    <!-- /.single-product-gallery-item -->
-
-                                    <div class="owl-controls clickable">
-                                        <div class="owl-pagination">
-                                            <div class="owl-page active"><span class=""></span></div>
-                                            <div class="owl-page"><span class=""></span></div>
-                                            <div class="owl-page"><span class=""></span></div>
-                                            <div class="owl-page"><span class=""></span></div>
-                                            <div class="owl-page"><span class=""></span></div>
-                                            <div class="owl-page"><span class=""></span></div>
-                                            <div class="owl-page"><span class=""></span></div>
-                                            <div class="owl-page"><span class=""></span></div>
-                                            <div class="owl-page"><span class=""></span></div>
-                                        </div>
+                                <div id="owl-single-product">
+                                    @foreach($multiImg as $img)
+                                    <div class="single-product-gallery-item" id="slide{{$img->id}}">
+                                        <a data-lightbox="image-1" data-title="Gallery"
+                                            href="{{ asset($img->photo_name ) }} ">
+                                            <img class="img-responsive" alt="" src="{{ asset($img->photo_name ) }} "
+                                                data-echo="{{ asset($img->photo_name ) }} ">
+                                        </a>
                                     </div>
+
+                                    <!-- /.single-product-gallery-item -->
+                                    @endforeach
+
                                 </div><!-- /.single-product-slider -->
 
 
                                 <div class="single-product-gallery-thumbs gallery-thumbs">
 
-                                    <div id="owl-single-product-thumbnails" class="owl-carousel owl-theme"
-                                        style="opacity: 1; display: block;">
-                                        <div class="owl-wrapper-outer">
-                                            <div class="owl-wrapper"
-                                                style="width: 1440px; left: 0px; display: block; transition: all 0ms ease 0s; transform: translate3d(0px, 0px, 0px);">
-                                                <div class="owl-item" style="width: 80px;">
-                                                    <div class="item">
-                                                        <a class="horizontal-thumb active"
-                                                            data-target="#owl-single-product" data-slide="1"
-                                                            href="#slide1">
-                                                            <img class="img-responsive" width="85" alt=""
-                                                                src="assets/images/products/p17.jpg">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="owl-item" style="width: 80px;">
-                                                    <div class="item">
-                                                        <a class="horizontal-thumb" data-target="#owl-single-product"
-                                                            data-slide="2" href="#slide2">
-                                                            <img class="img-responsive" width="85" alt=""
-                                                                src="assets/images/products/p18.jpg">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="owl-item" style="width: 80px;">
-                                                    <div class="item">
+                                    <div id="owl-single-product-thumbnails">
+                                        @foreach($multiImg as $img)
 
-                                                        <a class="horizontal-thumb" data-target="#owl-single-product"
-                                                            data-slide="3" href="#slide3">
-                                                            <img class="img-responsive" width="85" alt=""
-                                                                src="assets/images/products/p19.jpg">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="owl-item" style="width: 80px;">
-                                                    <div class="item">
-
-                                                        <a class="horizontal-thumb" data-target="#owl-single-product"
-                                                            data-slide="4" href="#slide4">
-                                                            <img class="img-responsive" width="85" alt=""
-                                                                src="assets/images/products/p20.jpg">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="owl-item" style="width: 80px;">
-                                                    <div class="item">
-
-                                                        <a class="horizontal-thumb" data-target="#owl-single-product"
-                                                            data-slide="5" href="#slide5">
-                                                            <img class="img-responsive" width="85" alt=""
-                                                                src="assets/images/products/p21.jpg">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="owl-item" style="width: 80px;">
-                                                    <div class="item">
-
-                                                        <a class="horizontal-thumb" data-target="#owl-single-product"
-                                                            data-slide="6" href="#slide6">
-                                                            <img class="img-responsive" width="85" alt=""
-                                                                src="assets/images/products/p22.jpg">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="owl-item" style="width: 80px;">
-                                                    <div class="item">
-
-                                                        <a class="horizontal-thumb" data-target="#owl-single-product"
-                                                            data-slide="7" href="#slide7">
-                                                            <img class="img-responsive" width="85" alt=""
-                                                                src="assets/images/products/p23.jpg">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="owl-item" style="width: 80px;">
-                                                    <div class="item">
-
-                                                        <a class="horizontal-thumb" data-target="#owl-single-product"
-                                                            data-slide="8" href="#slide8">
-                                                            <img class="img-responsive" width="85" alt=""
-                                                                src="assets/images/products/p24.jpg">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="owl-item" style="width: 80px;">
-                                                    <div class="item">
-
-                                                        <a class="horizontal-thumb" data-target="#owl-single-product"
-                                                            data-slide="9" href="#slide9">
-                                                            <img class="img-responsive" width="85" alt=""
-                                                                src="assets/images/products/p25.jpg">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="item">
+                                            <a class="horizontal-thumb active" data-target="#owl-single-product"
+                                                data-slide="1" href="#slide{{$img->id}}">
+                                                <img class="img-responsive" width="85" alt=""
+                                                    src="{{ asset($img->photo_name ) }} ">
+                                            </a>
                                         </div>
+                                        @endforeach
 
-
-
-
-
-
-
-
-
-                                        <div class="owl-controls clickable">
-                                            <div class="owl-pagination">
-                                                <div class="owl-page active"><span class=""></span></div>
-                                                <div class="owl-page"><span class=""></span></div>
-                                                <div class="owl-page"><span class=""></span></div>
-                                            </div>
-                                        </div>
                                     </div><!-- /#owl-single-product-thumbnails -->
 
 
@@ -644,7 +438,11 @@
                         </div><!-- /.gallery-holder -->
                         <div class="col-sm-6 col-md-7 product-info-block">
                             <div class="product-info">
-                                <h1 class="name">Floral Print Buttoned</h1>
+                                <h1 class="name">@if(session()->get('language') == 'arabic')
+                                    {{$product->product_name_ar}}
+                                    @else
+                                    {{$product->product_name_en}}
+                                    @endif</a></h1>
 
                                 <div class="rating-reviews m-t-20">
                                     <div class="row">
@@ -686,22 +484,31 @@
                                 </div><!-- /.stock-container -->
 
                                 <div class="description-container m-t-20">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    @if(session()->get('language') == 'arabic')
+                                    {{$product->short_descp_ar}}
+                                    @else
+                                    {{$product->short_descp_en}}
+                                    @endif</a>
+
                                 </div><!-- /.description-container -->
 
                                 <div class="price-container info-container m-t-20">
                                     <div class="row">
-
+                                        @php
+                                        $amount = $product->selling_price - $product->discount_price;
+                                        $discount = ($amount/ $product->selling_price)*100;
+                                        @endphp
 
                                         <div class="col-sm-6">
                                             <div class="price-box">
-                                                <span class="price">$800.00</span>
-                                                <span class="price-strike">$900.00</span>
+                                                @if ($product->discount_price == NULL)
+                                                <span class="price">${{ $product->selling_price }}</span>
+                                                @else
+                                                <span class="price">${{ $amount }}</span>
+                                                <span class="price-strike">${{ $product->selling_price }}</span>
+                                                @endif
                                             </div>
                                         </div>
-
                                         <div class="col-sm-6">
                                             <div class="favorite-button m-t-10">
                                                 <a class="btn btn-primary" data-toggle="tooltip" data-placement="right"
@@ -745,7 +552,8 @@
 
                                         <div class="col-sm-7">
                                             <a href="#" class="btn btn-primary"><i
-                                                    class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+                                                    class="fa fa-shopping-cart inner-right-vs"></i>
+                                                ADD TO CART</a>
                                         </div>
 
 
@@ -778,19 +586,15 @@
 
                                 <div id="description" class="tab-pane in active">
                                     <div class="product-tab">
-                                        <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                                            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                                            est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                            commodo consequat.<br><br> Duis aute irure dolor in reprehenderit in
-                                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                            occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                                            anim id est laborum.</p>
+                                        <p class="text">
+
+                                            @if(session()->get('language') == 'arabic')
+                                            {{-- NEW idea to avoid display html tags on the website use 👇👇👇--}}
+                                            {!!$product->long_descp_ar!!}
+                                            @else
+                                            {!!$product->long_descp_en!!}
+                                            @endif
+                                        </p>
                                     </div>
                                 </div><!-- /.tab-pane -->
 
@@ -804,7 +608,8 @@
                                                 <div class="review">
                                                     <div class="review-title"><span class="summary">We love this
                                                             product</span><span class="date"><i
-                                                                class="fa fa-calendar"></i><span>1 days
+                                                                class="fa fa-calendar"></i><span>1
+                                                                days
                                                                 ago</span></span></div>
                                                     <div class="text">"Lorem ipsum dolor sit amet, consectetur
                                                         adipiscing elit.Aliquam suscipit."</div>
@@ -834,41 +639,56 @@
                                                             <tr>
                                                                 <td class="cell-label">Quality</td>
                                                                 <td><input type="radio" name="quality" class="radio"
-                                                                        value="1"></td>
+                                                                        value="1">
+                                                                </td>
                                                                 <td><input type="radio" name="quality" class="radio"
-                                                                        value="2"></td>
+                                                                        value="2">
+                                                                </td>
                                                                 <td><input type="radio" name="quality" class="radio"
-                                                                        value="3"></td>
+                                                                        value="3">
+                                                                </td>
                                                                 <td><input type="radio" name="quality" class="radio"
-                                                                        value="4"></td>
+                                                                        value="4">
+                                                                </td>
                                                                 <td><input type="radio" name="quality" class="radio"
-                                                                        value="5"></td>
+                                                                        value="5">
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="cell-label">Price</td>
                                                                 <td><input type="radio" name="quality" class="radio"
-                                                                        value="1"></td>
+                                                                        value="1">
+                                                                </td>
                                                                 <td><input type="radio" name="quality" class="radio"
-                                                                        value="2"></td>
+                                                                        value="2">
+                                                                </td>
                                                                 <td><input type="radio" name="quality" class="radio"
-                                                                        value="3"></td>
+                                                                        value="3">
+                                                                </td>
                                                                 <td><input type="radio" name="quality" class="radio"
-                                                                        value="4"></td>
+                                                                        value="4">
+                                                                </td>
                                                                 <td><input type="radio" name="quality" class="radio"
-                                                                        value="5"></td>
+                                                                        value="5">
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="cell-label">Value</td>
                                                                 <td><input type="radio" name="quality" class="radio"
-                                                                        value="1"></td>
+                                                                        value="1">
+                                                                </td>
                                                                 <td><input type="radio" name="quality" class="radio"
-                                                                        value="2"></td>
+                                                                        value="2">
+                                                                </td>
                                                                 <td><input type="radio" name="quality" class="radio"
-                                                                        value="3"></td>
+                                                                        value="3">
+                                                                </td>
                                                                 <td><input type="radio" name="quality" class="radio"
-                                                                        value="4"></td>
+                                                                        value="4">
+                                                                </td>
                                                                 <td><input type="radio" name="quality" class="radio"
-                                                                        value="5"></td>
+                                                                        value="5">
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     </table><!-- /.table .table-bordered -->
@@ -992,7 +812,8 @@
                                                             aria-valuemin="0" aria-valuemax="5" aria-valuenow="4"
                                                             aria-readonly="true" style="width: 70px; height: 14px;">
                                                             <div class="rateit-selected"
-                                                                style="height: 14px; width: 56px;"></div>
+                                                                style="height: 14px; width: 56px;">
+                                                            </div>
                                                             <div class="rateit-hover" style="height:14px"></div>
                                                         </div>
                                                     </div>
@@ -1015,7 +836,8 @@
                                                                     <i class="fa fa-shopping-cart"></i>
                                                                 </button>
                                                                 <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add to cart</button>
+                                                                    type="button">Add
+                                                                    to cart</button>
 
                                                             </li>
 
@@ -1067,7 +889,8 @@
                                                             aria-valuemin="0" aria-valuemax="5" aria-valuenow="4"
                                                             aria-readonly="true" style="width: 70px; height: 14px;">
                                                             <div class="rateit-selected"
-                                                                style="height: 14px; width: 56px;"></div>
+                                                                style="height: 14px; width: 56px;">
+                                                            </div>
                                                             <div class="rateit-hover" style="height:14px"></div>
                                                         </div>
                                                     </div>
@@ -1090,7 +913,8 @@
                                                                     <i class="fa fa-shopping-cart"></i>
                                                                 </button>
                                                                 <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add to cart</button>
+                                                                    type="button">Add
+                                                                    to cart</button>
 
                                                             </li>
 
@@ -1142,7 +966,8 @@
                                                             aria-valuemin="0" aria-valuemax="5" aria-valuenow="4"
                                                             aria-readonly="true" style="width: 70px; height: 14px;">
                                                             <div class="rateit-selected"
-                                                                style="height: 14px; width: 56px;"></div>
+                                                                style="height: 14px; width: 56px;">
+                                                            </div>
                                                             <div class="rateit-hover" style="height:14px"></div>
                                                         </div>
                                                     </div>
@@ -1165,7 +990,8 @@
                                                                     <i class="fa fa-shopping-cart"></i>
                                                                 </button>
                                                                 <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add to cart</button>
+                                                                    type="button">Add
+                                                                    to cart</button>
 
                                                             </li>
 
@@ -1217,7 +1043,8 @@
                                                             aria-valuemin="0" aria-valuemax="5" aria-valuenow="4"
                                                             aria-readonly="true" style="width: 70px; height: 14px;">
                                                             <div class="rateit-selected"
-                                                                style="height: 14px; width: 56px;"></div>
+                                                                style="height: 14px; width: 56px;">
+                                                            </div>
                                                             <div class="rateit-hover" style="height:14px"></div>
                                                         </div>
                                                     </div>
@@ -1240,7 +1067,8 @@
                                                                     <i class="fa fa-shopping-cart"></i>
                                                                 </button>
                                                                 <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add to cart</button>
+                                                                    type="button">Add
+                                                                    to cart</button>
 
                                                             </li>
 
@@ -1293,7 +1121,8 @@
                                                             aria-valuemax="5" aria-valuenow="4" aria-readonly="true"
                                                             style="width: 70px; height: 14px;">
                                                             <div class="rateit-selected"
-                                                                style="height: 14px; width: 56px;"></div>
+                                                                style="height: 14px; width: 56px;">
+                                                            </div>
                                                             <div class="rateit-hover" style="height:14px"></div>
                                                         </div>
                                                     </div>
@@ -1316,7 +1145,8 @@
                                                                     <i class="fa fa-shopping-cart"></i>
                                                                 </button>
                                                                 <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add to cart</button>
+                                                                    type="button">Add
+                                                                    to cart</button>
 
                                                             </li>
 
@@ -1369,7 +1199,8 @@
                                                             aria-valuemax="5" aria-valuenow="4" aria-readonly="true"
                                                             style="width: 70px; height: 14px;">
                                                             <div class="rateit-selected"
-                                                                style="height: 14px; width: 56px;"></div>
+                                                                style="height: 14px; width: 56px;">
+                                                            </div>
                                                             <div class="rateit-hover" style="height:14px"></div>
                                                         </div>
                                                     </div>
@@ -1392,7 +1223,8 @@
                                                                     <i class="fa fa-shopping-cart"></i>
                                                                 </button>
                                                                 <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add to cart</button>
+                                                                    type="button">Add
+                                                                    to cart</button>
 
                                                             </li>
 
