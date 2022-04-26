@@ -28,7 +28,7 @@ class IndexController extends Controller
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
         $sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
         $featured = Product::where('featured',1)->orderBy('id','DESC')->limit(6)->get();
-        $hot_deals = Product::where('hot_deals',1)->where('discount_price','!=',NULL)->orderBy('id','DESC')->limit(3)->get();
+        // $hot_deals = Product::where('hot_deals',1)->where('discount_price','!=',NULL)->orderBy('id','DESC')->limit(3)->get();
     	$special_offer = Product::where('special_offer',1)->orderBy('id','DESC')->limit(3)->get();
         $special_deals = Product::where('special_deals',1)->orderBy('id','DESC')->limit(3)->get();
         $skip_category_0 = Category::skip(2)->first();
@@ -39,7 +39,7 @@ class IndexController extends Controller
         // return $skip_brand_product_1;
         // die();
 
-        return view('frontend.index', compact('categories', 'sliders', 'products','featured','hot_deals',
+        return view('frontend.index', compact('categories', 'sliders', 'products','featured',
         'special_offer','special_deals','skip_product_0','skip_category_0','skip_brand_1','skip_brand_product_1'));
     }
     // View product details
@@ -56,7 +56,10 @@ class IndexController extends Controller
         $product_size_en= explode(',',$size_en);
         $size_ar = $product->product_size_ar;
         $product_size_ar= explode(',',$size_ar);
-	 	return view('frontend.product.product_details',compact('product', 'multiImg','product_color_en','product_color_ar','product_size_en','product_size_ar'));
+
+        $cat_id = $product->category_id;
+		$relatedProduct = Product::where('category_id',$cat_id)->where('id','!=',$id)->orderBy('id','DESC')->get();
+	 	return view('frontend.product.product_details',compact('product', 'multiImg','product_color_en','product_color_ar','product_size_en','product_size_ar','relatedProduct'));
 	}
     // Logout user
     public function UserLogout(){

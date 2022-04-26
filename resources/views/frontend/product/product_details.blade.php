@@ -45,295 +45,8 @@
 
 
                     <!-- ============================================== HOT DEALS ============================================== -->
-                    <div class="sidebar-widget hot-deals wow fadeInUp outer-top-vs animated"
-                        style="visibility: visible; animation-name: fadeInUp;">
-                        <h3 class="section-title">hot deals</h3>
-                        <div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-xs"
-                            style="opacity: 1; display: block;">
+                    @include('frontend.common.hot_deals')
 
-                            <div class="owl-wrapper-outer">
-                                <div class="owl-wrapper"
-                                    style="width: 1338px; left: 0px; display: block; transition: all 0ms ease 0s; transform: translate3d(0px, 0px, 0px);">
-                                    <div class="owl-item" style="width: 223px;">
-                                        <div class="item">
-                                            <div class="products">
-                                                <div class="hot-deal-wrapper">
-                                                    <div class="image">
-                                                        <img src="assets/images/hot-deals/p5.jpg" alt="">
-                                                    </div>
-                                                    <div class="sale-offer-tag"><span>35%<br>off</span></div>
-                                                    <div class="timing-wrapper">
-                                                        <div class="box-wrapper">
-                                                            <div class="date box">
-                                                                <span class="key">120</span>
-                                                                <span class="value">Days</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="box-wrapper">
-                                                            <div class="hour box">
-                                                                <span class="key">20</span>
-                                                                <span class="value">HRS</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="box-wrapper">
-                                                            <div class="minutes box">
-                                                                <span class="key">36</span>
-                                                                <span class="value">MINS</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="box-wrapper hidden-md">
-                                                            <div class="seconds box">
-                                                                <span class="key">60</span>
-                                                                <span class="value">SEC</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- /.hot-deal-wrapper -->
-
-                                                <div class="product-info text-left m-t-20">
-                                                    <h3 class="name"><a href="detail.html">
-                                                            @if(session()->get('language') == 'arabic')
-                                                            {{$product->product_name_ar}}
-                                                            @else
-                                                            {{$product->product_name_en}}
-                                                            @endif</a>
-                                                    </h3>
-                                                    <div class="rating rateit-small rateit"><button id="rateit-reset-2"
-                                                            data-role="none" class="rateit-reset"
-                                                            aria-label="reset rating" aria-controls="rateit-range-2"
-                                                            style="display: none;"></button>
-                                                        <div id="rateit-range-2" class="rateit-range" tabindex="0"
-                                                            role="slider" aria-label="rating" aria-owns="rateit-reset-2"
-                                                            aria-valuemin="0" aria-valuemax="5" aria-valuenow="4"
-                                                            aria-readonly="true" style="width: 70px; height: 14px;">
-                                                            <div class="rateit-selected"
-                                                                style="height: 14px; width: 56px;"></div>
-                                                            <div class="rateit-hover" style="height:14px"></div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="product-price">
-                                                        <span class="price">
-                                                            $600.00
-                                                        </span>
-
-                                                        <span class="price-before-discount">$800.00</span>
-
-                                                    </div><!-- /.product-price -->
-
-                                                </div><!-- /.product-info -->
-
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-
-                                                        <div class="add-cart-button btn-group">
-                                                            <button class="btn btn-primary icon" data-toggle="dropdown"
-                                                                type="button">
-                                                                <i class="fa fa-shopping-cart"></i>
-                                                            </button>
-                                                            <button class="btn btn-primary cart-btn" type="button">Add
-                                                                to cart</button>
-
-                                                        </div>
-
-                                                    </div><!-- /.action -->
-                                                </div><!-- /.cart -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item" style="width: 223px;">
-                                        <div class="item">
-                                            <div class="products">
-                                                <div class="hot-deal-wrapper">
-                                                    <div class="image">
-                                                        <img src="assets/images/products/p6.jpg" alt="">
-                                                    </div>
-                                                    <div class="sale-offer-tag"><span>35%<br>off</span></div>
-                                                    <div class="timing-wrapper">
-                                                        <div class="box-wrapper">
-                                                            <div class="date box">
-                                                                <span class="key">120</span>
-                                                                <span class="value">Days</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="box-wrapper">
-                                                            <div class="hour box">
-                                                                <span class="key">20</span>
-                                                                <span class="value">HRS</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="box-wrapper">
-                                                            <div class="minutes box">
-                                                                <span class="key">36</span>
-                                                                <span class="value">MINS</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="box-wrapper hidden-md">
-                                                            <div class="seconds box">
-                                                                <span class="key">60</span>
-                                                                <span class="value">SEC</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- /.hot-deal-wrapper -->
-
-                                                <div class="product-info text-left m-t-20">
-                                                    <h3 class="name"><a
-                                                            href="detail.html">@if(session()->get('language') ==
-                                                            'arabic')
-                                                            {{$product->product_name_ar}}
-                                                            @else
-                                                            {{$product->product_name_en}}
-                                                            @endif</a></a>
-                                                    </h3>
-                                                    <div class="rating rateit-small rateit"><button id="rateit-reset-3"
-                                                            data-role="none" class="rateit-reset"
-                                                            aria-label="reset rating" aria-controls="rateit-range-3"
-                                                            style="display: none;"></button>
-                                                        <div id="rateit-range-3" class="rateit-range" tabindex="0"
-                                                            role="slider" aria-label="rating" aria-owns="rateit-reset-3"
-                                                            aria-valuemin="0" aria-valuemax="5" aria-valuenow="4"
-                                                            aria-readonly="true" style="width: 70px; height: 14px;">
-                                                            <div class="rateit-selected"
-                                                                style="height: 14px; width: 56px;"></div>
-                                                            <div class="rateit-hover" style="height:14px"></div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="product-price">
-                                                        <span class="price">
-                                                            $600.00
-                                                        </span>
-
-                                                        <span class="price-before-discount">$800.00</span>
-
-                                                    </div><!-- /.product-price -->
-
-                                                </div><!-- /.product-info -->
-
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-
-                                                        <div class="add-cart-button btn-group">
-                                                            <button class="btn btn-primary icon" data-toggle="dropdown"
-                                                                type="button">
-                                                                <i class="fa fa-shopping-cart"></i>
-                                                            </button>
-                                                            <button class="btn btn-primary cart-btn" type="button">Add
-                                                                to cart</button>
-
-                                                        </div>
-
-                                                    </div><!-- /.action -->
-                                                </div><!-- /.cart -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item" style="width: 223px;">
-                                        <div class="item">
-                                            <div class="products">
-                                                <div class="hot-deal-wrapper">
-                                                    <div class="image">
-                                                        <img src="assets/images/products/p7.jpg" alt="">
-                                                    </div>
-                                                    <div class="sale-offer-tag"><span>35%<br>off</span></div>
-                                                    <div class="timing-wrapper">
-                                                        <div class="box-wrapper">
-                                                            <div class="date box">
-                                                                <span class="key">120</span>
-                                                                <span class="value">Days</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="box-wrapper">
-                                                            <div class="hour box">
-                                                                <span class="key">20</span>
-                                                                <span class="value">HRS</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="box-wrapper">
-                                                            <div class="minutes box">
-                                                                <span class="key">36</span>
-                                                                <span class="value">MINS</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="box-wrapper hidden-md">
-                                                            <div class="seconds box">
-                                                                <span class="key">60</span>
-                                                                <span class="value">SEC</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- /.hot-deal-wrapper -->
-
-                                                <div class="product-info text-left m-t-20">
-                                                    <h3 class="name"><a href="detail.html">Floral Print Buttoned</a>
-                                                    </h3>
-                                                    <div class="rating rateit-small rateit"><button id="rateit-reset-4"
-                                                            data-role="none" class="rateit-reset"
-                                                            aria-label="reset rating" aria-controls="rateit-range-4"
-                                                            style="display: none;"></button>
-                                                        <div id="rateit-range-4" class="rateit-range" tabindex="0"
-                                                            role="slider" aria-label="rating" aria-owns="rateit-reset-4"
-                                                            aria-valuemin="0" aria-valuemax="5" aria-valuenow="4"
-                                                            aria-readonly="true" style="width: 70px; height: 14px;">
-                                                            <div class="rateit-selected"
-                                                                style="height: 14px; width: 56px;"></div>
-                                                            <div class="rateit-hover" style="height:14px"></div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="product-price">
-                                                        <span class="price">
-                                                            $600.00
-                                                        </span>
-
-                                                        <span class="price-before-discount">$800.00</span>
-
-                                                    </div><!-- /.product-price -->
-
-                                                </div><!-- /.product-info -->
-
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-
-                                                        <div class="add-cart-button btn-group">
-                                                            <button class="btn btn-primary icon" data-toggle="dropdown"
-                                                                type="button">
-                                                                <i class="fa fa-shopping-cart"></i>
-                                                            </button>
-                                                            <button class="btn btn-primary cart-btn" type="button">Add
-                                                                to cart</button>
-
-                                                        </div>
-
-                                                    </div><!-- /.action -->
-                                                </div><!-- /.cart -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-                            <div class="owl-controls clickable">
-                                <div class="owl-buttons">
-                                    <div class="owl-prev"></div>
-                                    <div class="owl-next"></div>
-                                </div>
-                            </div>
-                        </div><!-- /.sidebar-widget -->
-                    </div>
                     <!-- ============================================== HOT DEALS: END ============================================== -->
 
                     <!-- ============================================== NEWSLETTER ============================================== -->
@@ -564,7 +277,7 @@
                                                     style="display: none;">
                                                     <option selected="" disabled="">--Choose Color--</option>
                                                     @foreach($product_color_en as $color)
-                                                    <option value="{{ $color }}">{{ $color }}</option>
+                                                    <option value="{{ $color }}">{{ ucwords($color) }}</option>
                                                     @endforeach
                                                 </select>
                                                 @endif
@@ -590,7 +303,7 @@
                                                     style="display: none;">
                                                     <option selected="" disabled="">--choose size--</option>
                                                     @foreach($product_size_ar as $size)
-                                                    <option value="{{ $size }}">{{ $size }}</option>
+                                                    <option value="{{ $size }}">{{ ucwords($size) }}</option>
                                                     @endforeach
                                                 </select>
 
@@ -847,491 +560,115 @@
                     </div><!-- /.row -->
                 </div><!-- /.product-tabs -->
 
-                <!-- ============================================== UPSELL PRODUCTS ============================================== -->
+                <!-- ============================================== Related PRODUCTS ============================================== -->
                 <section class="section featured-product wow fadeInUp animated"
                     style="visibility: visible; animation-name: fadeInUp;">
-                    <h3 class="section-title">upsell products</h3>
+                    <h3 class="section-title">
+                        @if (session()->get('language') == 'arabic')
+                        منتجات مماثلة
+                        @else
+                        Related products
+                        @endif
+                    </h3>
                     <div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs"
                         style="opacity: 1; display: block;">
 
-                        <div class="owl-wrapper-outer">
-                            <div class="owl-wrapper"
-                                style="width: 2484px; left: 0px; display: block; transition: all 0ms ease 0s; transform: translate3d(0px, 0px, 0px);">
-                                <div class="owl-item" style="width: 207px;">
-                                    <div class="item item-carousel">
-                                        <div class="products">
-
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="detail.html"><img src="assets/images/products/p1.jpg"
-                                                                alt=""></a>
-                                                    </div><!-- /.image -->
-
-                                                    <div class="tag sale"><span>sale</span></div>
-                                                </div><!-- /.product-image -->
-
-
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="detail.html">Floral Print Buttoned</a>
-                                                    </h3>
-                                                    <div class="rating rateit-small rateit"><button id="rateit-reset-6"
-                                                            data-role="none" class="rateit-reset"
-                                                            aria-label="reset rating" aria-controls="rateit-range-6"
-                                                            style="display: none;"></button>
-                                                        <div id="rateit-range-6" class="rateit-range" tabindex="0"
-                                                            role="slider" aria-label="rating" aria-owns="rateit-reset-6"
-                                                            aria-valuemin="0" aria-valuemax="5" aria-valuenow="4"
-                                                            aria-readonly="true" style="width: 70px; height: 14px;">
-                                                            <div class="rateit-selected"
-                                                                style="height: 14px; width: 56px;">
-                                                            </div>
-                                                            <div class="rateit-hover" style="height:14px"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="description"></div>
-
-                                                    <div class="product-price">
-                                                        <span class="price">
-                                                            $650.99 </span>
-                                                        <span class="price-before-discount">$ 800</span>
-
-                                                    </div><!-- /.product-price -->
-
-                                                </div><!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon"
-                                                                    data-toggle="dropdown" type="button">
-                                                                    <i class="fa fa-shopping-cart"></i>
-                                                                </button>
-                                                                <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add
-                                                                    to cart</button>
-
-                                                            </li>
-
-                                                            <li class="lnk wishlist">
-                                                                <a class="add-to-cart" href="detail.html"
-                                                                    title="Wishlist">
-                                                                    <i class="icon fa fa-heart"></i>
-                                                                </a>
-                                                            </li>
-
-                                                            <li class="lnk">
-                                                                <a class="add-to-cart" href="detail.html"
-                                                                    title="Compare">
-                                                                    <i class="fa fa-signal"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div><!-- /.action -->
-                                                </div><!-- /.cart -->
-                                            </div><!-- /.product -->
-
-                                        </div><!-- /.products -->
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 207px;">
-                                    <div class="item item-carousel">
-                                        <div class="products">
-
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="detail.html"><img src="assets/images/products/p2.jpg"
-                                                                alt=""></a>
-                                                    </div><!-- /.image -->
-
-                                                    <div class="tag sale"><span>sale</span></div>
-                                                </div><!-- /.product-image -->
-
-
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="detail.html">Floral Print Buttoned</a>
-                                                    </h3>
-                                                    <div class="rating rateit-small rateit"><button id="rateit-reset-7"
-                                                            data-role="none" class="rateit-reset"
-                                                            aria-label="reset rating" aria-controls="rateit-range-7"
-                                                            style="display: none;"></button>
-                                                        <div id="rateit-range-7" class="rateit-range" tabindex="0"
-                                                            role="slider" aria-label="rating" aria-owns="rateit-reset-7"
-                                                            aria-valuemin="0" aria-valuemax="5" aria-valuenow="4"
-                                                            aria-readonly="true" style="width: 70px; height: 14px;">
-                                                            <div class="rateit-selected"
-                                                                style="height: 14px; width: 56px;">
-                                                            </div>
-                                                            <div class="rateit-hover" style="height:14px"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="description"></div>
-
-                                                    <div class="product-price">
-                                                        <span class="price">
-                                                            $650.99 </span>
-                                                        <span class="price-before-discount">$ 800</span>
-
-                                                    </div><!-- /.product-price -->
-
-                                                </div><!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon"
-                                                                    data-toggle="dropdown" type="button">
-                                                                    <i class="fa fa-shopping-cart"></i>
-                                                                </button>
-                                                                <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add
-                                                                    to cart</button>
-
-                                                            </li>
-
-                                                            <li class="lnk wishlist">
-                                                                <a class="add-to-cart" href="detail.html"
-                                                                    title="Wishlist">
-                                                                    <i class="icon fa fa-heart"></i>
-                                                                </a>
-                                                            </li>
-
-                                                            <li class="lnk">
-                                                                <a class="add-to-cart" href="detail.html"
-                                                                    title="Compare">
-                                                                    <i class="fa fa-signal"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div><!-- /.action -->
-                                                </div><!-- /.cart -->
-                                            </div><!-- /.product -->
-
-                                        </div><!-- /.products -->
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 207px;">
-                                    <div class="item item-carousel">
-                                        <div class="products">
-
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="detail.html"><img src="assets/images/products/p3.jpg"
-                                                                alt=""></a>
-                                                    </div><!-- /.image -->
-
-                                                    <div class="tag hot"><span>hot</span></div>
-                                                </div><!-- /.product-image -->
-
-
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="detail.html">Floral Print Buttoned</a>
-                                                    </h3>
-                                                    <div class="rating rateit-small rateit"><button id="rateit-reset-8"
-                                                            data-role="none" class="rateit-reset"
-                                                            aria-label="reset rating" aria-controls="rateit-range-8"
-                                                            style="display: none;"></button>
-                                                        <div id="rateit-range-8" class="rateit-range" tabindex="0"
-                                                            role="slider" aria-label="rating" aria-owns="rateit-reset-8"
-                                                            aria-valuemin="0" aria-valuemax="5" aria-valuenow="4"
-                                                            aria-readonly="true" style="width: 70px; height: 14px;">
-                                                            <div class="rateit-selected"
-                                                                style="height: 14px; width: 56px;">
-                                                            </div>
-                                                            <div class="rateit-hover" style="height:14px"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="description"></div>
-
-                                                    <div class="product-price">
-                                                        <span class="price">
-                                                            $650.99 </span>
-                                                        <span class="price-before-discount">$ 800</span>
-
-                                                    </div><!-- /.product-price -->
-
-                                                </div><!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon"
-                                                                    data-toggle="dropdown" type="button">
-                                                                    <i class="fa fa-shopping-cart"></i>
-                                                                </button>
-                                                                <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add
-                                                                    to cart</button>
-
-                                                            </li>
-
-                                                            <li class="lnk wishlist">
-                                                                <a class="add-to-cart" href="detail.html"
-                                                                    title="Wishlist">
-                                                                    <i class="icon fa fa-heart"></i>
-                                                                </a>
-                                                            </li>
-
-                                                            <li class="lnk">
-                                                                <a class="add-to-cart" href="detail.html"
-                                                                    title="Compare">
-                                                                    <i class="fa fa-signal"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div><!-- /.action -->
-                                                </div><!-- /.cart -->
-                                            </div><!-- /.product -->
-
-                                        </div><!-- /.products -->
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 207px;">
-                                    <div class="item item-carousel">
-                                        <div class="products">
-
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="detail.html"><img src="assets/images/products/p4.jpg"
-                                                                alt=""></a>
-                                                    </div><!-- /.image -->
-
-                                                    <div class="tag new"><span>new</span></div>
-                                                </div><!-- /.product-image -->
-
-
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="detail.html">Floral Print Buttoned</a>
-                                                    </h3>
-                                                    <div class="rating rateit-small rateit"><button id="rateit-reset-9"
-                                                            data-role="none" class="rateit-reset"
-                                                            aria-label="reset rating" aria-controls="rateit-range-9"
-                                                            style="display: none;"></button>
-                                                        <div id="rateit-range-9" class="rateit-range" tabindex="0"
-                                                            role="slider" aria-label="rating" aria-owns="rateit-reset-9"
-                                                            aria-valuemin="0" aria-valuemax="5" aria-valuenow="4"
-                                                            aria-readonly="true" style="width: 70px; height: 14px;">
-                                                            <div class="rateit-selected"
-                                                                style="height: 14px; width: 56px;">
-                                                            </div>
-                                                            <div class="rateit-hover" style="height:14px"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="description"></div>
-
-                                                    <div class="product-price">
-                                                        <span class="price">
-                                                            $650.99 </span>
-                                                        <span class="price-before-discount">$ 800</span>
-
-                                                    </div><!-- /.product-price -->
-
-                                                </div><!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon"
-                                                                    data-toggle="dropdown" type="button">
-                                                                    <i class="fa fa-shopping-cart"></i>
-                                                                </button>
-                                                                <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add
-                                                                    to cart</button>
-
-                                                            </li>
-
-                                                            <li class="lnk wishlist">
-                                                                <a class="add-to-cart" href="detail.html"
-                                                                    title="Wishlist">
-                                                                    <i class="icon fa fa-heart"></i>
-                                                                </a>
-                                                            </li>
-
-                                                            <li class="lnk">
-                                                                <a class="add-to-cart" href="detail.html"
-                                                                    title="Compare">
-                                                                    <i class="fa fa-signal"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div><!-- /.action -->
-                                                </div><!-- /.cart -->
-                                            </div><!-- /.product -->
-
-                                        </div><!-- /.products -->
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 207px;">
-                                    <div class="item item-carousel">
-                                        <div class="products">
-
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="detail.html"><img src="assets/images/products/p5.jpg"
-                                                                alt=""></a>
-                                                    </div><!-- /.image -->
-
-                                                    <div class="tag hot"><span>hot</span></div>
-                                                </div><!-- /.product-image -->
-
-
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="detail.html">Floral Print Buttoned</a>
-                                                    </h3>
-                                                    <div class="rating rateit-small rateit"><button id="rateit-reset-10"
-                                                            data-role="none" class="rateit-reset"
-                                                            aria-label="reset rating" aria-controls="rateit-range-10"
-                                                            style="display: none;"></button>
-                                                        <div id="rateit-range-10" class="rateit-range" tabindex="0"
-                                                            role="slider" aria-label="rating"
-                                                            aria-owns="rateit-reset-10" aria-valuemin="0"
-                                                            aria-valuemax="5" aria-valuenow="4" aria-readonly="true"
-                                                            style="width: 70px; height: 14px;">
-                                                            <div class="rateit-selected"
-                                                                style="height: 14px; width: 56px;">
-                                                            </div>
-                                                            <div class="rateit-hover" style="height:14px"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="description"></div>
-
-                                                    <div class="product-price">
-                                                        <span class="price">
-                                                            $650.99 </span>
-                                                        <span class="price-before-discount">$ 800</span>
-
-                                                    </div><!-- /.product-price -->
-
-                                                </div><!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon"
-                                                                    data-toggle="dropdown" type="button">
-                                                                    <i class="fa fa-shopping-cart"></i>
-                                                                </button>
-                                                                <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add
-                                                                    to cart</button>
-
-                                                            </li>
-
-                                                            <li class="lnk wishlist">
-                                                                <a class="add-to-cart" href="detail.html"
-                                                                    title="Wishlist">
-                                                                    <i class="icon fa fa-heart"></i>
-                                                                </a>
-                                                            </li>
-
-                                                            <li class="lnk">
-                                                                <a class="add-to-cart" href="detail.html"
-                                                                    title="Compare">
-                                                                    <i class="fa fa-signal"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div><!-- /.action -->
-                                                </div><!-- /.cart -->
-                                            </div><!-- /.product -->
-
-                                        </div><!-- /.products -->
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 207px;">
-                                    <div class="item item-carousel">
-                                        <div class="products">
-
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="detail.html"><img src="assets/images/blank.gif"
-                                                                data-echo="assets/images/products/p6.jpg" alt=""></a>
-                                                    </div><!-- /.image -->
-
-                                                    <div class="tag new"><span>new</span></div>
-                                                </div><!-- /.product-image -->
-
-
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="detail.html">Floral Print Buttoned</a>
-                                                    </h3>
-                                                    <div class="rating rateit-small rateit"><button id="rateit-reset-11"
-                                                            data-role="none" class="rateit-reset"
-                                                            aria-label="reset rating" aria-controls="rateit-range-11"
-                                                            style="display: none;"></button>
-                                                        <div id="rateit-range-11" class="rateit-range" tabindex="0"
-                                                            role="slider" aria-label="rating"
-                                                            aria-owns="rateit-reset-11" aria-valuemin="0"
-                                                            aria-valuemax="5" aria-valuenow="4" aria-readonly="true"
-                                                            style="width: 70px; height: 14px;">
-                                                            <div class="rateit-selected"
-                                                                style="height: 14px; width: 56px;">
-                                                            </div>
-                                                            <div class="rateit-hover" style="height:14px"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="description"></div>
-
-                                                    <div class="product-price">
-                                                        <span class="price">
-                                                            $650.99 </span>
-                                                        <span class="price-before-discount">$ 800</span>
-
-                                                    </div><!-- /.product-price -->
-
-                                                </div><!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon"
-                                                                    data-toggle="dropdown" type="button">
-                                                                    <i class="fa fa-shopping-cart"></i>
-                                                                </button>
-                                                                <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add
-                                                                    to cart</button>
-
-                                                            </li>
-
-                                                            <li class="lnk wishlist">
-                                                                <a class="add-to-cart" href="detail.html"
-                                                                    title="Wishlist">
-                                                                    <i class="icon fa fa-heart"></i>
-                                                                </a>
-                                                            </li>
-
-                                                            <li class="lnk">
-                                                                <a class="add-to-cart" href="detail.html"
-                                                                    title="Compare">
-                                                                    <i class="fa fa-signal"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div><!-- /.action -->
-                                                </div><!-- /.cart -->
-                                            </div><!-- /.product -->
-
-                                        </div><!-- /.products -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- /.item -->
-
-                        <!-- /.item -->
-
-                        <!-- /.item -->
-
-                        <!-- /.item -->
-
-                        <!-- /.item -->
-
+                        @foreach ($relatedProduct as $item)
+                        <div class="item item-carousel">
+                            <div class="products">
+                                <div class="product">
+                                    <div class="product-image">
+                                        <div class="image">
+                                            <a
+                                                href="{{ url('product/details/'.$item->id.'/'.$item->product_slug_en ) }}"><img
+                                                    src="{{asset($item->product_thambnail)}}" alt=""></a>
+                                        </div><!-- /.image -->
+
+                                        @php
+                                        $amount = $item->selling_price - $item->discount_price;
+                                        $discount = ($amount/ $item->selling_price)*100;
+                                        @endphp
+                                        @if ($item->discount_price == NULL)
+                                        <div class="tag new"><span>new</span></div>
+                                        @else
+                                        <div class="tag hot"><span>{{round($discount)}}%</span></div>
+
+                                        @endif
+                                    </div><!-- /.product-image -->
+
+
+                                    <div class="product-info text-left">
+                                        <h3 class="name">
+                                            <a
+                                                href="{{ url('product/details/'.$item->id.'/'.$item->product_slug_en ) }}">
+                                                @if (session()->get('language') == 'arabic')
+                                                {{$item->product_name_ar}}
+                                                @else
+                                                {{$item->product_name_en}}
+                                                @endif
+                                            </a>
+                                        </h3>
+                                        <div class="rating rateit-small rateit"><button id="rateit-reset-6"
+                                                data-role="none" class="rateit-reset" aria-label="reset rating"
+                                                aria-controls="rateit-range-6" style="display: none;"></button>
+                                            <div id="rateit-range-6" class="rateit-range" tabindex="0" role="slider"
+                                                aria-label="rating" aria-owns="rateit-reset-6" aria-valuemin="0"
+                                                aria-valuemax="5" aria-valuenow="4" aria-readonly="true"
+                                                style="width: 70px; height: 14px;">
+                                                <div class="rateit-selected" style="height: 14px; width: 56px;">
+                                                </div>
+                                                <div class="rateit-hover" style="height:14px"></div>
+                                            </div>
+                                        </div>
+                                        <div class="description"></div>
+
+                                        @if ($item->discount_price == NULL)
+                                        <div class="product-price"> <span class="price">
+                                                ${{$item->selling_price}} </span>
+                                        </div>
+                                        @else
+                                        <div class="product-price"> <span class="price">
+                                                ${{$item->discount_price}}
+                                            </span>
+                                            <span class="price-before-discount">$
+                                                {{$item->selling_price}} </span>
+                                        </div>
+                                        @endif
+                                        <!-- /.product-price -->
+
+                                    </div><!-- /.product-info -->
+                                    <div class="cart clearfix animate-effect">
+                                        <div class="action">
+                                            <ul class="list-unstyled">
+                                                <li class="add-cart-button btn-group">
+                                                    <button class="btn btn-primary icon" data-toggle="dropdown"
+                                                        type="button">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                    </button>
+                                                    <button class="btn btn-primary cart-btn" type="button">Add
+                                                        to cart</button>
+
+                                                </li>
+
+                                                <li class="lnk wishlist">
+                                                    <a class="add-to-cart" href="detail.html" title="Wishlist">
+                                                        <i class="icon fa fa-heart"></i>
+                                                    </a>
+                                                </li>
+
+                                                <li class="lnk">
+                                                    <a class="add-to-cart" href="detail.html" title="Compare">
+                                                        <i class="fa fa-signal"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div><!-- /.action -->
+                                    </div><!-- /.cart -->
+                                </div><!-- /.product -->
+
+                            </div><!-- /.products -->
+                        </div>
+                        @endforeach
                         <!-- /.item -->
                         <div class="owl-controls clickable">
                             <div class="owl-buttons">
@@ -1341,7 +678,7 @@
                         </div>
                     </div><!-- /.home-owl-carousel -->
                 </section><!-- /.section -->
-                <!-- ============================================== UPSELL PRODUCTS : END ============================================== -->
+                <!-- ============================================== RELATED PRODUCTS : END ============================================== -->
 
             </div><!-- /.col -->
             <div class="clearfix"></div>
