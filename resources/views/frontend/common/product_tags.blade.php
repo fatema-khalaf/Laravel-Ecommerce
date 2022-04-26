@@ -1,7 +1,21 @@
 @php
 $tags_en = App\Models\Product::groupBy('product_tags_en')->select('product_tags_en')->get();
 $tags_ar = App\Models\Product::groupBy('product_tags_ar')->select('product_tags_ar')->get();
-// dd($tags_en);
+$data_en = [];
+foreach ($tags_en as $item){
+$tags = explode(',',$item->product_tags_en);
+$data_en =array_merge($data_en, $tags);
+}
+$data_en =array_unique($data_en);
+
+$data_ar = [];
+foreach ($tags_ar as $item){
+$tags = explode(',',$item->product_tags_ar);
+$data_ar =array_merge($data_ar, $tags);
+}
+$data_ar =array_unique($data_ar);
+
+
 @endphp
 
 <div class="sidebar-widget product-tag wow fadeInUp">
@@ -9,16 +23,14 @@ $tags_ar = App\Models\Product::groupBy('product_tags_ar')->select('product_tags_
     <div class="sidebar-widget-body outer-top-xs">
         <div class="tag-list">
             @if (session('language') == 'arabic')
-            @foreach ($tags_ar as $item)
-            <a class="item active " title="{{ str_replace(',',' ',$item->product_tags_ar)}}"
-                href="{{url ('product/tag/'.$item->product_tags_ar)}}">
-                {{str_replace(',',' ',$item->product_tags_ar)}}</a>
+            @foreach ($data_ar as $tag)
+            <a class="item active " title="{{$tag}}" href="{{url ('product/tag/'.$tag)}}">
+                {{$tag}}</a>
             @endforeach
             @else
-            @foreach ($tags_en as $item)
-            <a class="item active" title="{{str_replace(',',' ',$item->product_tags_en)}}"
-                href="{{url ('product/tag/'.$item->product_tags_en)}}">{{
-                str_replace(',',' ',$item->product_tags_en) }}</a>
+            @foreach ($data_en as $tag)
+            <a class="item active " title="{{ $tag}}" href="{{url ('product/tag/'.$tag)}}">
+                {{$tag}}</a>
             @endforeach
             @endif
 
@@ -27,3 +39,5 @@ $tags_ar = App\Models\Product::groupBy('product_tags_ar')->select('product_tags_
     </div>
     <!-- /.sidebar-widget-body -->
 </div>
+@php
+@endphp

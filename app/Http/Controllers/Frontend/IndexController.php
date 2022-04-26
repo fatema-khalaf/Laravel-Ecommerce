@@ -46,7 +46,17 @@ class IndexController extends Controller
     public function ProductDetails($id,$slug){
 		$multiImg = MultiImg::where('product_id',$id)->get();
 		$product = Product::findOrFail($id);
-	 	return view('frontend.product.product_details',compact('product', 'multiImg'));
+        // new idea explode to remove a chr in a string
+        $color_en = $product->product_color_en;
+        $product_color_en= explode(',',$color_en);
+        $color_ar = $product->product_color_ar;
+        $product_color_ar= explode(',',$color_ar);
+
+        $size_en = $product->product_size_en;
+        $product_size_en= explode(',',$size_en);
+        $size_ar = $product->product_size_ar;
+        $product_size_ar= explode(',',$size_ar);
+	 	return view('frontend.product.product_details',compact('product', 'multiImg','product_color_en','product_color_ar','product_size_en','product_size_ar'));
 	}
     // Logout user
     public function UserLogout(){
@@ -99,7 +109,7 @@ class IndexController extends Controller
         }
     }  
     public function ProductWithTag($tag){
-        $products = Product::where('status' , 1)->where('product_tags_en' , $tag)->orderby('id','DESC')->paginate(12);;
+        $products = Product::where('status' , 1)->where('product_tags_en' ,'like', '%'.$tag.'%')->orderby('id','DESC')->paginate(12);;
         // $categories = Category::orderBy('category_name_en', 'ASC')->get();
         return view('frontend.tags.tags_view', compact('products'));
     }

@@ -540,6 +540,64 @@
                                             </div>
                                         </div>
 
+
+                                    </div><!-- /.row -->
+                                    <!-- ====================================== color and size: START -->
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                @if (session('language')=='arabic')
+
+                                                <label class="info-title control-label">اختر اللون <span>
+                                                    </span></label>
+                                                <select class="form-control unicase-form-control selectpicker"
+                                                    style="display: none;">
+                                                    <option selected="" disabled="">--اختر اللون--</option>
+                                                    @foreach($product_color_ar as $color)
+                                                    <option value="{{ $color }}">{{ $color }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @else
+                                                <label class="info-title control-label">Choose Color <span>
+                                                    </span></label>
+                                                <select class="form-control unicase-form-control selectpicker"
+                                                    style="display: none;">
+                                                    <option selected="" disabled="">--Choose Color--</option>
+                                                    @foreach($product_color_en as $color)
+                                                    <option value="{{ $color }}">{{ $color }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @endif
+                                            </div> <!-- // end form group -->
+                                        </div> <!-- // end col 6 -->
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                @if (session('language')== 'arabic')
+
+                                                <label class="info-title control-label">اختر القياس <span>
+                                                    </span></label>
+                                                <select class="form-control unicase-form-control selectpicker"
+                                                    style="display: none;">
+                                                    <option selected="" disabled="">--اختر القياس--</option>
+                                                    @foreach($product_size_ar as $size)
+                                                    <option value="{{ $size }}">{{ $size }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @else
+                                                <label class="info-title control-label">choose size <span>
+                                                    </span></label>
+                                                <select class="form-control unicase-form-control selectpicker"
+                                                    style="display: none;">
+                                                    <option selected="" disabled="">--choose size--</option>
+                                                    @foreach($product_size_ar as $size)
+                                                    <option value="{{ $size }}">{{ $size }}</option>
+                                                    @endforeach
+                                                </select>
+
+                                                @endif
+                                            </div> <!-- // end form group -->
+                                        </div> <!-- // end col 6 -->
+                                        <!-- ====================================== color and size: END -->
                                     </div><!-- /.row -->
                                 </div><!-- /.price-container -->
 
