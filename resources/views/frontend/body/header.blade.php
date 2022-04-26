@@ -201,43 +201,50 @@
                                         @if(session()->get('language')== 'arabic') الرئيسية @else Home @endif
                                     </a> </li>
                                 @php
-                                $categories_ar
-                                =App\Models\Category::orderBy('category_name_en','ASC')->pluck('category_name_ar','id');
-                                $categories_en
-                                =App\Models\Category::orderBy('category_name_en','ASC')->pluck('category_name_en','id');
-                                // dd($categories_ar);
+                                $categories
+                                =App\Models\Category::orderBy('category_name_en','ASC')->get();
+
                                 @endphp
-                                @foreach((session()->get('language')== 'arabic') ? $categories_ar: $categories_en as $id
-                                => $category)
+                                @foreach($categories as $category)
                                 <li class="dropdown yamm mega-menu"> <a href="#" data-hover="dropdown"
-                                        class="dropdown-toggle" data-toggle="dropdown">{{ $category }}</a>
+                                        class="dropdown-toggle" data-toggle="dropdown">
+                                        @if(session()->get('language') == 'arabic') {{
+                                        $category->category_name_ar }} @else {{
+                                        $category->category_name_en }} @endif
+                                    </a>
                                     <ul class="dropdown-menu container">
                                         <li>
                                             <div class="yamm-content ">
                                                 <div class="row">
                                                     <!--   // Get SubCategory Table Data -->
                                                     @php
-                                                    $subcategories_ar =
-                                                    App\Models\Subcategory::where('category_id',$id)->orderBy('subcategory_name_ar','ASC')->pluck('subcategory_name_ar','id');
-                                                    $subcategories_en =
-                                                    App\Models\Subcategory::where('category_id',$id)->orderBy('subcategory_name_en','ASC')->pluck('subcategory_name_en','id');
+                                                    $subcategories =
+                                                    App\Models\Subcategory::where('category_id',$category->id)->orderBy('subcategory_name_en','ASC')->get();
                                                     @endphp
-                                                    @foreach((session()->get('language')== 'english') ?
-                                                    $subcategories_en: $subcategories_ar as $id => $subcategory)
+                                                    @foreach($subcategories as $subcategory)
                                                     <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                                                        <h2 class="title">{{ $subcategory }}</h2>
+                                                        <a
+                                                            href="{{ url('subcategory/product/'.$subcategory->id.'/'.$subcategory->subcategory_slug_en ) }}">
+                                                            <h2 class="title">
+                                                                @if(session()->get('language') == 'arabic') {{
+                                                                $subcategory->subcategory_name_ar }} @else {{
+                                                                $subcategory->subcategory_name_en }} @endif
+                                                            </h2>
+                                                        </a>
                                                         <!--   // Get SubSubCategory Table Data -->
                                                         @php
-                                                        $subsubcategories_ar =
-                                                        App\Models\SubSubcategory::where('subcategory_id',$id)->orderBy('subsubcategory_name_ar','ASC')->pluck('subsubcategory_name_ar','id');
-                                                        $subsubcategories_en =
-                                                        App\Models\SubSubcategory::where('subcategory_id',$id)->orderBy('subsubcategory_name_en','ASC')->pluck('subsubcategory_name_en','id');
+                                                        $subsubcategories =
+                                                        App\Models\SubSubcategory::where('subcategory_id',$subcategory->id)->orderBy('subsubcategory_name_en','ASC')->get();
                                                         @endphp
-                                                        @foreach((session()->get('language')== 'arabic') ?
-                                                        $subsubcategories_ar: $subsubcategories_en as $id =>
-                                                        $subsubcategory)
+                                                        @foreach( $subsubcategories as $subsubcategory)
                                                         <ul class="links">
-                                                            <li><a href="#">{{ $subsubcategory }}</a></li>
+                                                            <li><a
+                                                                    href="{{ url('sub-subcategory/product/'.$subsubcategory->id.'/'.$subsubcategory->subsubcategory_slug_en ) }}">
+                                                                    @if(session()->get('language') == 'arabic') {{
+                                                                    $subsubcategory->subsubcategory_name_ar }} @else {{
+                                                                    $subsubcategory->subsubcategory_name_en }} @endif
+
+                                                                </a></li>
                                                         </ul>
                                                         @endforeach
                                                         <!-- // End SubSubCategory Foreach -->

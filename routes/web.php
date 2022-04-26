@@ -206,4 +206,11 @@ Route::post("/user/password/update", [IndexController::class, "UserUpdateChangeP
 
 Route::get("/english/language", [LanguageController::class, "English"])->name('english.language');
 Route::get("/arabic/language", [LanguageController::class, "Arabic"])->name('arabic.language');
+// View product details
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']); 
+// View product with tag
+Route::get('/product/tag/{tag}', [IndexController::class, 'ProductWithTag']); 
+// View product wise subcategory
+Route::get('/subcategory/product/{subcat_id}/{slug}', [IndexController::class, 'SubCatWiseProduct']); 
+// View product wise subcategory
+Route::get('/sub-subcategory/product/{subsubcat_id}/{slug}', [IndexController::class, 'SubSubCatWiseProduct']); 

@@ -98,5 +98,21 @@ class IndexController extends Controller
 
         }
     }  
+    public function ProductWithTag($tag){
+        $products = Product::where('status' , 1)->where('product_tags_en' , $tag)->orderby('id','DESC')->paginate(12);;
+        // $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        return view('frontend.tags.tags_view', compact('products'));
+    }
+    
+    // Subcategory wise data
+	public function SubCatWiseProduct($subcat_id,$slug){
+		$products = Product::where('status',1)->where('subcategory_id',$subcat_id)->orderBy('id','DESC')->paginate(12);
+		return view('frontend.product.subcategory_view',compact('products','slug'));
+	}
+    // Sub-subcategory wise data
+    public function SubSubCatWiseProduct($subsubcat_id,$slug){
+        $products = Product::where('status',1)->where('subsubcategory_id', $subsubcat_id)->orderby('id','DESC')->paginate(12);
+		return view('frontend.product.subsubcategory_view',compact('products','slug'));
+    }
 }
  

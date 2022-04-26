@@ -7,15 +7,21 @@
     <div class="container">
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
+                @if (session()->get('language') == 'arabic')
+                <li><a href="{{url('/')}}">
+                        الرئيسية</a></li>
+                @else
                 <li><a href="{{url('/')}}">
                         Home</a></li>
+                @endif
+
+                @if (session()->get('language') == 'arabic')
                 <li><a href="#">
-                        @if (session()->get('language') == 'arabic')
-                        {{$product['category']['category_name_ar']}}
-                        @else
-                        {{$product['category']['category_name_en'] }}
-                        @endif
-                    </a></li>
+                        {{$product['category']['category_name_ar']}}</a></li>
+                @else
+                <li><a href="#">
+                        {{$product['category']['category_name_en']}}</a></li>
+                @endif
                 <li class="active">
                     @if (session()->get('language') == 'arabic')
                     {{$product->product_name_ar}}
