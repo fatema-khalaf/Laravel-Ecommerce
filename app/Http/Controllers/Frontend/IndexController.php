@@ -127,5 +127,27 @@ class IndexController extends Controller
         $products = Product::where('status',1)->where('subsubcategory_id', $subsubcat_id)->orderby('id','DESC')->paginate(12);
 		return view('frontend.product.subsubcategory_view',compact('products','slug'));
     }
+
+    
+    // Product View With Ajax for add to cart modal
+	public function ProductViewAjax($id){
+//  new idea relational database table && using model functions 
+        $product = Product::with('category','brand')->findOrFail($id); // 'category','brand' => method names in product model
+
+		$color = $product->product_color_en;
+		$product_color = explode(',', $color);
+
+		$size = $product->product_size_en;
+		$product_size = explode(',', $size);
+		return response()->json(array(
+			'product' => $product,
+			'color' => $product_color,
+			'size' => $product_size,
+
+		));
+
+	} // end method 
+
+
 }
  
