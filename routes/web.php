@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController; 
+use App\Http\Controllers\Frontend\CartController; 
 use App\Models\User;
 
 // Route::get("/", function () {
@@ -216,3 +217,5 @@ Route::get('/subcategory/product/{subcat_id}/{slug}', [IndexController::class, '
 Route::get('/sub-subcategory/product/{subsubcat_id}/{slug}', [IndexController::class, 'SubSubCatWiseProduct']); 
 // Product View Modal with Ajax
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']); 
+// Add to cart store data with Ajax
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']); 
