@@ -12,8 +12,8 @@ class CartController extends Controller
         $product = Product::findOrFail($id);
         if($product->discount_price == Null){
             // dd($product, $request); 
-            // return $request;
-            // die();
+            return $request;
+            die();
             Cart::add(['id' => $id, 'name' => $request->product_name,
              'qty' => $request->quantity, 'price' => $product->selling_price,
              'weight' =>1, 'options' => [

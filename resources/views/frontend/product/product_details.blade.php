@@ -165,7 +165,7 @@
                         </div><!-- /.gallery-holder -->
                         <div class="col-sm-6 col-md-7 product-info-block">
                             <div class="product-info">
-                                <h1 class="name">@if(session()->get('language') == 'arabic')
+                                <h1 class="name" id='pname'>@if(session()->get('language') == 'arabic')
                                     {{$product->product_name_ar}}
                                     @else
                                     {{$product->product_name_en}}
@@ -258,13 +258,14 @@
                                     <!-- ====================================== color and size: START -->
                                     <div class="row">
                                         <div class="col-sm-6">
+                                            @if ($product->product_color_en == Null)
+                                            @else
                                             <div class="form-group">
                                                 @if (session('language')=='arabic')
-
                                                 <label class="info-title control-label">اختر اللون <span>
                                                     </span></label>
                                                 <select class="form-control unicase-form-control selectpicker"
-                                                    style="display: none;">
+                                                    style="display: none;" id="color">
                                                     <option selected="" disabled="">--اختر اللون--</option>
                                                     @foreach($product_color_ar as $color)
                                                     <option value="{{ $color }}">{{ $color }}</option>
@@ -274,7 +275,7 @@
                                                 <label class="info-title control-label">Choose Color <span>
                                                     </span></label>
                                                 <select class="form-control unicase-form-control selectpicker"
-                                                    style="display: none;">
+                                                    style="display: none;" id="color">
                                                     <option selected="" disabled="">--Choose Color--</option>
                                                     @foreach($product_color_en as $color)
                                                     <option value="{{ $color }}">{{ ucwords($color) }}</option>
@@ -282,15 +283,19 @@
                                                 </select>
                                                 @endif
                                             </div> <!-- // end form group -->
+                                            @endif
+
                                         </div> <!-- // end col 6 -->
                                         <div class="col-sm-6">
+                                            @if ($product->product_size_en == Null)
+                                            @else
                                             <div class="form-group">
                                                 @if (session('language')== 'arabic')
 
                                                 <label class="info-title control-label">اختر القياس <span>
                                                     </span></label>
                                                 <select class="form-control unicase-form-control selectpicker"
-                                                    style="display: none;">
+                                                    style="display: none;" id="size">
                                                     <option selected="" disabled="">--اختر القياس--</option>
                                                     @foreach($product_size_ar as $size)
                                                     <option value="{{ $size }}">{{ $size }}</option>
@@ -300,7 +305,7 @@
                                                 <label class="info-title control-label">choose size <span>
                                                     </span></label>
                                                 <select class="form-control unicase-form-control selectpicker"
-                                                    style="display: none;">
+                                                    style="display: none;" id="size">
                                                     <option selected="" disabled="">--choose size--</option>
                                                     @foreach($product_size_ar as $size)
                                                     <option value="{{ $size }}">{{ ucwords($size) }}</option>
@@ -309,6 +314,7 @@
 
                                                 @endif
                                             </div> <!-- // end form group -->
+                                            @endif
                                         </div> <!-- // end col 6 -->
                                         <!-- ====================================== color and size: END -->
                                     </div><!-- /.row -->
@@ -330,15 +336,15 @@
                                                         <div class="arrow minus gradient"><span class="ir"><i
                                                                     class="icon fa fa-sort-desc"></i></span></div>
                                                     </div>
-                                                    <input type="text" value="1">
+                                                    <input type="text" id='qty' min="1" value="1">
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <input type="hidden" id="product_id" value="{{$product->id}}">
                                         <div class="col-sm-7">
-                                            <a href="#" class="btn btn-primary"><i
+                                            <button type="submit" onclick="addToCart()" class="btn btn-primary"><i
                                                     class="fa fa-shopping-cart inner-right-vs"></i>
-                                                ADD TO CART</a>
+                                                ADD TO CART</button>
                                         </div>
 
 

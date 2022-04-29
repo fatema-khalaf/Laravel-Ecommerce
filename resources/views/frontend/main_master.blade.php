@@ -247,6 +247,7 @@ function addToCart(){
         url: "/cart/data/store/"+id,
         success:function(data){
             $('#closeModel').click();
+            console.log(data);
             // alert message
             // Start Message 
             const Toast = Swal.mixin({
