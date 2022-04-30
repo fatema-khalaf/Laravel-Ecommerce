@@ -373,12 +373,15 @@ Home| Pro-Ecommerce
                                                     <div class="action">
                                                         <ul class="list-unstyled">
                                                             <li class="add-cart-button btn-group">
-                                                                <button data-toggle="tooltip"
-                                                                    class="btn btn-primary icon" type="button"
-                                                                    title="Add Cart"> <i
-                                                                        class="fa fa-shopping-cart"></i> </button>
+                                                                {{-- new idea --}}
+                                                                <button class="btn btn-primary icon" type="button"
+                                                                    title="Add Cart" data-toggle="modal"
+                                                                    data-target="#exampleModal" id="{{$product->id}}"
+                                                                    onclick="productView(this.id)">
+                                                                    <i class="fa fa-shopping-cart"></i> </button>
                                                                 <button class="btn btn-primary cart-btn"
-                                                                    type="button">Add to cart</button>
+                                                                    type="button">Add to
+                                                                    cart</button>
                                                             </li>
                                                             <li class="lnk wishlist"> <a data-toggle="tooltip"
                                                                     class="add-to-cart" href="detail.html"
@@ -1731,8 +1734,6 @@ Home| Pro-Ecommerce
                         $skip_category_0->category_name_en }} @endif
                     </h3>
                     <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
-
-
                         @foreach($skip_product_0 as $product)
                         <div class="item item-carousel">
                             <div class="products">
@@ -1786,9 +1787,11 @@ Home| Pro-Ecommerce
                                         <div class="action">
                                             <ul class="list-unstyled">
                                                 <li class="add-cart-button btn-group">
-                                                    <button data-toggle="tooltip" class="btn btn-primary icon"
-                                                        type="button" title="Add Cart"> <i
-                                                            class="fa fa-shopping-cart"></i> </button>
+                                                    {{-- new idea --}}
+                                                    <button class="btn btn-primary icon" type="button" title="Add Cart"
+                                                        data-toggle="modal" data-target="#exampleModal"
+                                                        id="{{$product->id}}" onclick="productView(this.id)">
+                                                        <i class="fa fa-shopping-cart"></i> </button>
                                                     <button class="btn btn-primary cart-btn" type="button">Add to
                                                         cart</button>
                                                 </li>
@@ -1880,8 +1883,11 @@ Home| Pro-Ecommerce
                                         <div class="action">
                                             <ul class="list-unstyled">
                                                 <li class="add-cart-button btn-group">
-                                                    <button class="btn btn-primary icon" data-toggle="dropdown"
-                                                        type="button"> <i class="fa fa-shopping-cart"></i> </button>
+                                                    {{-- new idea --}}
+                                                    <button class="btn btn-primary icon" type="button" title="Add Cart"
+                                                        data-toggle="modal" data-target="#exampleModal"
+                                                        id="{{$item->id}}" onclick="productView(this.id)">
+                                                        <i class="fa fa-shopping-cart"></i> </button>
                                                     <button class="btn btn-primary cart-btn" type="button">Add to
                                                         cart</button>
                                                 </li>
@@ -2372,8 +2378,8 @@ Home| Pro-Ecommerce
                 <!-- /.section -->
                 <!-- ============================================== BLOG SLIDER : END ============================================== -->
 
-                <!-- ============================================== FEATURED PRODUCTS ============================================== -->
-                <section class="section wow fadeInUp new-arriavls">
+                <!-- ============================================== New Arrivals PRODUCTS ============================================== -->
+                {{-- <section class="section wow fadeInUp new-arriavls">
                     <h3 class="section-title">New Arrivals</h3>
                     <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
                         <div class="item item-carousel">
@@ -2689,9 +2695,9 @@ Home| Pro-Ecommerce
                         <!-- /.item -->
                     </div>
                     <!-- /.home-owl-carousel -->
-                </section>
+                </section> --}}
                 <!-- /.section -->
-                <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
+                <!-- ============================================== New Arrivals PRODUCTS : END ============================================== -->
 
             </div>
             <!-- /.homebanner-holder -->
