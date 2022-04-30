@@ -29,9 +29,9 @@ class CartController extends Controller
 
         }else{
             Cart::add(['id' => $id, 'name' => $request->product_name,
-            'qty' => $request->qty, 'price' => $product->discount_price,
+            'qty' => $request->quantity, 'price' => $product->discount_price,
             'weight' =>1, 'options' => [
-                'image' => $product->thambnail,
+                'image' => $product->product_thambnail,
                 'size' => $request->size,
                 'color' => $request->color,
                 ]
