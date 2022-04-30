@@ -247,7 +247,8 @@ function addToCart(){
         url: "/cart/data/store/"+id,
         success:function(data){
             $('#closeModel').click();
-            console.log(data);
+            miniCart(); // run this method to update cart items
+            // console.log(data);
             // alert message
             // Start Message 
             const Toast = Swal.mixin({
@@ -273,6 +274,82 @@ function addToCart(){
     })
 }
 // End add to cart button
+    </script>
+    {{-- new idea --}}
+    {{-- view cart items --}}
+    <script type="text/javascript">
+        function miniCart(){
+       $.ajax({
+           type: 'GET',
+           url: '/product/mini/cart',
+           dataType:'json',
+           success:function(response){
+               $('span[id="cartSubTotal"]').text(response.cartTotal) //there are many spans with the same id -choose them all-
+               $('#cartQty').text(response.cartQty) // only on span has cartQty id
+               var miniCart = ''
+               
+               $.each(response.carts, function(key,value){
+                   console.log(key,value);
+                miniCart +=`<div class="cart-item product-summary">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="image"> <a href="detail.html"><img
+                                                        src="/${value.options.image}" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
+                                            <div class="price">Quantity: ${value.qty}</div>
+                                            <div class="price">Total: $${value.price * value.qty}</div>
+                                        </div>
+                                        <div class="col-xs-1 action"> 
+                                            <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.cart-item -->
+                                <div class="clearfix"></div>
+                                <hr>`
+               });
+               $('#miniCart').html(miniCart);
+           }
+       })
+    }
+    miniCart();
+
+    // remove mini cart item
+ /// mini cart remove Start 
+ function miniCartRemove(rowId){
+        $.ajax({
+            type: 'GET',
+            url: '/minicart/product-remove/'+rowId,
+            dataType:'json',
+            success:function(data){
+            miniCart();
+             // Start Message 
+                const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      icon: 'success',
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        title: data.success
+                    })
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        title: data.error
+                    })
+                }
+                // End Message 
+            }
+        });
+    }
+ //  end mini cart remove 
     </script>
 </body>
 
