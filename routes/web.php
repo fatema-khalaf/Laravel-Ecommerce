@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController; 
 use App\Http\Controllers\Frontend\CartController; 
+use App\Http\Controllers\User\WishlistController; 
 use App\Models\User;
 
 // Route::get("/", function () {
@@ -224,4 +225,14 @@ Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);
 // Remove mini cart
 Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']); 
 // Add to wishlist data with Ajax
-Route::post('/add-to-wishlist/{id}', [CartController::class, 'AddToWishlist']); 
+Route::post('/add-to-wishlist/{id}', [WishlistController::class, 'AddToWishlist']); 
+
+Route::group(['prefix' => 'user' , 'middleware' =>['user','auth'],'namespace' => 'User'],
+function(){
+    // View wishlist
+    Route::get('/wishlist', [WishlistController::class, 'ViewWishlist'])->name('wishlist'); 
+    // Get wishlist data
+    Route::get('/view-wishlist-products', [WishlistController::class, 'GetWishlistProduct']); 
+    // Remove wishlist
+    Route::get('/wishlist/product-remove/{id}', [WishlistController::class, 'RemoveWishlist']); 
+});

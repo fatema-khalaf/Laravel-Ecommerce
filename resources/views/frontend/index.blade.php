@@ -383,10 +383,14 @@ Home| Pro-Ecommerce
                                                                     type="button">Add to
                                                                     cart</button>
                                                             </li>
-                                                            <li class="lnk wishlist"> <a data-toggle="tooltip"
-                                                                    class="add-to-cart" href="detail.html"
-                                                                    title="Wishlist"> <i class="icon fa fa-heart"></i>
-                                                                </a> </li>
+                                                            <li class="add-cart-button btn-group">
+                                                                <button class="btn btn-primary"
+                                                                    style="background: #0f6cb2;" type="button"
+                                                                    title="Wishlist" id='{{$product->id}}'
+                                                                    onclick="AddToWishlist(this.id)">
+                                                                    <i class="fa fa-heart"></i>
+                                                                </button>
+                                                            </li>
                                                             <li class="lnk"> <a data-toggle="tooltip"
                                                                     class="add-to-cart" href="detail.html"
                                                                     title="Compare"> <i class="fa fa-signal"
@@ -484,9 +488,13 @@ Home| Pro-Ecommerce
                                                                     type="button">Add to
                                                                     cart</button>
                                                             </li>
-                                                            <li class="lnk wishlist"> <a class="add-to-cart"
-                                                                    href="detail.html" title="Wishlist"> <i
-                                                                        class="icon fa fa-heart"></i> </a>
+                                                            <li class="add-cart-button btn-group">
+                                                                <button class="btn btn-primary"
+                                                                    style="background: #0f6cb2;" type="button"
+                                                                    title="Wishlist" id='{{$item->id}}'
+                                                                    onclick="AddToWishlist(this.id)">
+                                                                    <i class="fa fa-heart"></i>
+                                                                </button>
                                                             </li>
                                                             <li class="lnk"> <a class="add-to-cart" href="detail.html"
                                                                     title="Compare"> <i class="fa fa-signal"
@@ -1706,11 +1714,13 @@ Home| Pro-Ecommerce
                                                     <button class="btn btn-primary cart-btn" type="button">Add to
                                                         cart</button>
                                                 </li>
-                                                <button class="btn btn-primary icon" type="button" title="Wishlist"
-                                                    id='{{$item->id}}' onclick="AddToWishlist(this.id)">
-                                                    <i class="fa fa-heart"></i>
-                                                </button>
-
+                                                <li class="add-cart-button btn-group">
+                                                    <button class="btn btn-primary" style="background: #0f6cb2;"
+                                                        type="button" title="Wishlist" id='{{$item->id}}'
+                                                        onclick="AddToWishlist(this.id)">
+                                                        <i class="fa fa-heart"></i>
+                                                    </button>
+                                                </li>
                                                 <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart"
                                                         href="detail.html" title="Compare"> <i class="fa fa-signal"
                                                             aria-hidden="true"></i> </a> </li>
@@ -1732,7 +1742,7 @@ Home| Pro-Ecommerce
                 <!-- /.section -->
                 <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
 
-                <!-- == === skip_product_0 PRODUCTS == ==== -->
+                <!-- ============================================== skip_product_0 PRODUCTS =============================================== -->
                 <section class="section featured-product wow fadeInUp">
                     <h3 class="section-title">
                         @if(session()->get('language') == 'arabic') {{ $skip_category_0->category_name_ar }} @else {{
@@ -1800,9 +1810,13 @@ Home| Pro-Ecommerce
                                                     <button class="btn btn-primary cart-btn" type="button">Add to
                                                         cart</button>
                                                 </li>
-                                                <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart"
-                                                        href="detail.html" title="Wishlist"> <i
-                                                            class="icon fa fa-heart"></i> </a> </li>
+                                                <li class="add-cart-button btn-group">
+                                                    <button class="btn btn-primary" style="background: #0f6cb2;"
+                                                        type="button" title="Wishlist" id='{{$product->id}}'
+                                                        onclick="AddToWishlist(this.id)">
+                                                        <i class="fa fa-heart"></i>
+                                                    </button>
+                                                </li>
                                                 <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart"
                                                         href="detail.html" title="Compare"> <i class="fa fa-signal"
                                                             aria-hidden="true"></i> </a> </li>
@@ -1896,8 +1910,12 @@ Home| Pro-Ecommerce
                                                     <button class="btn btn-primary cart-btn" type="button">Add to
                                                         cart</button>
                                                 </li>
-                                                <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html"
-                                                        title="Wishlist"> <i class="icon fa fa-heart"></i> </a>
+                                                <li class="add-cart-button btn-group">
+                                                    <button class="btn btn-primary" style="background: #0f6cb2;"
+                                                        type="button" title="Wishlist" id='{{$item->id}}'
+                                                        onclick="AddToWishlist(this.id)">
+                                                        <i class="fa fa-heart"></i>
+                                                    </button>
                                                 </li>
                                                 <li class="lnk"> <a class="add-to-cart" href="detail.html"
                                                         title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i>
