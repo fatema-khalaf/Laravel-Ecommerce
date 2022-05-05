@@ -287,9 +287,7 @@ function addToCart(){
                $('span[id="cartSubTotal"]').text(response.cartTotal) //there are many spans with the same id -choose them all-
                $('#cartQty').text(response.cartQty) // only on span has cartQty id
                var miniCart = ''
-               
                $.each(response.carts, function(key,value){
-                   console.log(key,value);
                 miniCart +=`<div class="cart-item product-summary">
                                     <div class="row">
                                         <div class="col-xs-4">
@@ -303,6 +301,7 @@ function addToCart(){
                                             <div class="price">Total: $${value.price * value.qty}</div>
                                         </div>
                                         <div class="col-xs-1 action"> 
+                                            <!-- note: must use rowId not id -->
                                             <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button>
                                         </div>
                                     </div>
@@ -325,6 +324,7 @@ function addToCart(){
             dataType:'json',
             success:function(data){
             miniCart();
+            mycart(); // update the items in my cart without the need to refresh the page
              // Start Message 
                 const Toast = Swal.mixin({
                       toast: true,
@@ -462,7 +462,124 @@ function addToCart(){
  //  end wishlist remove
     </script>
 
+    {{-- view mycart items --}}
+    <script type="text/javascript">
+        function mycart(){
+       $.ajax({
+           type: 'GET',
+           url: '/view-my-cart-products',
+           dataType:'json',
+           success:function(response){
+               var rows = ''
+               $.each(response.carts, function(key,value){
+                rows +=`<tr>
+                            <td class="col-md-2"><img src="/${value.options.image}" alt="imga" style="width:60px; height:60px"></td>
+                            <td class="col-md-3">
+                                <div class="product-name"><a href="#">
+                                        ${value.name}                       
+                                    </a></div>
+                                <div class="price">
+                                ${value.price}
+                                </div>
+                            </td>
+                            <td class="col-md-2">
+                                ${value.options.color == null
+                                    ?`
+                                    <strong>-</strong>`
+                                    :`
+                                    <strong>${value.options.color}</strong>`
+                                }
+                            </td>
+                            <td class="col-md-2">
+                                ${value.options.size == null
+                                    ?`<strong>-</strong>`
+                                    :`<strong>${value.options.size}</strong>`
+                                }
+                            </td>
+                            <td class="col-md-2">
+                                ${value.qty > 1 
+                                    ?`<button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}" onclick='cartDecrement(this.id)'>-</button>`  
+                                    :`<button disabled type="submit" class="btn btn-danger btn-sm" id="${value.rowId}" onclick='cartDecrement(this.id)'>-</button>`  
+                                
+                                }
+                                <input type="text" value="${value.qty}" min="1" max="100" disabled="" style="width:25px;" >      
+                                <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}" onclick='cartIncrement(this.id)'>+</button>     
+                            </td>
+                            <td class="col-md-2">
+                            <strong>$${value.subtotal} </strong> 
+                            </td>
+                           
+                            <td class="col-md-1 close-btn">
+                                <button class="" type='submit' id="${value.rowId}" onclick='mycartRemove(this.id)'><i class="fa fa-times"></i></button>
+                            </td>
+                        </tr>`
+               });
+               $('#mycart').html(rows);
+           }
+       })
+    }
+    mycart();
+// remove mycart item
+ function mycartRemove(id){
+        $.ajax({
+            type: 'GET',
+            url: '/my-cart/product-remove/'+id,
+            dataType:'json',
+            success:function(data){
+            mycart(); // update the items in my cart without the need to refresh the page
+            miniCart(); // update the items in mini cart without the need to refresh the page
+             // Start Message 
+                const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        icon: 'success',
+                        type: 'success',
+                        title: data.success
+                    })
+                }else{
+                    Toast.fire({
+                        icon: 'error',
+                        type: 'error',
+                        title: data.error
+                    })
+                }
+                // End Message 
+            }
+        });
+    }
+ //  end mycart remove
 
+ // cart increment 
+ function cartIncrement(rowId){
+     $.ajax({
+        type: 'GET',
+        url: '/cart-increment/'+rowId,
+        dataType:'json',
+        success:function(data){
+            mycart(); // update the items in my cart without the need to refresh the page
+            miniCart(); // update the items in mini cart without the need to refresh the page
+        }
+     });
+ }
+
+ // cart decrement 
+ function cartDecrement(rowId){
+     $.ajax({
+        type: 'GET',
+        url: '/cart-decrement/'+rowId,
+        dataType:'json',
+        success:function(data){
+            mycart(); // update the items in my cart without the need to refresh the page
+            miniCart(); // update the items in mini cart without the need to refresh the page
+        }
+     });
+ }
+    </script>
 
 </body>
 

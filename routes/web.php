@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController; 
 use App\Http\Controllers\Frontend\CartController; 
 use App\Http\Controllers\User\WishlistController; 
+use App\Http\Controllers\User\CartPageController; 
 use App\Models\User;
 
 // Route::get("/", function () {
@@ -226,7 +227,7 @@ Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);
 Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']); 
 // Add to wishlist data with Ajax
 Route::post('/add-to-wishlist/{id}', [WishlistController::class, 'AddToWishlist']); 
-
+// new idea protected route only logged in user
 Route::group(['prefix' => 'user' , 'middleware' =>['user','auth'],'namespace' => 'User'],
 function(){
     // View wishlist
@@ -236,3 +237,14 @@ function(){
     // Remove wishlist
     Route::get('/wishlist/product-remove/{id}', [WishlistController::class, 'RemoveWishlist']); 
 });
+// note: my cart routes
+// View my cart
+Route::get('/my-cart', [CartPageController::class, 'ViewMyCart'])->name('mycart'); 
+// Get mycart data
+Route::get('/view-my-cart-products', [CartPageController::class, 'GetMyCartProduct']); 
+// Remove mycart
+Route::get('/my-cart/product-remove/{rowId}', [CartPageController::class, 'RemoveMyCart']); 
+// cart increment
+Route::get('/cart-increment/{rowId}', [CartPageController::class, 'IncrementCart']); 
+// cart decrement 
+Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'DecrementCart']); 
