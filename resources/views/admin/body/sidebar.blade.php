@@ -71,7 +71,6 @@ $route = Route::current()->getName();
                 class="ti-more"></i>Add Products</a></li>
           <li class="{{($route == 'all.products' )? 'active' : ''}}"><a href="{{route('all.products')}}"><i
                 class="ti-more"></i>Manage Products</a></li>
-
         </ul>
       </li>
       <li class="treeview {{($prefix == '/slider' )? 'active' : ''}}">
@@ -88,6 +87,22 @@ $route = Route::current()->getName();
               Sliders</a></li>
         </ul>
       </li>
+
+      <li class="treeview {{($prefix == '/coupons' )? 'active' : ''}}">
+        <a href="#">
+          <i data-feather="message-circle"></i>
+          <span>Coupons</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="  {{($route == 'all.coupons' )? 'active' : ''}}"><a href="{{route('all.coupons')}}"><i
+                class="ti-more"></i>Manage
+              Coupons</a></li>
+        </ul>
+      </li>
+
       <li class="treeview">
         <a href="#">
           <i data-feather="file"></i>

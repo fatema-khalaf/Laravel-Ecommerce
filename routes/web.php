@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubcategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController; 
 use App\Http\Controllers\Frontend\CartController; 
@@ -175,6 +176,20 @@ Route::prefix('slider')->group(function(){
     Route::get('/activate/slider/{id}', [SliderController::class, 'SliderActivate'])->name('slider.activate');
     // Inactivate slider
     Route::get('/inactivate/slider/{id}', [SliderController::class, 'SliderInactivate'])->name('slider.inactivate');
+});
+
+// Note: Coupons All routes
+Route::prefix('coupons')->group(function(){
+    // View All Coupons
+    Route::get("/view", [CouponController::class, "CouponView"])->name('all.coupons');
+    // Add new coupon
+    Route::post("/store", [CouponController::class, "CouponStore"])->name('coupon.store');
+    // View Edit coupon
+    Route::get("/edit/{id}", [CouponController::class, "CouponEdit"])->name('coupon.edit');
+    // Store updated data
+    Route::post("/update", [CouponController::class, "CouponUpdate"])->name('coupon.update');
+    // Delete coupon
+    Route::get("/delete/{id}", [CouponController::class, "CouponDelete"])->name('coupon.delete');
 });
 
 //NOTE: User Route 
