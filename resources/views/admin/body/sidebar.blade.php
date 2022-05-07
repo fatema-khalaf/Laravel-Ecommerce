@@ -103,6 +103,24 @@ $route = Route::current()->getName();
         </ul>
       </li>
 
+      <li class="treeview {{($prefix == '/shipping' )? 'active' : ''}}">
+        <a href="#">
+          <i data-feather="message-circle"></i>
+          <span>Shipping Area</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="  {{($route == 'all.divisions' )? 'active' : ''}}"><a href="{{route('all.divisions')}}"><i
+                class="ti-more"></i>Ship division</a></li>
+          <li class="  {{($route == 'all.districts' )? 'active' : ''}}"><a href="{{route('all.districts')}}"><i
+                class="ti-more"></i>Ship district</a></li>
+          <li class="  {{($route == 'all.states' )? 'active' : ''}}"><a href="{{route('all.states')}}"><i
+                class="ti-more"></i>Ship State</a></li>
+        </ul>
+      </li>
+
       <li class="treeview">
         <a href="#">
           <i data-feather="file"></i>

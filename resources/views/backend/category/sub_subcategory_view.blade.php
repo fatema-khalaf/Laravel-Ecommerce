@@ -49,6 +49,7 @@
                                                 @foreach ($subsubcategories as $subsubcategory)
                                                 <tr role="row" class="odd">
                                                     <td class="sorting_1">
+                                                        {{-- new idea --}}
                                                         {{$subsubcategory['category']['category_name_en']}}</td>
                                                     <td class="sorting_1">
                                                         {{$subsubcategory['subcategory']['subcategory_name_en']}}</td>

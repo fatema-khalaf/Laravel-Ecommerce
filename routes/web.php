@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\SubcategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController; 
 use App\Http\Controllers\Frontend\CartController; 
@@ -190,6 +191,46 @@ Route::prefix('coupons')->group(function(){
     Route::post("/update", [CouponController::class, "CouponUpdate"])->name('coupon.update');
     // Delete coupon
     Route::get("/delete/{id}", [CouponController::class, "CouponDelete"])->name('coupon.delete');
+});
+
+// Note: Shipping divisions All routes
+Route::prefix('shipping')->group(function(){
+    // View All Coupons
+    Route::get("/division/view", [ShippingAreaController::class, "DivisionView"])->name('all.divisions');
+    // Add new coupon
+    Route::post("/division/store", [ShippingAreaController::class, "DivisionStore"])->name('division.store');
+    // View Edit coupon
+    Route::get("/division/edit/{id}", [ShippingAreaController::class, "DivisionEdit"])->name('division.edit');
+    // Store updated data
+    Route::post("/division/update", [ShippingAreaController::class, "DivisionUpdate"])->name('division.update');
+    // Delete division
+    Route::get("/division/delete/{id}", [ShippingAreaController::class, "DivisionDelete"])->name('division.delete');
+});
+// Note: Shipping districts All routes
+Route::prefix('shipping')->group(function(){
+    // View All Coupons
+    Route::get("/district/view", [ShippingAreaController::class, "DistrictView"])->name('all.districts');
+    // Add new coupon
+    Route::post("/district/store", [ShippingAreaController::class, "DistrictStore"])->name('district.store');
+    // View Edit coupon
+    Route::get("/district/edit/{id}", [ShippingAreaController::class, "DistrictEdit"])->name('district.edit');
+    // Store updated data
+    Route::post("/district/update", [ShippingAreaController::class, "DistrictUpdate"])->name('district.update');
+    // Delete division
+    Route::get("/district/delete/{id}", [ShippingAreaController::class, "DistrictDelete"])->name('district.delete');
+});
+// Note: Shipping states All routes
+Route::prefix('shipping')->group(function(){
+    // View All Coupons
+    Route::get("/state/view", [ShippingAreaController::class, "StateView"])->name('all.states');
+    // Add new coupon
+    Route::post("/state/store", [ShippingAreaController::class, "StateStore"])->name('state.store');
+    // View Edit coupon
+    Route::get("/state/edit/{id}", [ShippingAreaController::class, "StateEdit"])->name('state.edit');
+    // Store updated data
+    Route::post("/state/update", [ShippingAreaController::class, "StateUpdate"])->name('state.update');
+    // Delete division
+    Route::get("/state/delete/{id}", [ShippingAreaController::class, "StateDelete"])->name('state.delete');
 });
 
 //NOTE: User Route 
