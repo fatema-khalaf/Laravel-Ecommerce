@@ -304,3 +304,11 @@ Route::get('/my-cart/product-remove/{rowId}', [CartPageController::class, 'Remov
 Route::get('/cart-increment/{rowId}', [CartPageController::class, 'IncrementCart']); 
 // cart decrement 
 Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'DecrementCart']); 
+
+// Note: frontend coupon Route
+// apply coupon
+Route::post('/coupon-apply', [CartController::class, 'ApplyCoupon']); 
+// calculate coupon 
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']); 
+// Remove coupon 
+Route::get('/coupon-remove', [CartController::class, 'CouponRemove']); 
