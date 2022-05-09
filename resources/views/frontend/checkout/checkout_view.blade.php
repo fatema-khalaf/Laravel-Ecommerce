@@ -305,7 +305,7 @@ Checkout
                   success:function(data) {
                       $('select[name="state_id"]').empty(); 
                      var d =$('select[name="district_id"]').empty();
-                    //  $('select[name="district_id"]').append('<option value="" selected="" disabled="">Select District </option>');
+                     $('select[name="district_id"]').append('<option value="" selected="" disabled="">Select District </option>');
                         $.each(data, function(key, value){
                             $('select[name="district_id"]').append('<option value="'+ value.id +'">' + value.district_name + '</option>');
                         });
