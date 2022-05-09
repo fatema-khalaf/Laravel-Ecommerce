@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CartController; 
 use App\Http\Controllers\User\WishlistController; 
 use App\Http\Controllers\User\CartPageController; 
+use App\Http\Controllers\User\CheckoutController; 
 use App\Models\User;
 
 // Route::get("/", function () {
@@ -312,3 +313,13 @@ Route::post('/coupon-apply', [CartController::class, 'ApplyCoupon']);
 Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']); 
 // Remove coupon 
 Route::get('/coupon-remove', [CartController::class, 'CouponRemove']); 
+
+// Note: checkout route
+// View Checkout
+Route::get('/checkout', [CheckoutController::class, 'ViewCheckout'])->name('checkout'); 
+// Get district ajax
+Route::get('/division/district/ajax/{id}', [CheckoutController::class, 'GetDistricts']); 
+// Get state ajax
+Route::get('/district/state/ajax/{id}', [CheckoutController::class, 'GetStates']); 
+//  store checkout data
+Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store'); 

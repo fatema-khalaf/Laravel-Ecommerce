@@ -9,6 +9,10 @@ use App\Models\Coupon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+use App\Models\ShipDivision;
+use App\Models\ShipDistrict;
+use App\Models\ShipState;
+use Auth;
 
 class CartController extends Controller
 {
