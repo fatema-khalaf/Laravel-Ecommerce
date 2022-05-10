@@ -82,7 +82,7 @@ Checkout
                                                 <div class="form-group">
                                                     <label class="info-title" for="exampleInputEmail1">Post Code
                                                         <span>*</span></label>
-                                                    <input type="text" name="post_code"
+                                                    <input type="number" name="post_code" max="99999999999"
                                                         class="form-control unicase-form-control text-input"
                                                         placeholder="Phone number" required>
                                                 </div>
@@ -98,7 +98,7 @@ Checkout
                                                 </label>
                                                 <div class="controls">
                                                     <select name="division_id" id="select"
-                                                        class="form-control unicase-form-control text-input">
+                                                        class="form-control unicase-form-control text-input" required>
                                                         <option value="" selected='' disabled=''>Select Division
                                                         </option>
                                                         @foreach ($divisions as $item)
@@ -120,7 +120,7 @@ Checkout
                                                     <span style="color: red;">*</span>
                                                 </label>
                                                 <div class="controls">
-                                                    <select name="district_id" id="select"
+                                                    <select name="district_id" id="select" required
                                                         class="form-control unicase-form-control text-input">
                                                         <option value="" selected='' disabled=''>Select District
                                                         </option>
@@ -140,7 +140,7 @@ Checkout
                                                 </label>
                                                 <div class="controls">
                                                     <select name="state_id" id="select"
-                                                        class="form-control unicase-form-control text-input">
+                                                        class="form-control unicase-form-control text-input" required>
                                                         <option value="" selected='' disabled=''>Select State
                                                         </option>
                                                     </select>

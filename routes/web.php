@@ -16,6 +16,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController; 
 use App\Http\Controllers\User\CartPageController; 
 use App\Http\Controllers\User\CheckoutController; 
+use App\Http\Controllers\User\StripeController; 
 use App\Models\User;
 
 // Route::get("/", function () {
@@ -293,6 +294,11 @@ function(){
     Route::get('/view-wishlist-products', [WishlistController::class, 'GetWishlistProduct']); 
     // Remove wishlist
     Route::get('/wishlist/product-remove/{id}', [WishlistController::class, 'RemoveWishlist']); 
+    
+    // note: Stripe payment
+    Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order'); 
+
+
 });
 // note: my cart routes
 // View my cart
@@ -323,3 +329,4 @@ Route::get('/division/district/ajax/{id}', [CheckoutController::class, 'GetDistr
 Route::get('/district/state/ajax/{id}', [CheckoutController::class, 'GetStates']); 
 //  store checkout data
 Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store'); 
+// 
