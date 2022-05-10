@@ -598,7 +598,9 @@ function addToCart(){
                 data: {coupon_name:coupon_name},
                 url:'{{url('/coupon-apply')}}',
                 success:function(data){
-                    $('#couponField').hide();
+                    if(data.validity == true){
+                        $('#couponField').hide();
+                    }
                     couponCalculation();
                     const Toast = Swal.mixin({
                       toast: true,
