@@ -306,6 +306,8 @@ function(){
     Route::get('/my/orders', [AllUserController::class, 'MyOrders'])->name('my.orders'); 
     // Note: user order route
     Route::get('/order-details/{id}', [AllUserController::class, 'OrderDetails']); 
+    // Note: user order download invoice  route
+    Route::get('/invoice-download/{id}', [AllUserController::class, 'InvoiceDownload']); 
 
 });
 // note: my cart routes
