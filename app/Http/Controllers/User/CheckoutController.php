@@ -62,7 +62,7 @@ class CheckoutController extends Controller
         }elseif($request->payment_method == 'card'){
             // return view('frontend.payment.stripe' ,  compact('data'));
         }else{
-            // return view('frontend.payment.stripe' ,  compact('data'));
+            return view('frontend.payment.cash' ,  compact('data', 'cartTotal'));
         }
     }
 }

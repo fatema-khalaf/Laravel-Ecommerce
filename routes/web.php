@@ -17,6 +17,8 @@ use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController; 
 use App\Http\Controllers\User\CheckoutController; 
 use App\Http\Controllers\User\StripeController; 
+use App\Http\Controllers\User\CashController; 
+use App\Http\Controllers\User\AllUserController; 
 use App\Models\User;
 
 // Route::get("/", function () {
@@ -297,7 +299,13 @@ function(){
     
     // note: Stripe payment
     Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order'); 
-
+    // note: Cash payment
+    Route::post('/cash/order', [CashController::class, 'CashOrder'])->name('cash.order'); 
+    
+    // Note: user order route
+    Route::get('/my/orders', [AllUserController::class, 'MyOrders'])->name('my.orders'); 
+    // Note: user order route
+    Route::get('/order-details/{id}', [AllUserController::class, 'OrderDetails']); 
 
 });
 // note: my cart routes
