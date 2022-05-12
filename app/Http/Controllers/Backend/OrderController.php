@@ -77,7 +77,8 @@ class OrderController extends Controller
     // Confirm order status
     public function PendingToConfirm($id){
         Order::findOrFail($id)->update([
-            'status' =>'confirmed'
+            'status' =>'confirmed',
+            'confirmed_date' => Carbon::now()->format('d F Y'),
         ]);
         $notification = array(
             'message'=> 'Order Confirm Successfully',
@@ -88,7 +89,9 @@ class OrderController extends Controller
     // Processing order status
     public function ConfirmToProcessing($id){
         Order::findOrFail($id)->update([
-            'status' =>'processing'
+            'status' =>'processing',
+            'processing_date' => Carbon::now()->format('d F Y'),
+            
         ]);
         $notification = array(
             'message'=> 'Order Processing Successfully',
@@ -99,7 +102,9 @@ class OrderController extends Controller
     // Picked order status
     public function ProcessingToPicked($id){
         Order::findOrFail($id)->update([
-            'status' =>'picked'
+            'status' =>'picked',
+            'picked_date' => Carbon::now()->format('d F Y'),
+
         ]);
         $notification = array(
             'message'=> 'Order Picked Successfully',
@@ -110,7 +115,9 @@ class OrderController extends Controller
     // Shipped order status
     public function pickedToShipped($id){
         Order::findOrFail($id)->update([
-            'status' =>'shipped'
+            'status' =>'shipped',
+            'shipped_date' => Carbon::now()->format('d F Y'),
+
         ]);
         $notification = array(
             'message'=> 'Order Shipped Successfully',
@@ -121,7 +128,9 @@ class OrderController extends Controller
     // Delivered order status
     public function ShippedToDelivered($id){
         Order::findOrFail($id)->update([
-            'status' =>'delivered'
+            'status' =>'delivered',
+            'delivered_date' => Carbon::now()->format('d F Y'),
+
         ]);
         $notification = array(
             'message'=> 'Order Delivered Successfully',
