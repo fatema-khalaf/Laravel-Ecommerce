@@ -289,6 +289,7 @@ Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMi
 // Add to wishlist data with Ajax
 Route::post('/add-to-wishlist/{id}', [WishlistController::class, 'AddToWishlist']); 
 // new idea protected route only logged in user
+// Frontend Routes 👇👇
 Route::group(['prefix' => 'user' , 'middleware' =>['user','auth'],'namespace' => 'User'],
 function(){
     // View wishlist
@@ -305,10 +306,16 @@ function(){
     
     // Note: user order route
     Route::get('/my/orders', [AllUserController::class, 'MyOrders'])->name('my.orders'); 
-    // Note: user order route
+    //  user order route
     Route::get('/order-details/{id}', [AllUserController::class, 'OrderDetails']); 
-    // Note: user order download invoice  route
+    // user order download invoice  route
     Route::get('/invoice-download/{id}', [AllUserController::class, 'InvoiceDownload']); 
+    // return order Request
+    Route::post('/return/order/{id}', [AllUserController::class, 'ReturnOrder'])->name('return.order'); 
+    // View return orders list
+    Route::get('/return/order/list', [AllUserController::class, 'ReturnOrdersList'])->name('return.orders.list'); 
+    // View cancled order list
+    Route::get('/canceled/order/list', [AllUserController::class, 'CanceledOrdersList'])->name('cancel.orders'); 
 
 });
 // note: my cart routes
@@ -371,5 +378,4 @@ Route::prefix('orders')->group(function(){
     Route::get('/delivered/order/{id}', [OrderController::class, 'ShippedToDelivered'])->name('delivered.order');
     // Download invoice
     Route::get('/invoice/download/{order_id}', [OrderController::class, 'AdminInvoiceDownload'])->name('invoice.download');
-
 });

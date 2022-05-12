@@ -9,7 +9,9 @@ $user = App\Models\User::find($id);
         style="border-radius: 50%; max-width:200px; max-height:180px"><br><br>
     <ul class="list-group list-group-flush">
         <a href="{{route('dashboard')}}" class="btn btn-primary btn-sm btn-block">Home</a>
-        <a href="{{route('my.orders')}}" class="btn btn-primary btn-sm btn-block">Orders</a>
+        <a href="{{route('my.orders')}}" class="btn btn-primary btn-sm btn-block">My Orders</a>
+        <a href="{{route('return.orders.list')}}" class="btn btn-primary btn-sm btn-block">Returned Orders</a>
+        <a href="{{route('cancel.orders')}}" class="btn btn-primary btn-sm btn-block">Canceled Orders</a>
         <a href="{{route('user.profile')}}" class="btn btn-primary btn-sm btn-block">Profile update</a>
         <a href="{{route('change.password')}}" class="btn btn-primary btn-sm btn-block">Change password</a>
         <a href="{{route('user.logout')}}" class="btn btn-danger btn-sm btn-block">Log out</a>

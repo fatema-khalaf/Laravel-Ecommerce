@@ -52,14 +52,14 @@
                                     <label for="">
                                         <span class="badge badge-pill badge-warning" style="background: #418DB9;">{{
                                             $order->status }} </span>
-
+                                        <span class="badge badge-pill badge-warning" style="background:red;">Return
+                                            Requested </span>
                                     </label>
                                 </td>
 
                                 <td class="col-md-1">
                                     <a href="{{url('user/order-details/'.$order->id)}}"
                                         class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> View</a>
-                                    {{-- new idea target="_blank" to open new blank tag --}}
                                     <a target="_blank" href="{{url('user/invoice-download/'.$order->id)}}"
                                         class="btn btn-sm btn-danger" style="margin-top: 5px; "><i
                                             class="fa fa-download" style="color: white;"></i>
