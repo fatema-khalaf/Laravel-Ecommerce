@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\SubcategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController; 
@@ -339,4 +340,23 @@ Route::get('/division/district/ajax/{id}', [CheckoutController::class, 'GetDistr
 Route::get('/district/state/ajax/{id}', [CheckoutController::class, 'GetStates']); 
 //  store checkout data
 Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store'); 
-// 
+
+// Note: Orders backend All routes
+Route::prefix('orders')->group(function(){
+    // View All pending orders
+    Route::get("/pending/orders", [OrderController::class, "PendingOrders"])->name('pending.orders');
+    // View pending order details 
+    Route::get("/pending/orders/details/{order_id}", [OrderController::class, "PendingOrdersDetails"])->name('pending.order.details');
+    // View All confirmed orders
+    Route::get('/confirmed/orders', [OrderController::class, 'ConfirmedOrders'])->name('confirmed-orders');
+    // View All processing orders
+    Route::get('/processing/orders', [OrderController::class, 'ProcessingOrders'])->name('processing-orders');
+    // View All picked orders
+    Route::get('/picked/orders', [OrderController::class, 'PickedOrders'])->name('picked-orders');
+    // View All shipped orders
+    Route::get('/shipped/orders', [OrderController::class, 'ShippedOrders'])->name('shipped-orders');
+    // View All delivered orders
+    Route::get('/delivered/orders', [OrderController::class, 'DeliveredOrders'])->name('delivered-orders');
+    // View All canceled orders
+    Route::get('/cancel/orders', [OrderController::class, 'CancelOrders'])->name('cancel-orders');
+});
