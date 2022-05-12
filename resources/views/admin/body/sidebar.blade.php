@@ -142,8 +142,8 @@ $route = Route::current()->getName();
                 class="ti-more"></i> Shipped Orders</a></li>
           <li class="{{ ($route == 'delivered-orders')? 'active':'' }}"><a href="{{ route('delivered-orders') }}"><i
                 class="ti-more"></i> Delivered Orders</a></li>
-          <li class="{{ ($route == 'cancel-orders')? 'active':'' }}"><a href="{{ route('cancel-orders') }}"><i
-                class="ti-more"></i> Cancel Orders</a></li>
+          <li class="{{ ($route == 'canceled-orders')? 'active':'' }}"><a href="{{ route('canceled-orders') }}"><i
+                class="ti-more"></i> Canceled Orders</a></li>
         </ul>
       </li>
 

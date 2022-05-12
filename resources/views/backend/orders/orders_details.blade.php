@@ -105,13 +105,34 @@
                                     $order->status }} </span>
                             </th>
                         </tr>
+                        <tr>
+                            <th> </th>
+                            <th>
+                                @if ($order->status == 'Pending')
+                                <a href='{{route( "confirm.order",$order->id)}}' class="btn btn-block btn-success"
+                                    id="confirm">Confirm Order</a>
+                                @elseif($order->status == 'confirmed')
+                                <a href='{{route( "processing.order",$order->id)}}' class="btn btn-block btn-success"
+                                    id="processing">Processing Order</a>
+                                @elseif($order->status == 'processing')
+                                <a href="{{ route('picked.order',$order->id) }}" class="btn btn-block btn-success"
+                                    id="picked">Picked Order</a>
 
+                                @elseif($order->status == 'picked')
+                                <a href="{{ route('shipped.order',$order->id) }}" class="btn btn-block btn-success"
+                                    id="shipped">Shipped Order</a>
 
+                                @elseif($order->status == 'shipped')
+                                <a href="{{ route('delivered.order',$order->id) }}" class="btn btn-block btn-success"
+                                    id="delivered">Delivered Order</a>
 
+                                @endif
+
+                            </th>
+
+                            </th>
+                        </tr>
                     </table>
-
-
-
                 </div>
             </div> <!--  // cod md -6 -->
 

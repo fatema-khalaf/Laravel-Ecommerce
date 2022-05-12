@@ -346,7 +346,7 @@ Route::prefix('orders')->group(function(){
     // View All pending orders
     Route::get("/pending/orders", [OrderController::class, "PendingOrders"])->name('pending.orders');
     // View pending order details 
-    Route::get("/pending/orders/details/{order_id}", [OrderController::class, "PendingOrdersDetails"])->name('pending.order.details');
+    Route::get("/order/details/{order_id}", [OrderController::class, "OrdersDetails"])->name('order.details');
     // View All confirmed orders
     Route::get('/confirmed/orders', [OrderController::class, 'ConfirmedOrders'])->name('confirmed-orders');
     // View All processing orders
@@ -358,5 +358,18 @@ Route::prefix('orders')->group(function(){
     // View All delivered orders
     Route::get('/delivered/orders', [OrderController::class, 'DeliveredOrders'])->name('delivered-orders');
     // View All canceled orders
-    Route::get('/cancel/orders', [OrderController::class, 'CancelOrders'])->name('cancel-orders');
+    Route::get('/canceled/orders', [OrderController::class, 'CanceledOrders'])->name('canceled-orders');
+    // Confirm order status
+    Route::get('/confirm/order/{id}', [OrderController::class, 'PendingToConfirm'])->name('confirm.order');
+    // Processing order status
+    Route::get('/processing/order/{id}', [OrderController::class, 'ConfirmToProcessing'])->name('processing.order');
+    // picked order status
+    Route::get('/picked/order/{id}', [OrderController::class, 'ProcessingToPicked'])->name('picked.order');
+    // shipped order status
+    Route::get('/shipped/order/{id}', [OrderController::class, 'PickedToShipped'])->name('shipped.order');
+    // delivered order status
+    Route::get('/delivered/order/{id}', [OrderController::class, 'ShippedToDelivered'])->name('delivered.order');
+    // Download invoice
+    Route::get('/invoice/download/{order_id}', [OrderController::class, 'AdminInvoiceDownload'])->name('invoice.download');
+
 });

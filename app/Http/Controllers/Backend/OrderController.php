@@ -4,13 +4,10 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\OrderItem;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\OrderMail;
+use PDF;
 use Auth;
 
 class OrderController extends Controller
@@ -21,11 +18,11 @@ class OrderController extends Controller
         return view('backend.orders.pending_orders', compact('orders'));
     }
 
-    // Pending Order Details 
-	public function PendingOrdersDetails($order_id){
+    // Order Details 
+	public function OrdersDetails($order_id){
 		$order = Order::with('division','district','state','user')->where('id',$order_id)->first();
     	$orderItems = OrderItem::with('product')->where('order_id',$order_id)->orderBy('id','DESC')->get();
-    	return view('backend.orders.pending_orders_details',compact('order','orderItems'));
+    	return view('backend.orders.orders_details',compact('order','orderItems'));
 
 	} // end method 
 
@@ -71,11 +68,74 @@ class OrderController extends Controller
 
 
 	// Cancel Orders 
-	public function CancelOrders(){
-		$orders = Order::where('status','cancel')->orderBy('id','DESC')->get();
-		return view('backend.orders.cancel_orders',compact('orders'));
+	public function CanceledOrders(){
+		$orders = Order::where('status','canceled')->orderBy('id','DESC')->get();
+		return view('backend.orders.canceled_orders',compact('orders'));
 
 	} // end mehtod 
 
+    // Confirm order status
+    public function PendingToConfirm($id){
+        Order::findOrFail($id)->update([
+            'status' =>'confirmed'
+        ]);
+        $notification = array(
+            'message'=> 'Order Confirm Successfully',
+            'alert-type' =>'success'
+        );
+        return redirect()->route('pending.orders')->with($notification);
+    }
+    // Processing order status
+    public function ConfirmToProcessing($id){
+        Order::findOrFail($id)->update([
+            'status' =>'processing'
+        ]);
+        $notification = array(
+            'message'=> 'Order Processing Successfully',
+            'alert-type' =>'success'
+        );
+        return redirect()->route('confirmed-orders')->with($notification);
+    }
+    // Picked order status
+    public function ProcessingToPicked($id){
+        Order::findOrFail($id)->update([
+            'status' =>'picked'
+        ]);
+        $notification = array(
+            'message'=> 'Order Picked Successfully',
+            'alert-type' =>'success'
+        );
+        return redirect()->route('processing-orders')->with($notification);
+    }
+    // Shipped order status
+    public function pickedToShipped($id){
+        Order::findOrFail($id)->update([
+            'status' =>'shipped'
+        ]);
+        $notification = array(
+            'message'=> 'Order Shipped Successfully',
+            'alert-type' =>'success'
+        );
+        return redirect()->route('picked-orders')->with($notification);
+    }
+    // Delivered order status
+    public function ShippedToDelivered($id){
+        Order::findOrFail($id)->update([
+            'status' =>'delivered'
+        ]);
+        $notification = array(
+            'message'=> 'Order Delivered Successfully',
+            'alert-type' =>'success'
+        );
+        return redirect()->route('shipped-orders')->with($notification);
+    }
+    // download invoice
+    public function AdminInvoiceDownload($order_id){
+		$order = Order::with('division','district','state','user')->where('id',$order_id)->first();
+    	$orderItems = OrderItem::with('product')->where('order_id',$order_id)->orderBy('id','DESC')->get();
+		$pdf = PDF::loadView('backend.orders.order_invoice',compact('order','orderItems'))->setPaper('a4');
+		return $pdf->download('invoice.pdf');
+
+	} // end method 
 
 }

@@ -40,11 +40,8 @@
                                         </td>
 
                                         <td width="25%">
-                                            <a href="{{ route('pending.order.details',$item->id) }}"
-                                                class="btn btn-info" title="Edit Data"><i class="fa fa-eye"></i> </a>
-                                            <a href="{{ route('coupon.delete',$item->id) }}" class="btn btn-danger"
-                                                title="Delete Data" id="delete">
-                                                <i class="fa fa-trash"></i></a>
+                                            <a href="{{ route('order.details',$item->id) }}" class="btn btn-info"
+                                                title="Edit Data"><i class="fa fa-eye"></i> </a>
                                         </td>
 
                                     </tr>
