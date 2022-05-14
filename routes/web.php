@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ShippingAreaController;
+use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController; 
 use App\Http\Controllers\Frontend\CartController; 
@@ -288,6 +289,7 @@ Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);
 Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']); 
 // Add to wishlist data with Ajax
 Route::post('/add-to-wishlist/{id}', [WishlistController::class, 'AddToWishlist']); 
+
 // new idea protected route only logged in user
 // Frontend Routes 👇👇
 Route::group(['prefix' => 'user' , 'middleware' =>['user','auth'],'namespace' => 'User'],
@@ -378,4 +380,17 @@ Route::prefix('orders')->group(function(){
     Route::get('/delivered/order/{id}', [OrderController::class, 'ShippedToDelivered'])->name('delivered.order');
     // Download invoice
     Route::get('/invoice/download/{order_id}', [OrderController::class, 'AdminInvoiceDownload'])->name('invoice.download');
+});
+
+
+// Note: Admin Reports All routes
+Route::prefix('reports')->group(function(){
+    // View All Reports
+    Route::get("/view", [ReportController::class, "ReportView"])->name('all.reports');
+    // View All specific date orders
+    Route::post("/search/by/date", [ReportController::class, "ReportByDate"])->name('search.by.date');
+    // View All specific year and month orders
+    Route::post("/search/by/month", [ReportController::class, "ReportByMonth"])->name('search.by.month');
+    // View All specific year orders
+    Route::post("/search/by/year", [ReportController::class, "ReportByYear"])->name('search.by.year');
 });
