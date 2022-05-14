@@ -68,12 +68,10 @@
                                                     </td>
                                                     <td>
                                                         <div style="display: flex;justify-content: space-evenly;">
-                                                            <a href="{{route('brand.edit',$item->id)}}"
-                                                                class="btn btn-info" title="Edit"><i
+                                                            <a href="#" class="btn btn-info" title="Edit"><i
                                                                     class="fa fa-pencil "></i></a>
-                                                            <a id="delete" href="{{route('brand.delete',$item->id)}}"
-                                                                class="btn btn-danger" title="Delete"><i
-                                                                    class="fa fa-trash"></i></a>
+                                                            <a id="delete" href="#" class="btn btn-danger"
+                                                                title="Delete"><i class="fa fa-trash"></i></a>
                                                         </div>
                                                     </td>
                                                 </tr>
