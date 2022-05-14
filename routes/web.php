@@ -394,3 +394,14 @@ Route::prefix('reports')->group(function(){
     // View All specific year orders
     Route::post("/search/by/year", [ReportController::class, "ReportByYear"])->name('search.by.year');
 });
+// Note: Admin All Users routes
+Route::prefix('users')->group(function(){
+    // View All Users
+    Route::get("/view", [AdminProfileController::class, "UsersView"])->name('all.users');
+    // View All specific date orders
+    Route::post("/search/by/date", [ReportController::class, "ReportByDate"])->name('search.by.date');
+    // View All specific year and month orders
+    Route::post("/search/by/month", [ReportController::class, "ReportByMonth"])->name('search.by.month');
+    // View All specific year orders
+    Route::post("/search/by/year", [ReportController::class, "ReportByYear"])->name('search.by.year');
+});

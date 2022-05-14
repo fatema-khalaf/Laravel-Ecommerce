@@ -195,6 +195,19 @@ $route = Route::current()->getName();
                 class="ti-more"></i>All reports</a></li>
         </ul>
       </li>
+      <li class="treeview {{($prefix == '/users' )? 'active' : ''}}">
+        <a href="#">
+          <i data-feather="message-circle"></i>
+          <span>All Users</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="  {{($route == 'all.users' )? 'active' : ''}}"><a href="{{route('all.users')}}"><i
+                class="ti-more"></i>All Users</a></li>
+        </ul>
+      </li>
     </ul>
   </section>
 
