@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController; 
 use App\Http\Controllers\Frontend\CartController; 
@@ -404,4 +405,19 @@ Route::prefix('users')->group(function(){
     Route::post("/search/by/month", [ReportController::class, "ReportByMonth"])->name('search.by.month');
     // View All specific year orders
     Route::post("/search/by/year", [ReportController::class, "ReportByYear"])->name('search.by.year');
+});
+
+
+// Note: Dashboard blog all routes
+Route::prefix('blog')->group(function(){
+    // View All Blog category
+    Route::get("/category/view", [BlogController::class, "BlogCatigoryView"])->name('blog.category');
+    // Add new blog category
+    Route::post("/category/store", [BlogController::class, "BlogCategoryStore"])->name('blog.category.store');
+    // View Edit blog category
+    Route::get("/category/edit/{id}", [BlogController::class, "BlogCategoryEdite"])->name('blog.category.edit');
+    // Store updated data
+    Route::post("/category/update", [BlogController::class, "BlogCategoryUpdate"])->name('blog.category.update');
+    // Delete blog category
+    Route::get("/category/delete/{id}", [BlogController::class, "BlogCategoryDelete"])->name('blog.category.delete');
 });
