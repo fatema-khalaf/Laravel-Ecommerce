@@ -182,6 +182,21 @@ $route = Route::current()->getName();
 
         </ul>
       </li>
+      <li class="treeview {{($prefix == '/setting' )? 'active' : ''}}">
+        <a href="#">
+          <i data-feather="message-circle"></i>
+          <span>Site Settings</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="  {{($route == 'site.setting' )? 'active' : ''}}"><a href="{{route('site.setting')}}"><i
+                class="ti-more"></i>Update Settings</a></li>
+          <li class="  {{($route == 'seo.setting' )? 'active' : ''}}"><a href="{{route('seo.setting')}}"><i
+                class="ti-more"></i>Update SEO Settings</a></li>
+        </ul>
+      </li>
       <li class="header nav-small-cap">User Interface</li>
 
       <li class="treeview">

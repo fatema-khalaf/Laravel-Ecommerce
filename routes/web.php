@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController; 
 use App\Http\Controllers\Frontend\CartController; 
@@ -437,10 +438,24 @@ Route::prefix('blog')->group(function(){
      Route::get("/post/delete/{id}", [BlogController::class, "BlogPostDelete"])->name('post.delete');
     });
     
-// Note: Frontend blog routs
-// View blog Page
-Route::get("/blog", [HomeBlogController::class, "BlogView"])->name('home.blog');
-// View blog Post details
-Route::get("/blog/details/{id}", [HomeBlogController::class, "BlogPostDetailsView"])->name('post.details');
-// Get blog Post of a category
-Route::get("/blog/category/{category_id}", [HomeBlogController::class, "BlogCatPost"]);
+    // Note: Frontend blog routs
+    // View blog Page
+    Route::get("/blog", [HomeBlogController::class, "BlogView"])->name('home.blog');
+    // View blog Post details
+    Route::get("/blog/details/{id}", [HomeBlogController::class, "BlogPostDetailsView"])->name('post.details');
+    // Get blog Post of a category
+    Route::get("/blog/category/{category_id}", [HomeBlogController::class, "BlogCatPost"]);
+    
+// Note: Dashboard Settings all routes
+Route::prefix('setting')->group(function(){
+    // View Update setting page
+    Route::get("/site", [SettingController::class, "SiteSetting"])->name('site.setting');
+    // store updated site setting data
+    Route::post("/site/update", [SettingController::class, "SiteSettingUpdate"])->name('update.setting');
+    // View Update SEO setting page
+    Route::get("/seo", [SettingController::class, "SEOSetting"])->name('seo.setting');
+    // store updated seo setting data
+    Route::post("/seo/update", [SettingController::class, "SEOSettingUpdate"])->name('update.seo');
+    
+});
+        
