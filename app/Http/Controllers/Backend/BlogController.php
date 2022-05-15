@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog\BlogPostCategory;
+use App\Models\Blog\BlogPost;
 use App\Traits\StoreTrait;
 use App\Traits\UpdateTrait;
 use App\Traits\DeleteTrait;
@@ -27,7 +28,7 @@ class BlogController extends Controller
         $res = $this->Store([
             'request'=> $request,
             'inputs'=>$inputs,
-            'model'=>'App\Models\\Blog\BlogPostCategory',
+            'model'=>'App\Models\Blog\BlogPostCategory',
             'slugs'=>$slugs,
             'inputs_required'=> true
         ]);
@@ -61,4 +62,66 @@ class BlogController extends Controller
         $notification = $this->Delete('App\Models\Blog\BlogPostCategory',$id,false ,'Blog Category deleted successfully');
         return redirect()->back()->with($notification);
     }
+
+    /////////////////////////// BLOG POST ////////////////////////////
+    
+    // View all posts
+    public function BlogPostview(){
+        $posts = BlogPost::latest()->with('BlogCategory')->get();
+        return view('backend.blog.post.post_view',compact('posts'));
+    }
+    // View Add Post Page
+    public function BlogPostAdd(){
+        $categories = BlogPostCategory::latest()->get();
+        return view('backend.blog.post.add_post_view',compact('categories'));
+    }
+    // store new post
+    public function BlogPostStore(Request $request){
+        $inputs = array("category_id","post_title_en","post_title_ar","post_details_en","post_details_ar");
+        $slugs= array('post_slug_en'=>'post_title_en','post_slug_ar'=>'post_title_ar');
+        // Store trait
+        $res = $this->Store([
+            'request'=> $request,
+            'inputs'=>$inputs,
+            'model'=>'App\Models\Blog\BlogPost',
+            'new_image'=>'post_image', 
+            'image_path'=>'upload/post/', 
+            'message'=>'Post added successfully', 
+            'slugs'=>$slugs,
+            'inputs_required'=> true
+        ]);
+        return redirect()->route('blog.posts')->with($res['notification']);
+    }
+
+    // View Edit blog category page
+    public function BlogPostEdite($id){
+        $post = BlogPost::findOrFail($id);
+        $categories = BlogPostCategory::latest()->get();
+        return view('backend.blog.post.post_edit', compact('post', 'categories'));
+    }
+
+    // Update Edited data
+    public function BlogPostUpdate(Request $request){
+        $inputs = array("category_id","post_title_en","post_title_ar","post_details_en","post_details_ar");
+        $slugs= array('post_slug_en'=>'post_title_en','post_slug_ar'=>'post_title_ar');
+        // Update trait
+        $notification=$this->Update([
+                'request'=> $request,
+                'inputs'=>$inputs,
+                'model'=>'App\Models\Blog\BlogPost',
+                'slugs'=>$slugs, 
+                'new_image'=>'post_image', 
+                'image_path'=>'upload/post/', 
+                'message'=>'Post Updated successfully', 
+                'inputs_required'=> false ,
+            ]);
+            return redirect()->route('blog.posts')->with($notification);
+    }// end method
+
+    // Delete category
+    public function BlogPostDelete($id){
+        $notification = $this->Delete('App\Models\Blog\BlogPost',$id,'post_image' ,'Post deleted successfully');
+        return redirect()->back()->with($notification);
+    }
+
 }

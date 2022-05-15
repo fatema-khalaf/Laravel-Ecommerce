@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Product;
 use App\Models\Brand;
+use App\Models\Blog\BlogPost;
 use Illuminate\Support\Facades\Hash;
 use App\Traits\ChangePasswordTrait;
 use App\Traits\ReplaceImageTrait;
@@ -38,9 +39,9 @@ class IndexController extends Controller
     	$skip_brand_product_1 = Product::where('status',1)->where('brand_id',$skip_brand_1->id)->orderBy('id','DESC')->get();
         // return $skip_brand_product_1;
         // die();
-
+        $blogPosts = BlogPost::latest()->get();
         return view('frontend.index', compact('categories', 'sliders', 'products','featured',
-        'special_offer','special_deals','skip_product_0','skip_category_0','skip_brand_1','skip_brand_product_1'));
+        'special_offer','special_deals','skip_product_0','skip_category_0','skip_brand_1','skip_brand_product_1','blogPosts'));
     }
     // View product details
     public function ProductDetails($id,$slug){

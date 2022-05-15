@@ -191,9 +191,6 @@ Home| Pro-Ecommerce
 
 
                 <!-- ============================================== Testimonials: END ============================================== -->
-
-                <div class="home-banner"> <img src="{{asset('frontend/assets/images/banners/LHS-banner.jpg')}}"
-                        alt="Image"> </div>
             </div>
             <!-- /.sidemenu-holder -->
             <!-- ============================================== SIDEBAR : END ============================================== -->
@@ -2262,26 +2259,46 @@ Home| Pro-Ecommerce
 
                 <!-- ============================================== BLOG SLIDER ============================================== -->
                 <section class="section latest-blog outer-bottom-vs wow fadeInUp">
-                    <h3 class="section-title">latest form blog</h3>
+                    <h3 class="section-title">
+                        @if (session()->get('language') == 'arabic')
+                        أحدث الأخبار
+                        @else
+                        latest news
+                        @endif
+                    </h3>
                     <div class="blog-slider-container outer-top-xs">
                         <div class="owl-carousel blog-slider custom-carousel">
+                            @foreach($blogPosts as $item)
                             <div class="item">
                                 <div class="blog-post">
                                     <div class="blog-post-image">
-                                        <div class="image"> <a href="blog.html"><img
-                                                    src="assets/images/blog-post/post1.jpg" alt=""></a>
+                                        <div class="image"> <a href="{{route('post.details',$item->id)}}"><img
+                                                    src="{{asset($item->post_image)}}" alt=""></a>
                                         </div>
                                     </div>
                                     <!-- /.blog-post-image -->
 
                                     <div class="blog-post-info text-left">
-                                        <h3 class="name"><a href="#">Voluptatem accusantium doloremque
-                                                laudantium</a></h3>
-                                        <span class="info">By Jone Doe &nbsp;|&nbsp; 21 March 2016 </span>
-                                        <p class="text">Sed quia non numquam eius modi tempora incidunt ut
-                                            labore et
-                                            dolore magnam aliquam quaerat voluptatem.</p>
-                                        <a href="#" class="lnk btn btn-primary">Read more</a>
+                                        <h3 class="name"><a href="{{route('post.details',$item->id)}}">
+                                                @if (session()->get('language') == 'arabic')
+                                                {{$item->post_title_ar}}
+                                                @else
+                                                {{$item->post_title_en}}
+                                                @endif
+                                            </a></h3>
+                                        {{-- <span class="info">By Jone Doe &nbsp;|&nbsp; {{$item->created_at}} </span>
+                                        --}}
+                                        <span class="info">Posted at &nbsp;|&nbsp; {{$item->created_at}} </span>
+                                        <hr>
+                                        <p class="text">
+                                            @if (session()->get('language') == 'arabic')
+                                            {!! Str::limit($item->post_details_ar,100) !!}
+                                            @else
+                                            {!! Str::limit($item->post_details_en,100) !!}
+                                            @endif
+                                        </p>
+                                        <a href="{{route('post.details',$item->id)}}" class="lnk btn btn-primary">Read
+                                            more</a>
                                     </div>
                                     <!-- /.blog-post-info -->
 
@@ -2289,108 +2306,7 @@ Home| Pro-Ecommerce
                                 <!-- /.blog-post -->
                             </div>
                             <!-- /.item -->
-
-                            <div class="item">
-                                <div class="blog-post">
-                                    <div class="blog-post-image">
-                                        <div class="image"> <a href="blog.html"><img src="" alt=""></a>
-                                        </div>
-                                    </div>
-                                    <!-- /.blog-post-image -->
-
-                                    <div class="blog-post-info text-left">
-                                        <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla
-                                                pariatur</a></h3>
-                                        <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016
-                                        </span>
-                                        <p class="text">Sed quia non numquam eius modi tempora incidunt ut
-                                            labore et
-                                            dolore magnam aliquam quaerat voluptatem.</p>
-                                        <a href="#" class="lnk btn btn-primary">Read more</a>
-                                    </div>
-                                    <!-- /.blog-post-info -->
-
-                                </div>
-                                <!-- /.blog-post -->
-                            </div>
-                            <!-- /.item -->
-
-                            <!-- /.item -->
-
-                            <div class="item">
-                                <div class="blog-post">
-                                    <div class="blog-post-image">
-                                        <div class="image"> <a href="blog.html"><img
-                                                    src="assets/images/blog-post/post1.jpg" alt=""></a>
-                                        </div>
-                                    </div>
-                                    <!-- /.blog-post-image -->
-
-                                    <div class="blog-post-info text-left">
-                                        <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla
-                                                pariatur</a></h3>
-                                        <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016
-                                        </span>
-                                        <p class="text">Sed ut perspiciatis unde omnis iste natus error sit
-                                            voluptatem accusantium</p>
-                                        <a href="#" class="lnk btn btn-primary">Read more</a>
-                                    </div>
-                                    <!-- /.blog-post-info -->
-
-                                </div>
-                                <!-- /.blog-post -->
-                            </div>
-                            <!-- /.item -->
-
-                            <div class="item">
-                                <div class="blog-post">
-                                    <div class="blog-post-image">
-                                        <div class="image"> <a href="blog.html"><img src="" alt=""></a>
-                                        </div>
-                                    </div>
-                                    <!-- /.blog-post-image -->
-
-                                    <div class="blog-post-info text-left">
-                                        <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla
-                                                pariatur</a></h3>
-                                        <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016
-                                        </span>
-                                        <p class="text">Sed ut perspiciatis unde omnis iste natus error sit
-                                            voluptatem accusantium</p>
-                                        <a href="#" class="lnk btn btn-primary">Read more</a>
-                                    </div>
-                                    <!-- /.blog-post-info -->
-
-                                </div>
-                                <!-- /.blog-post -->
-                            </div>
-                            <!-- /.item -->
-
-                            <div class="item">
-                                <div class="blog-post">
-                                    <div class="blog-post-image">
-                                        <div class="image"> <a href="blog.html"><img
-                                                    src="assets/images/blog-post/post1.jpg" alt=""></a>
-                                        </div>
-                                    </div>
-                                    <!-- /.blog-post-image -->
-
-                                    <div class="blog-post-info text-left">
-                                        <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla
-                                                pariatur</a></h3>
-                                        <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016
-                                        </span>
-                                        <p class="text">Sed ut perspiciatis unde omnis iste natus error sit
-                                            voluptatem accusantium</p>
-                                        <a href="#" class="lnk btn btn-primary">Read more</a>
-                                    </div>
-                                    <!-- /.blog-post-info -->
-
-                                </div>
-                                <!-- /.blog-post -->
-                            </div>
-                            <!-- /.item -->
-
+                            @endforeach
                         </div>
                         <!-- /.owl-carousel -->
                     </div>

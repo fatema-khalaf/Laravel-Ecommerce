@@ -175,6 +175,10 @@ $route = Route::current()->getName();
         <ul class="treeview-menu">
           <li class="  {{($route == 'blog.category' )? 'active' : ''}}"><a href="{{route('blog.category')}}"><i
                 class="ti-more"></i>Blog Categories</a></li>
+          <li class="  {{($route == 'blog.posts' )? 'active' : ''}}"><a href="{{route('blog.posts')}}"><i
+                class="ti-more"></i>Blog Posts</a></li>
+          <li class="  {{($route == 'add.post' )? 'active' : ''}}"><a href="{{route('add.post')}}"><i
+                class="ti-more"></i>Add Posts</a></li>
 
         </ul>
       </li>

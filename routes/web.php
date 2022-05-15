@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController; 
 use App\Http\Controllers\Frontend\CartController; 
+use App\Http\Controllers\Frontend\HomeBlogController; 
 use App\Http\Controllers\User\WishlistController; 
 use App\Http\Controllers\User\CartPageController; 
 use App\Http\Controllers\User\CheckoutController; 
@@ -410,6 +411,7 @@ Route::prefix('users')->group(function(){
 
 // Note: Dashboard blog all routes
 Route::prefix('blog')->group(function(){
+    // Bolg categories dashboard
     // View All Blog category
     Route::get("/category/view", [BlogController::class, "BlogCatigoryView"])->name('blog.category');
     // Add new blog category
@@ -420,4 +422,25 @@ Route::prefix('blog')->group(function(){
     Route::post("/category/update", [BlogController::class, "BlogCategoryUpdate"])->name('blog.category.update');
     // Delete blog category
     Route::get("/category/delete/{id}", [BlogController::class, "BlogCategoryDelete"])->name('blog.category.delete');
-});
+    
+    // Blog posts dashboard
+    Route::get("/view", [BlogController::class, "BlogPostView"])->name('blog.posts');
+    // View add post page
+    Route::get("/add/post", [BlogController::class, "BlogPostAdd"])->name('add.post');
+    // store new post
+    Route::post("/post/store", [BlogController::class, "BlogPostStore"])->name('post.store');
+     // View Edit blog post
+     Route::get("/post/edit/{id}", [BlogController::class, "BlogPostEdite"])->name('post.edit');
+     // Store updated data
+     Route::post("/post/update", [BlogController::class, "BlogPostUpdate"])->name('post.update');
+     // Delete blog post
+     Route::get("/post/delete/{id}", [BlogController::class, "BlogPostDelete"])->name('post.delete');
+    });
+    
+// Note: Frontend blog routs
+// View blog Page
+Route::get("/blog", [HomeBlogController::class, "BlogView"])->name('home.blog');
+// View blog Post details
+Route::get("/blog/details/{id}", [HomeBlogController::class, "BlogPostDetailsView"])->name('post.details');
+// Get blog Post of a category
+Route::get("/blog/category/{category_id}", [HomeBlogController::class, "BlogCatPost"]);
