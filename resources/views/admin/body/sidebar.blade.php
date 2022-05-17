@@ -146,7 +146,21 @@ $route = Route::current()->getName();
                 class="ti-more"></i> Canceled Orders</a></li>
         </ul>
       </li>
-
+      <li class="treeview {{($prefix == '/return' )? 'active' : ''}}">
+        <a href="#">
+          <i data-feather="message-circle"></i>
+          <span>Return order</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="  {{($route == 'return.request' )? 'active' : ''}}"><a href="{{route('return.request')}}"><i
+                class="ti-more"></i>Return Requests</a></li>
+          <li class="  {{($route == 'all.requests' )? 'active' : ''}}"><a href="{{route('all.requests')}}"><i
+                class="ti-more"></i>All Approved Requests</a></li>
+        </ul>
+      </li>
 
       <li class="treeview">
         <a href="#">

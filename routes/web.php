@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController; 
 use App\Http\Controllers\Frontend\CartController; 
@@ -456,6 +457,16 @@ Route::prefix('setting')->group(function(){
     Route::get("/seo", [SettingController::class, "SEOSetting"])->name('seo.setting');
     // store updated seo setting data
     Route::post("/seo/update", [SettingController::class, "SEOSettingUpdate"])->name('update.seo');
-    
+});
+
+// Note: Dashboard Return orders all routes
+Route::prefix('return')->group(function(){
+    // View all return requests
+    Route::get("/requests", [ReturnController::class, "ReturnRequestView"])->name('return.request');
+    // Approve return requests
+    Route::get("/approve/{id}", [ReturnController::class, "ReturnRequestApprove"])->name('return.approve');
+    // View all approved return requests
+    Route::get("/approved/requests", [ReturnController::class, "RequestApprovedView"])->name('all.requests');
+   
 });
         
