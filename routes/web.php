@@ -25,6 +25,7 @@ use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController; 
 use App\Http\Controllers\User\CashController; 
 use App\Http\Controllers\User\AllUserController; 
+use App\Http\Controllers\User\ReviewController; 
 use App\Models\User;
 
 // Route::get("/", function () {
@@ -467,6 +468,16 @@ Route::prefix('return')->group(function(){
     Route::get("/approve/{id}", [ReturnController::class, "ReturnRequestApprove"])->name('return.approve');
     // View all approved return requests
     Route::get("/approved/requests", [ReturnController::class, "RequestApprovedView"])->name('all.requests');
-   
 });
-        
+
+// Note: product review all routes
+// frontend add review 
+Route::post('/add/review',[ReviewController::class, "AddReview"])->name('add.review');
+// dashboard view pending reviews page
+Route::get('/pending/reviews',[ReviewController::class, "PendingReviewsView"])->name('pending.reviews');
+// dashboard approve to publish review 
+Route::get("/review/publish/{id}", [ReviewController::class, "PublishReview"])->name('review.approve');
+// dashboard view published reviews page
+Route::get('/published/reviews',[ReviewController::class, "PublishedReviewsView"])->name('published.reviews');
+// dashboard approve to publish review 
+Route::get("/review/delete/{id}", [ReviewController::class, "DeleteReview"])->name('review.delete');

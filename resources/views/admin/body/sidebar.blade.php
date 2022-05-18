@@ -161,7 +161,21 @@ $route = Route::current()->getName();
                 class="ti-more"></i>All Approved Requests</a></li>
         </ul>
       </li>
-
+      <li class="treeview {{($prefix == '/review' )? 'active' : ''}}">
+        <a href="#">
+          <i data-feather="message-circle"></i>
+          <span>Manage Reviews</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="  {{($route == 'pending.reviews' )? 'active' : ''}}"><a href="{{route('pending.reviews')}}"><i
+                class="ti-more"></i>Pending Reviews</a></li>
+          <li class="  {{($route == 'published.reviews' )? 'active' : ''}}"><a href="{{route('published.reviews')}}"><i
+                class="ti-more"></i>Published Reviews</a></li>
+        </ul>
+      </li>
       <li class="treeview">
         <a href="#">
           <i data-feather="file"></i>

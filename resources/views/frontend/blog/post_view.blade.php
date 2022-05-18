@@ -43,16 +43,17 @@
                             $post->post_title_en }} @endif</h1>
                         <span class="date-time">{{ Carbon\Carbon::parse($post->created_at)->diffForHumans()
                             }}</span>
+                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                        <div class="addthis_inline_share_toolbox_dm8p"></div>
                         <p> @if(session()->get('language') == 'arabic') {!! $post->post_details_ar !!} @else {!!
                             $post->post_details_en !!} @endif
                         </p>
                         <div class="social-media">
                             <span>share post:</span>
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href=""><i class="fa fa-rss"></i></a>
-                            <a href="" class="hidden-xs"><i class="fa fa-pinterest"></i></a>
+                            <hr>
+                            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                            <div class="addthis_inline_share_toolbox_dm8p"></div>
+
                         </div>
                     </div>
                     <div class="blog-write-comment outer-bottom-xs outer-top-xs">
@@ -191,4 +192,8 @@
             </div>
         </div>
     </div>
+    {{-- Share buttons --}}
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6284db9d254f7cc9"></script>
+
     @endsection
