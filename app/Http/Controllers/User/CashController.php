@@ -9,9 +9,11 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderMail;
 use Auth;
+use DB;
 
 class CashController extends Controller
 {
@@ -71,7 +73,12 @@ class CashController extends Controller
      		    'price' => $cart->price,
      		    'created_at' => Carbon::now(),
             ]);
+            // new idea video 432
+            // reduce product quantity
+            Product::where('id',$cart->id)
+                    ->update(['product_qty' => DB::raw('product_qty-'.$cart->qty)]);
         }
+
         // delete the coupon from the session
         if(Session::has('coupon')){
             Session::forget('coupon');
