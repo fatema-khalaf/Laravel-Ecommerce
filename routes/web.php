@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\ReturnController;
+use App\Http\Controllers\Backend\AdminUserController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController; 
 use App\Http\Controllers\Frontend\CartController; 
@@ -479,5 +480,21 @@ Route::get('/pending/reviews',[ReviewController::class, "PendingReviewsView"])->
 Route::get("/review/publish/{id}", [ReviewController::class, "PublishReview"])->name('review.approve');
 // dashboard view published reviews page
 Route::get('/published/reviews',[ReviewController::class, "PublishedReviewsView"])->name('published.reviews');
-// dashboard approve to publish review 
+// dashboard delete review 
 Route::get("/review/delete/{id}", [ReviewController::class, "DeleteReview"])->name('review.delete');
+
+// Note: Dashboard Admins Rols all routes
+Route::prefix('adminRole')->group(function(){
+    // View all return requests
+    Route::get("/all", [AdminUserController::class, "AllAdminRole"])->name('all.admins');
+    // View add admin page
+    Route::get("/add", [AdminUserController::class, "AddAdminView"])->name('add.admin');
+    // Store new admin data
+    Route::post("/store", [AdminUserController::class, "AdminUserStore"])->name('admin.user.store');
+    // View edit admin page
+    Route::get("/edit/{id}", [AdminUserController::class, "EditAdminView"])->name('edit.admin');
+    // View edit admin page
+    Route::post("/update", [AdminUserController::class, "UpdateAdmin"])->name('update.admin');
+    // View add admin page
+    Route::get("/delete/{id}", [AdminUserController::class, "DeleteAdmin"])->name('delete.admin');
+});

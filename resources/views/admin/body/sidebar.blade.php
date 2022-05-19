@@ -26,7 +26,27 @@ $route = Route::current()->getName();
           <span>Dashboard</span>
         </a>
       </li>
+      {{-- new idea --}}
+      @php
+      // the same as $admin = (Auth::user()->brand == 1);
+      // use this 👇 line not this 👆 to avoid conflict when user and admin login in the same browser
+      $brand = (auth()->guard('admin')->user()->brand == 1);
+      $category = (auth()->guard('admin')->user()->category == 1);
+      $product = (auth()->guard('admin')->user()->product == 1);
+      $slider = (auth()->guard('admin')->user()->slider == 1);
+      $coupons = (auth()->guard('admin')->user()->coupons == 1);
+      $shipping = (auth()->guard('admin')->user()->shipping == 1);
+      $blog = (auth()->guard('admin')->user()->blog == 1);
+      $setting = (auth()->guard('admin')->user()->setting == 1);
+      $returnOrders = (auth()->guard('admin')->user()->returnOrders == 1);
+      $review = (auth()->guard('admin')->user()->review == 1);
+      $orders = (auth()->guard('admin')->user()->orders == 1);
+      $reports = (auth()->guard('admin')->user()->reports == 1);
+      $users = (auth()->guard('admin')->user()->users == 1);
+      $adminRole = (auth()->guard('admin')->user()->adminRole == 1);
 
+      @endphp
+      @if($brand == true)
       <li class="treeview {{($prefix == '/brand' )? 'active' : ''}}">
         <a href="#">
           <i data-feather="message-circle"></i>
@@ -41,7 +61,9 @@ $route = Route::current()->getName();
               Brands</a></li>
         </ul>
       </li>
+      @endif
 
+      @if($category == true)
       <li class="treeview {{($prefix == '/category' )? 'active' : ''}}">
         <a href="#">
           <i data-feather="mail"></i> <span>Categories</span>
@@ -58,7 +80,9 @@ $route = Route::current()->getName();
               href="{{route('all.subsubcategories')}}"><i class="ti-more"></i>Manage Sub-subcategories</a></li>
         </ul>
       </li>
+      @endif
 
+      @if($product == true)
       <li class="treeview {{($prefix == '/product' )? 'active' : ''}}">
         <a href="#">
           <i data-feather="mail"></i> <span>Products</span>
@@ -73,6 +97,9 @@ $route = Route::current()->getName();
                 class="ti-more"></i>Manage Products</a></li>
         </ul>
       </li>
+      @endif
+
+      @if($slider == true)
       <li class="treeview {{($prefix == '/slider' )? 'active' : ''}}">
         <a href="#">
           <i data-feather="message-circle"></i>
@@ -87,7 +114,9 @@ $route = Route::current()->getName();
               Sliders</a></li>
         </ul>
       </li>
+      @endif
 
+      @if($coupons == true)
       <li class="treeview {{($prefix == '/coupons' )? 'active' : ''}}">
         <a href="#">
           <i data-feather="message-circle"></i>
@@ -102,7 +131,9 @@ $route = Route::current()->getName();
               Coupons</a></li>
         </ul>
       </li>
+      @endif
 
+      @if($shipping == true)
       <li class="treeview {{($prefix == '/shipping' )? 'active' : ''}}">
         <a href="#">
           <i data-feather="message-circle"></i>
@@ -120,7 +151,9 @@ $route = Route::current()->getName();
                 class="ti-more"></i>Ship State</a></li>
         </ul>
       </li>
+      @endif
 
+      @if($orders == true)
       <li class="treeview {{($prefix == '/orders' )? 'active' : ''}}">
         <a href="#">
           <i data-feather="message-circle"></i>
@@ -146,6 +179,9 @@ $route = Route::current()->getName();
                 class="ti-more"></i> Canceled Orders</a></li>
         </ul>
       </li>
+      @endif
+
+      @if($returnOrders == true)
       <li class="treeview {{($prefix == '/return' )? 'active' : ''}}">
         <a href="#">
           <i data-feather="message-circle"></i>
@@ -161,6 +197,9 @@ $route = Route::current()->getName();
                 class="ti-more"></i>All Approved Requests</a></li>
         </ul>
       </li>
+      @endif
+
+      @if($review == true)
       <li class="treeview {{($prefix == '/review' )? 'active' : ''}}">
         <a href="#">
           <i data-feather="message-circle"></i>
@@ -176,22 +215,9 @@ $route = Route::current()->getName();
                 class="ti-more"></i>Published Reviews</a></li>
         </ul>
       </li>
-      <li class="treeview">
-        <a href="#">
-          <i data-feather="file"></i>
-          <span>Pages</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-right pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="profile.html"><i class="ti-more"></i>Profile</a></li>
-          <li><a href="invoice.html"><i class="ti-more"></i>Invoice</a></li>
-          <li><a href="gallery.html"><i class="ti-more"></i>Gallery</a></li>
-          <li><a href="faq.html"><i class="ti-more"></i>FAQs</a></li>
-          <li><a href="timeline.html"><i class="ti-more"></i>Timeline</a></li>
-        </ul>
-      </li>
+      @endif
+
+      @if($blog == true)
       <li class="treeview {{($prefix == '/blog' )? 'active' : ''}}">
         <a href="#">
           <i data-feather="message-circle"></i>
@@ -207,9 +233,11 @@ $route = Route::current()->getName();
                 class="ti-more"></i>Blog Posts</a></li>
           <li class="  {{($route == 'add.post' )? 'active' : ''}}"><a href="{{route('add.post')}}"><i
                 class="ti-more"></i>Add Posts</a></li>
-
         </ul>
       </li>
+      @endif
+
+      @if($setting == true)
       <li class="treeview {{($prefix == '/setting' )? 'active' : ''}}">
         <a href="#">
           <i data-feather="message-circle"></i>
@@ -225,23 +253,10 @@ $route = Route::current()->getName();
                 class="ti-more"></i>Update SEO Settings</a></li>
         </ul>
       </li>
+      @endif
       <li class="header nav-small-cap">User Interface</li>
 
-      <li class="treeview">
-        <a href="#">
-          <i data-feather="grid"></i>
-          <span>Components</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-right pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="components_alerts.html"><i class="ti-more"></i>Alerts</a></li>
-          <li><a href="components_badges.html"><i class="ti-more"></i>Badge</a></li>
-          <li><a href="components_buttons.html"><i class="ti-more"></i>Buttons</a></li>
-        </ul>
-      </li>
-
+      @if($reports == true)
       <li class="treeview {{($prefix == '/reports' )? 'active' : ''}}">
         <a href="#">
           <i data-feather="message-circle"></i>
@@ -255,6 +270,9 @@ $route = Route::current()->getName();
                 class="ti-more"></i>All reports</a></li>
         </ul>
       </li>
+      @endif
+
+      @if($users == true)
       <li class="treeview {{($prefix == '/users' )? 'active' : ''}}">
         <a href="#">
           <i data-feather="message-circle"></i>
@@ -268,6 +286,23 @@ $route = Route::current()->getName();
                 class="ti-more"></i>All Users</a></li>
         </ul>
       </li>
+      @endif
+
+      @if($adminRole == true)
+      <li class="treeview {{($prefix == '/adminRole' )? 'active' : ''}}">
+        <a href="#">
+          <i data-feather="message-circle"></i>
+          <span>Manage Admins</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="  {{($route == 'all.admins' )? 'active' : ''}}"><a href="{{route('all.admins')}}"><i
+                class="ti-more"></i>All Admins</a></li>
+        </ul>
+      </li>
+      @endif
     </ul>
   </section>
 

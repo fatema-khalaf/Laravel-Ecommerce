@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="form-group text-center">
                                         <img id="showImage" class="rounded-circle" src="{{(!empty($editData->profile_photo_path))?
-                                            url('upload/admin_images/'.$editData->profile_photo_path): 
+                                            url($editData->profile_photo_path): 
                                             url('upload/no_image.jpg')}}" alt="User Avatar"
                                             style="width : 150px; height:150px;">
                                     </div>

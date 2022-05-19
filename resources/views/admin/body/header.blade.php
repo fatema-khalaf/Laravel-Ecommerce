@@ -110,7 +110,9 @@
 				</li>
 
 				@php
-				$adminData = DB::table('admins')->first();
+				$adminData = auth()->guard('admin')->user();
+				// use this line 👆 not this 👇 to avoid conflict when user and admin login in the same browser
+				// $adminData = DB::table('admins')->find(Auth::user()->id);
 				@endphp
 
 				<!-- User Account-->
@@ -118,7 +120,7 @@
 					<a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0" data-toggle="dropdown"
 						title="User">
 						<img src="{{(!empty($adminData->profile_photo_path))?
-					url('upload/admin_images/'.$adminData->profile_photo_path): 
+					url($adminData->profile_photo_path): 
 					url('upload/no_image.jpg')}}" alt="">
 					</a>
 					<ul class="dropdown-menu animated flipInX">
