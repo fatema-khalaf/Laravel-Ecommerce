@@ -97,7 +97,8 @@
                     <!-- /.contact-row -->
                     <!-- ============================================================= SEARCH AREA ============================================================= -->
                     <div class="search-area">
-                        <form method="post" action="{{route('search.product')}}">
+                        {{-- new idea method get this is my own "bug fix improvment" not from course videos --}}
+                        <form method="get" action="{{route('search.product')}}">
                             @csrf
                             <div class="control-group">
                                 <ul class="categories-filter animate-dropdown">
