@@ -146,9 +146,13 @@ class IndexController extends Controller
 			'size' => $product_size,
 
 		));
-
 	} // end method 
-
+    public function SearchProduct(Request $request){
+        $item = $request->search;
+        // new idea get all the fields that contains a word $item
+        $products = Product::where('product_name_en', 'LIKE' , "%$item%")->get();
+        return view('frontend.product.search_result' , compact('products','item'));
+    }
 
 }
  

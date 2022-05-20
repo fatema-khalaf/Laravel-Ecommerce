@@ -500,3 +500,6 @@ Route::prefix('adminRole')->group(function(){
     // View add admin page
     Route::get("/delete/{id}", [AdminUserController::class, "DeleteAdmin"])->name('delete.admin');
 });
+
+//  Note: Frontend search product
+Route::post("/search", [IndexController::class, "SearchProduct"])->name('search.product');
