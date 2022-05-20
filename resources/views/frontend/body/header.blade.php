@@ -18,6 +18,10 @@
                         <li><a href="{{route('checkout')}}"><i class="icon fa fa-check"></i>
                                 @if(session()->get('language')== 'arabic') الدفع @else Checkout @endif
                             </a></li>
+                        <li><a href="" type="button" data-toggle="modal" data-target="#trackingOrders">
+                                <i class="icon fa fa-check"></i>
+                                @if(session()->get('language')== 'arabic') متابعة الطلبات @else Tracking Orders @endif
+                            </a></li>
                         {{-- NOTE: default methods --}}
                         {{--
                         @guest
@@ -293,5 +297,33 @@
     </div>
     <!-- /.header-nav -->
     <!-- ============================================== NAVBAR : END ============================================== -->
+
+
+    <!-- ============================================== TRACKING ORDERS MODAL: START ============================================== -->
+    <div class="modal fade" id="trackingOrders" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Track Your Order </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{{route('tracking.order')}}">
+                        @csrf
+                        <div class="modal-body">
+                            <label>Invoice Code</label>
+                            <input type="text" name="code" required="" class="form-control"
+                                placeholder="Your Order Invoice Number">
+                        </div>
+                        <button class="btn btn-danger" type="submit" style="margin-left: 17px;"> Track Now </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================== TRACKING ORDERS MODAL : END ============================================== -->
 
 </header>

@@ -325,6 +325,8 @@ function(){
     // View cancled order list
     Route::get('/canceled/order/list', [AllUserController::class, 'CanceledOrdersList'])->name('cancel.orders'); 
 
+    // Note: track orders
+    Route::post('/track/order',[AllUserController::class, 'TrackOrder'])->name('tracking.order');
 });
 // note: my cart routes
 // View my cart

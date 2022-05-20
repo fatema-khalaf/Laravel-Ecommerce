@@ -63,4 +63,21 @@ class AllUserController extends Controller
         return view('frontend.profile.order.canceled_order_view' , compact('orders'));
     }
 
+    public function TrackOrder(Request $request){
+        $invoice = $request->code;
+        $track = Order::where('invoice_no', $invoice)->first();
+        if($track){
+            // new idea devlopment tricks
+            // echo'<pre>';
+            // print_r($track);
+            return view('frontend.tracking.track_order', compact('track'));
+            
+        }else{
+            $notification=array(
+                'message' => 'Invoice number is invalid',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification); 
+        }
+    }
 }
