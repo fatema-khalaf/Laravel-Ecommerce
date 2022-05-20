@@ -86,7 +86,7 @@
                     @php
                     $setting = App\Models\Setting::find(1);
                     @endphp
-                    <div class="logo"> <a href="{{url('/')}}"> <img src="{{$setting->logo}}" alt="logo"> </a>
+                    <div class="logo"> <a href="{{url('/')}}"> <img src="{{asset($setting->logo)}}" alt="logo"> </a>
                     </div>
                     <!-- /.logo -->
                     <!-- ============================================================= LOGO : END ============================================================= -->
@@ -121,7 +121,8 @@
                                     </li>
                                 </ul>
                                 <input class="search-field" name="search" placeholder="Search here..." />
-                                <a class="search-button" href="#"></a>
+                                <button class="search-button" type="submit"></button>
+                                {{-- <a class="search-button" type="button" href="{{url('/search')}}"></a> --}}
                             </div>
                         </form>
                     </div>

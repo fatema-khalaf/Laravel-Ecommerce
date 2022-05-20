@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Subcategory;
+use App\Models\SubSubcategory;
 use App\Models\Slider;
 use App\Models\Product;
 use App\Models\Brand;
@@ -121,12 +123,14 @@ class IndexController extends Controller
     // Subcategory wise data
 	public function SubCatWiseProduct($subcat_id,$slug){
 		$products = Product::where('status',1)->where('subcategory_id',$subcat_id)->orderBy('id','DESC')->paginate(12);
-		return view('frontend.product.subcategory_view',compact('products','slug'));
+        $breadsubcat = SubCategory::with(['category'])->where('id',$subcat_id)->get(); // for page navigation
+		return view('frontend.product.subcategory_view',compact('products','slug','breadsubcat'));
 	}
     // Sub-subcategory wise data
     public function SubSubCatWiseProduct($subsubcat_id,$slug){
         $products = Product::where('status',1)->where('subsubcategory_id', $subsubcat_id)->orderby('id','DESC')->paginate(12);
-		return view('frontend.product.subsubcategory_view',compact('products','slug'));
+        $breadsubsubcat = SubSubcategory::with(['category','subcategory'])->where('id',$subsubcat_id)->get(); // for page navigation
+        return view('frontend.product.subsubcategory_view',compact('products','slug','breadsubsubcat'));
     }
 
     

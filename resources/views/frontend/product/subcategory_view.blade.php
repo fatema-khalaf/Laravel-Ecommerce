@@ -15,9 +15,20 @@
                 <li><a href="{{url('/')}}">
                         Home</a></li>
                 @endif
-                <li class="active">
-                    {{ str_replace('-',' ',$slug)}}
-                </li>
+                @foreach ($breadsubcat as $item)
+                @if (session()->get('language') == 'arabic')
+                <li class="active">{{ $item->category->category_name_ar}}</li>
+                @else
+                <li class="active">{{ $item->category->category_name_en}}</li>
+                @endif
+                @endforeach
+                @foreach ($breadsubcat as $item)
+                @if (session()->get('language') == 'arabic')
+                <li class="active">{{ $item->subcategory_name_ar}}</li>
+                @else
+                <li class="active">{{ $item->subcategory_name_en}}</li>
+                @endif
+                @endforeach
             </ul>
             {{-- @endif --}}
         </div>

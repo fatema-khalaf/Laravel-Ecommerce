@@ -130,6 +130,8 @@
                 <!-- ========================================== SECTION – HERO ========================================= -->
 
                 <div class="clearfix filters-container m-t-10">
+                    <h4> {{ count($products) }} </span>products </h4>
+                    <hr>
                     <div class="row">
                         <div class="col col-sm-6 col-md-2">
                             <div class="filter-tabs">
