@@ -121,11 +121,14 @@
                                         </ul>
                                     </li>
                                 </ul>
-                                <input class="search-field" name="search" placeholder="Search here..." />
+                                {{-- new idea --}}
+                                <input class="search-field" onfocus="search_result_show()" onblur="search_result_hide()"
+                                    id="search" name="search" placeholder="Search here..." />
                                 <button class="search-button" type="submit"></button>
-                                {{-- <a class="search-button" type="button" href="{{url('/search')}}"></a> --}}
                             </div>
                         </form>
+                        {{-- new idea conect this div with ajax results --}}
+                        <div id="searchProducts"></div>
                     </div>
                     <!-- /.search-area -->
                     <!-- ============================================================= SEARCH AREA : END ============================================================= -->
@@ -330,3 +333,30 @@
     <!-- ============================================== TRACKING ORDERS MODAL : END ============================================== -->
 
 </header>
+<style>
+    .search-area {
+        position: relative;
+    }
+
+    #searchProducts {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        z-index: 999;
+        border-radius: 8px;
+        margin-top: 5px;
+    }
+</style>
+
+
+<script>
+    // new idea 
+    function search_result_hide(){
+        $("#searchProducts").delay(500).slideUp(); // delay to allow time to click on the options
+      }
+       function search_result_show(){
+          $("#searchProducts").slideDown();
+      }
+</script>

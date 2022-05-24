@@ -156,10 +156,26 @@ class IndexController extends Controller
     // 'your data will be lost if you leave this page' whenever the user leaves or refresh the page to solve this bug
     // I made the <form> tag method='get' and used Request $request as normal
     public function SearchProduct(Request $request){
+        $request->validate([
+            'search' =>'required'
+        ]);// prevent the empty search input from redirect the user to search page 
         $item = $request->search;
         // new idea get all the fields that contains a word $item
         $products = Product::where('product_name_en', 'LIKE' , "%$item%")->get();
         return view('frontend.product.search_result' , compact('products','item'));
+    }
+
+    // Advanced search options
+    public function SearchItems(Request $request){
+        $request->validate([
+            'search' =>'required'
+        ]); 
+        $item = $request->search;
+        // new idea get all the fields that contains a word $item
+        $products = Product::where('product_name_en', 'LIKE' , "%$item%")
+        ->select('product_name_en','product_thambnail','selling_price','id','product_slug_en')
+        ->limit(5)->get();
+        return view('frontend.product.search_product', compact('products','item'));
     }
 }
  

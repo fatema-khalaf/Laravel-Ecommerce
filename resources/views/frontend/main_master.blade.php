@@ -80,6 +80,7 @@ $seo = App\Models\Seo::find(1);
     <script src="{{asset('frontend/assets/js/bootstrap-select.min.js')}}"></script>
     <script src="{{asset('frontend/assets/js/wow.min.js')}}"></script>
     <script src="{{asset('frontend/assets/js/scripts.js')}}"></script>
+    <script src="{{asset('frontend/assets/js/advance-search-options.js')}}"></script>
     {{-- NOTE: this script for errors messages --}}
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>

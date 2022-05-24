@@ -504,3 +504,5 @@ Route::prefix('adminRole')->group(function(){
 //  Note: Frontend search product
 // Bring the result of the search input and view them.
 Route::get("/search", [IndexController::class, "SearchProduct"])->name('search.product');
+// Advanced search options route
+Route::post("search-items", [IndexController::class, "SearchItems"]);
