@@ -3,6 +3,13 @@
 @section('title')
 {{$product->product_name_en}}
 @endsection
+
+<style>
+    .checked {
+        color: orange;
+    }
+</style>
+
 <div class="breadcrumb">
     <div class="container">
         <div class="breadcrumb-inner">
@@ -171,29 +178,40 @@
                                     {{$product->product_name_en}}
                                     @endif</a></h1>
 
+                                @php
+                                $reviewcount =
+                                App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
+                                $avarage =
+                                App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
+                                @endphp
+
                                 <div class="rating-reviews m-t-20">
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <div class="rating rateit-small rateit"><button id="rateit-reset-5"
-                                                    data-role="none" class="rateit-reset" aria-label="reset rating"
-                                                    aria-controls="rateit-range-5" style="display: none;"></button>
-                                                <div id="rateit-range-5" class="rateit-range" tabindex="0" role="slider"
-                                                    aria-label="rating" aria-owns="rateit-reset-5" aria-valuemin="0"
-                                                    aria-valuemax="5" aria-valuenow="4" aria-readonly="true"
-                                                    style="width: 70px; height: 14px;">
-                                                    <div class="rateit-selected" style="height: 14px; width: 56px;">
-                                                    </div>
-                                                    <div class="rateit-hover" style="height:14px"></div>
-                                                </div>
-                                            </div>
+                                            @if($avarage == 0)
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            <span class="fa fa-star-o"></span>
+                                            @else
+                                            <span class="fa fa-star {{$avarage >= 1 ? 'checked' : ''}} "></span>
+                                            <span class="fa fa-star {{$avarage >= 2 ? 'checked' : ''}}"></span>
+                                            <span class="fa fa-star {{$avarage >= 3 ? 'checked' : ''}}"></span>
+                                            <span class="fa fa-star {{$avarage >= 4 ? 'checked' : ''}}"></span>
+                                            <span class="fa fa-star {{$avarage >= 5 ? 'checked' : ''}}"></span>
+                                            @endif
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="reviews">
-                                                <a href="#" class="lnk">(13 Reviews)</a>
+                                                <a href="#" class="lnk">({{ count($reviewcount) }} Reviews)</a>
                                             </div>
                                         </div>
                                     </div><!-- /.row -->
                                 </div><!-- /.rating-reviews -->
+
+
+
 
                                 <div class="stock-container info-container m-t-10">
                                     <div class="row">
@@ -410,11 +428,24 @@
                                                 @else
                                                 <div class="review">
                                                     <div class="row">
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-6">
                                                             <img style="border-radius: 50%"
                                                                 src="{{ (!empty($item->user->profile_photo_path))? url('upload/user_images/'.$item->user->profile_photo_path):url('upload/no_image.jpg') }}"
                                                                 width="40px;" height="40px;"><b> {{
                                                                 $item->user->name }}</b>
+                                                            @if($item->rating == Null)
+                                                            @else
+                                                            <span
+                                                                class="fa fa-star {{$item->rating >= 1 ? 'checked' : ''}} "></span>
+                                                            <span
+                                                                class="fa fa-star {{$item->rating >= 2 ? 'checked' : ''}}"></span>
+                                                            <span
+                                                                class="fa fa-star {{$item->rating >= 3 ? 'checked' : ''}}"></span>
+                                                            <span
+                                                                class="fa fa-star {{$item->rating >= 4 ? 'checked' : ''}}"></span>
+                                                            <span
+                                                                class="fa fa-star {{$item->rating >= 5 ? 'checked' : ''}}"></span>
+                                                            @endif
                                                         </div>
                                                         <div class="col-md-9">
                                                         </div>
@@ -448,6 +479,35 @@
                                                         @csrf
                                                         <input type="hidden" name="product_id" value="{{$product->id}}">
                                                         <input type="hidden" name="user_id" value="{{Auth::id()}}">
+
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="cell-label">&nbsp;</th>
+                                                                    <th>1star</th>
+                                                                    <th>2stars</th>
+                                                                    <th>3stars</th>
+                                                                    <th>4stars</th>
+                                                                    <th>5stars</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="cell-label">Quality</td>
+                                                                    <td><input type="radio" name="rating" class="radio"
+                                                                            value="1"></td>
+                                                                    <td><input type="radio" name="rating" class="radio"
+                                                                            value="2"></td>
+                                                                    <td><input type="radio" name="rating" class="radio"
+                                                                            value="3"></td>
+                                                                    <td><input type="radio" name="rating" class="radio"
+                                                                            value="4"></td>
+                                                                    <td><input type="radio" name="rating" class="radio"
+                                                                            value="5"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
                                                         <div class="row">
                                                             <div class="col-sm-6">
                                                                 <div class="form-group">

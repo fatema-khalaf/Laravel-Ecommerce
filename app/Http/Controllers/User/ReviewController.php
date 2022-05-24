@@ -16,7 +16,7 @@ class ReviewController extends Controller
 
     // add product review
     public function AddReview(Request $request){
-        $inputs = array('product_id','user_id','summary','comment');
+        $inputs = array('product_id','user_id','summary','comment','rating');
         // Store trait
         $res = $this->Store([
             'request'=> $request,
