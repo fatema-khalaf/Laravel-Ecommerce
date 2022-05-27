@@ -20,6 +20,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController; 
 use App\Http\Controllers\Frontend\CartController; 
 use App\Http\Controllers\Frontend\HomeBlogController; 
+use App\Http\Controllers\Frontend\ShopController; 
 use App\Http\Controllers\User\WishlistController; 
 use App\Http\Controllers\User\CartPageController; 
 use App\Http\Controllers\User\CheckoutController; 
@@ -506,3 +507,7 @@ Route::prefix('adminRole')->group(function(){
 Route::get("/search", [IndexController::class, "SearchProduct"])->name('search.product');
 // Advanced search options route
 Route::post("search-items", [IndexController::class, "SearchItems"]);
+
+// Note: shop page route
+Route::get("/shop", [ShopController::class, "ShopView"])->name('shop-page');
+
