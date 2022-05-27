@@ -7,9 +7,8 @@ use Illuminate\Support\Str;
 **********************************************
 */
 
-// $DATABASE_URL=parse_url(‘DATABASE_URL’);
-$DATABASE_URL=parse_url('postgres://lpgujomjcgdwqr:307fe234ea60c96707c29005c9a96046021b8b4db4ab0f98bcf226b65df3426e@ec2-3-211-221-185.compute-1.amazonaws.com:5432/d5ct9st3i0nsit
-');
+$DATABASE_URL=parse_url('DATABASE_URL');
+
 
 
 return [
