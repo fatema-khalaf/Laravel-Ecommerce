@@ -37,7 +37,7 @@ class IndexController extends Controller
         $skip_category_0 = Category::skip(2)->first();
         $skip_product_0 = Product::where('status',1)->where('category_id',$skip_category_0->id)->orderBy('id','DESC')->get();
         // note: for development use 👇👇 to display results
-        $skip_brand_1 = Brand::skip(5)->first();
+        $skip_brand_1 = Brand::skip(0)->first();
     	$skip_brand_product_1 = Product::where('status',1)->where('brand_id',$skip_brand_1->id)->orderBy('id','DESC')->get();
         // return $skip_brand_product_1;
         // die();
