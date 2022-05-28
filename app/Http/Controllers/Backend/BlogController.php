@@ -86,6 +86,8 @@ class BlogController extends Controller
             'model'=>'App\Models\Blog\BlogPost',
             'new_image'=>'post_image', 
             'image_path'=>'upload/post/', 
+            "image_width" => 780,
+            "image_height" => 433,
             'message'=>'Post added successfully', 
             'slugs'=>$slugs,
             'inputs_required'=> true
@@ -110,6 +112,8 @@ class BlogController extends Controller
                 'inputs'=>$inputs,
                 'model'=>'App\Models\Blog\BlogPost',
                 'slugs'=>$slugs, 
+                "image_width" => 780,
+            "image_height" => 433,
                 'new_image'=>'post_image', 
                 'image_path'=>'upload/post/', 
                 'message'=>'Post Updated successfully', 
