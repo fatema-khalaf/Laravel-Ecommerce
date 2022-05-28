@@ -4,11 +4,7 @@
 {{$product->product_name_en}}
 @endsection
 
-<style>
-    .checked {
-        color: orange;
-    }
-</style>
+
 
 <div class="breadcrumb">
     <div class="container">

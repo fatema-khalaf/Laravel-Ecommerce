@@ -266,8 +266,37 @@ Products with tag
 
                                                         </a>
                                                     </h3>
-                                                    <div class="rating rateit-small"></div>
-                                                    <div class="description"></div>
+                                                    @php
+                                                    $reviewcount =
+                                                    App\Models\Review::where('product_id',$item->id)->where('status',1)->latest()->get();
+                                                    $avarage =
+                                                    App\Models\Review::where('product_id',$item->id)->where('status',1)->avg('rating');
+                                                    @endphp
+
+                                                    <div class="rating-reviews m-t-20">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                @if($avarage == 0)
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                <span class="fa fa-star-o"></span>
+                                                                @else
+                                                                <span
+                                                                    class="fa fa-star {{$avarage >= 1 ? 'checked' : ''}} "></span>
+                                                                <span
+                                                                    class="fa fa-star {{$avarage >= 2 ? 'checked' : ''}}"></span>
+                                                                <span
+                                                                    class="fa fa-star {{$avarage >= 3 ? 'checked' : ''}}"></span>
+                                                                <span
+                                                                    class="fa fa-star {{$avarage >= 4 ? 'checked' : ''}}"></span>
+                                                                <span
+                                                                    class="fa fa-star {{$avarage >= 5 ? 'checked' : ''}}"></span>
+                                                                @endif
+                                                            </div>
+                                                        </div><!-- /.row -->
+                                                    </div><!-- /.rating-reviews -->
                                                     @if ($item->discount_price == Null)
                                                     <div class="product-price"> <span class="price">
                                                             ${{$item->selling_price}}</span>

@@ -51,6 +51,11 @@ $seo = App\Models\Seo::find(1);
     <script src="https://js.stripe.com/v3/"></script>
 
 </head>
+<style>
+    .checked {
+        color: orange;
+    }
+</style>
 
 <body class="cnt-home">
     <!-- ============================================== HEADER ============================================== -->
