@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog\BlogPostCategory;
 use App\Models\Blog\BlogPost;
+use App\Models\Blog\BlogComment;
 use App\Traits\StoreTrait;
 use App\Traits\UpdateTrait;
 use App\Traits\DeleteTrait;
@@ -126,6 +127,20 @@ class BlogController extends Controller
     public function BlogPostDelete($id){
         $notification = $this->Delete('App\Models\Blog\BlogPost',$id,'post_image' ,'Post deleted successfully');
         return redirect()->back()->with($notification);
+    }
+
+    // add comment to blog post
+    public function AddComment(Request $request){
+        $inputs = array('post_id','user_id','comment');
+        // Store trait
+        $res = $this->Store([
+            'request'=> $request,
+            'inputs'=>$inputs,
+            'model'=>'App\Models\Blog\BlogComment',
+            'inputs_required'=> true,
+            'message' => 'Thanks for your comment'
+        ]);
+        return redirect()->back()->with($res['notification']);
     }
 
 }

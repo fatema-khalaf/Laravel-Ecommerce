@@ -21,7 +21,7 @@ $recents = App\Models\Blog\BlogPost::orderBy('id','DESC')->limit(2)->get();
             @endphp
             <div class="blog-post inner-bottom-30 ">
                 <img class="img-responsive" src="{{asset($item->post->post_image)}}" alt="">
-                <h4><a href="blog-details.html">{{$item->post->post_title_en}}</a></h4>
+                <h4><a href="{{route('post.details',$item->post->id)}}">{{$item->post->post_title_en}}</a></h4>
                 <span class="review">{{$count}} Comments</span>
                 <span class="date-time">
                     {{ Carbon\Carbon::parse($item->post->created_at)->format('d F Y') }}
@@ -39,7 +39,7 @@ $recents = App\Models\Blog\BlogPost::orderBy('id','DESC')->limit(2)->get();
             @endphp
             <div class="blog-post inner-bottom-30 ">
                 <img class="img-responsive" src="{{asset($item->post_image)}}" alt="">
-                <h4><a href="blog-details.html">{{$item->post_title_en}}</a></h4>
+                <h4><a href="{{route('post.details',$item->id)}}">{{$item->post_title_en}}</a></h4>
                 <span class="review">{{$count}} Comments</span>
                 <span class="date-time">
                     {{ Carbon\Carbon::parse($item->created_at)->format('d F Y') }}

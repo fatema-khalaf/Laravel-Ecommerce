@@ -442,6 +442,10 @@ Route::prefix('blog')->group(function(){
      Route::post("/post/update", [BlogController::class, "BlogPostUpdate"])->name('post.update');
      // Delete blog post
      Route::get("/post/delete/{id}", [BlogController::class, "BlogPostDelete"])->name('post.delete');
+
+     //Add comment to blog post
+     Route::post('/add/comment',[BlogController::class, "AddComment"])->name('add.comment');
+
     });
     
     // Note: Frontend blog routs

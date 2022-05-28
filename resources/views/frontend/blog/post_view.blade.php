@@ -56,54 +56,67 @@
 
                         </div>
                     </div>
+                    <hr>
+                    @php
+                    $comments =
+                    App\Models\Blog\BlogComment::where('post_id',$post->id)->latest()->get();
+                    @endphp
+                    <div class="blog-review wow fadeInUp animated"
+                        style="visibility: visible; animation-name: fadeInUp;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="title-review-comments">All comments</h3>
+                            </div>
+                            @foreach($comments as $item)
+                            <div class="col-md-2 col-sm-2">
+                                <img src="{{ (!empty($item->user->profile_photo_path))? url('upload/user_images/'.$item->user->profile_photo_path):url('upload/no_image.jpg') }}"
+                                    alt="Responsive image" class="img-rounded img-responsive">
+                            </div>
+                            <div class="col-md-10 col-sm-10">
+                                <div class="blog-comment inner-bottom-xs">
+                                    <h4>{{$item->user->name }}</h4>
+                                    <span class="review-action pull-right">
+                                        {{Carbon\Carbon::parse($item->created_at)->diffForHumans()}}
+                                    </span>
+                                    <p>{{$item->comment}}</p>
+                                </div>
+                            </div>
+                            @endforeach
+                            <div class="post-load-more col-md-12"><a class="btn btn-upper btn-primary" href="#">Load
+                                    more</a></div>
+                        </div>
+                    </div>
+
                     <div class="blog-write-comment outer-bottom-xs outer-top-xs">
                         <div class="row">
+                            @auth
                             <div class="col-md-12">
                                 <h4>Leave A Comment</h4>
                             </div>
-                            <div class="col-md-4">
-                                <form class="register-form" role="form">
-                                    <div class="form-group">
-                                        <label class="info-title" for="exampleInputName">Your Name
-                                            <span>*</span></label>
-                                        <input type="email" class="form-control unicase-form-control text-input"
-                                            id="exampleInputName" placeholder="">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="col-md-4">
-                                <form class="register-form" role="form">
-                                    <div class="form-group">
-                                        <label class="info-title" for="exampleInputEmail1">Email Address
-                                            <span>*</span></label>
-                                        <input type="email" class="form-control unicase-form-control text-input"
-                                            id="exampleInputEmail1" placeholder="">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="col-md-4">
-                                <form class="register-form" role="form">
-                                    <div class="form-group">
-                                        <label class="info-title" for="exampleInputTitle">Title <span>*</span></label>
-                                        <input type="email" class="form-control unicase-form-control text-input"
-                                            id="exampleInputTitle" placeholder="">
-                                    </div>
-                                </form>
-                            </div>
                             <div class="col-md-12">
-                                <form class="register-form" role="form">
+                                <form class="register-form" role="form" method="post" action="{{route('add.comment')}}">
+                                    @csrf
+                                    <input type="hidden" name="post_id" value="{{$post->id}}">
+                                    <input type="hidden" name="user_id" value="{{Auth::id()}}">
                                     <div class="form-group">
-                                        <label class="info-title" for="exampleInputComments">Your Comments
+                                        <label class="info-title" for="exampleInputComments">Your Comment
                                             <span>*</span></label>
-                                        <textarea class="form-control unicase-form-control"
-                                            id="exampleInputComments"></textarea>
+                                        <textarea class="form-control unicase-form-control" id="exampleInputComments"
+                                            name="comment"></textarea>
+                                    </div>
+                                    <div class="col-md-12 outer-bottom-small m-t-20">
+                                        <button type="submit"
+                                            class="btn-upper btn btn-primary checkout-page-button">Submit
+                                            Comment</button>
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-md-12 outer-bottom-small m-t-20">
-                                <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Submit
-                                    Comment</button>
+                            @else
+                            <div class="col-md-12">
+                                <h4><b>To leave a comment you need to <a href="{{route('login')}}">Login</a>
+                                        first.</b></h4>
                             </div>
+                            @endauth
                         </div>
                     </div>
                 </div>
