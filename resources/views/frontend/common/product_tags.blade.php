@@ -15,7 +15,7 @@ $data_ar =array_merge($data_ar, $tags);
 }
 $data_ar =array_unique($data_ar);
 
-
+// dd($data_ar);
 @endphp
 
 <div class="sidebar-widget product-tag wow fadeInUp">
@@ -29,7 +29,7 @@ $data_ar =array_unique($data_ar);
             @endforeach
             @else
             @foreach ($data_en as $tag)
-            <a class="item active " title="{{ $tag}}" href="{{url ('product/tag/'.$tag)}}">
+            <a class="item active " title="{{$tag}}" href="{{url ('product/tag/'.$tag)}}">
                 {{$tag}}</a>
             @endforeach
             @endif

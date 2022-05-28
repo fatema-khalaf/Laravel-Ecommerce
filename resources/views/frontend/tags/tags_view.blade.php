@@ -26,9 +26,6 @@ Products with tag
                 @include('frontend.common.vertical_menu')
                 <!-- = ==== TOP NAVIGATION : END === ===== -->
 
-
-
-
                 <div class="sidebar-module-container">
                     <div class="sidebar-filter">
                         <!-- ============================================== SIDEBAR CATEGORY ============================================== -->

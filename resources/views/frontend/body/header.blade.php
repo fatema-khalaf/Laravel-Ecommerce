@@ -44,14 +44,7 @@
 
                 <div class="cnt-block">
                     <ul class="list-unstyled list-inline">
-                        <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown"
-                                data-toggle="dropdown"><span class="value">USD </span><b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">USD</a></li>
-                                <li><a href="#">INR</a></li>
-                                <li><a href="#">GBP</a></li>
-                            </ul>
-                        </li>
+
                         <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown"
                                 data-toggle="dropdown"><span class="value">
                                     {{-- NOTE: chang the content depending on session laguage --}}
@@ -283,7 +276,6 @@
                                 @endforeach
                                 <li><a href="{{route('shop-page')}}">Shop</a></li>
                                 <!-- // End Category Foreach -->
-                                <li class="dropdown  navbar-right special-menu"> <a href="#">Todays offer</a> </li>
                                 <li class="dropdown  navbar-right special-menu"> <a
                                         href="{{route('home.blog')}}">Blog</a> </li>
                             </ul>

@@ -115,8 +115,7 @@ class IndexController extends Controller
         }
     }  
     public function ProductWithTag($tag){
-        $products = Product::where('status' , 1)->where('product_tags_en' ,'like', '%'.$tag.'%')->orderby('id','DESC')->paginate(12);;
-        // $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        $products = Product::where('status' , 1)->where('product_tags_en' ,'like', '%'.$tag.'%')->orWhere('product_tags_ar' ,'like', '%'.$tag.'%')->orderby('id','DESC')->paginate(12);;
         return view('frontend.tags.tags_view', compact('products'));
     }
     
