@@ -4,6 +4,7 @@
 {{$product->product_name_en}}
 @endsection
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
 <div class="breadcrumb">
@@ -41,11 +42,6 @@
         <div class="row single-product">
             <div class="col-md-3 sidebar">
                 <div class="sidebar-module-container">
-                    <div class="home-banner outer-top-n">
-                        <img src="assets/images/banners/LHS-banner.jpg" alt="Image">
-                    </div>
-
-
 
                     <!-- ============================================== HOT DEALS ============================================== -->
                     @include('frontend.common.hot_deals')
@@ -847,5 +843,11 @@
 {{-- new idea shar buttons --}}
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6284db9d254f7cc9"></script>
-
+{{-- <script>
+    $('a.horizontal-thumb').click(function(e) {
+        e.preventDefault();
+        $('a.someclass').append(e.target);
+        console.log(e.target);
+    });
+</script> --}}
 @endsection

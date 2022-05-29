@@ -213,6 +213,8 @@
 
 
                 <div class="clearfix filters-container m-t-10">
+                    <h4> {{ count($products) }} </span>products </h4>
+                    <hr>
                     <div class="row">
                         <div class="col col-sm-6 col-md-2">
                             <div class="filter-tabs">
@@ -273,7 +275,8 @@
                             <!-- /.col -->
                         </div>
                         <!-- /.col -->
-                        <div class="col col-sm-6 col-md-4 text-right">
+
+                        {{-- <div class="col col-sm-6 col-md-4 text-right">
                             <div class="pagination-container">
                                 <ul class="list-inline list-unstyled">
                                     <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
@@ -286,7 +289,7 @@
                                 <!-- /.list-inline -->
                             </div>
                             <!-- /.pagination-container -->
-                        </div>
+                        </div> --}}
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->

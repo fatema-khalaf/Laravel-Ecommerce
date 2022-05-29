@@ -81,7 +81,7 @@ shop
                                 <!--  /////////// This is for Brand Filder /////////////// -->
 
 
-
+                                <hr>
                                 <div class="widget-header">
                                     <h4 class="widget-title">Brand Filter</h4>
                                 </div>
@@ -184,7 +184,7 @@ shop
                             <!-- /.sidebar-widget -->
                             <!-- ============================================== COLOR: END ============================================== -->
                             <!-- ============================================== COMPARE============================================== -->
-                            <div class="sidebar-widget wow fadeInUp outer-top-vs">
+                            {{-- <div class="sidebar-widget wow fadeInUp outer-top-vs">
                                 <h3 class="section-title">Compare products</h3>
                                 <div class="sidebar-widget-body">
                                     <div class="compare-report">
@@ -193,7 +193,7 @@ shop
                                     <!-- /.compare-report -->
                                 </div>
                                 <!-- /.sidebar-widget-body -->
-                            </div>
+                            </div> --}}
                             <!-- /.sidebar-widget -->
                             <!-- ============================================== COMPARE: END ============================================== -->
                             <!-- ============================================== PRODUCT TAGS ============================================== -->
@@ -204,9 +204,6 @@ shop
                             @include('frontend.common.testmonial')
 
                             <!-- ============================================== Testimonials: END ============================================== -->
-
-                            <div class="home-banner"> <img src="assets/images/banners/LHS-banner.jpg" alt="Image">
-                            </div>
                         </div>
                         <!-- /.sidebar-filter -->
                     </div>
@@ -236,6 +233,8 @@ shop
 
 
                     <div class="clearfix filters-container m-t-10">
+                        <h4> {{ count($products) }} </span>products </h4>
+                        <hr>
                         <div class="row">
                             <div class="col col-sm-6 col-md-2">
                                 <div class="filter-tabs">
@@ -298,6 +297,7 @@ shop
                                     </div>
                                     <!-- /.lbl-cnt -->
                                 </div>
+
                                 <!-- /.col -->
                             </div>
                             <!-- /.col -->
@@ -583,59 +583,8 @@ shop
             </div>
             <!-- /.row -->
             <!-- ============================================== BRANDS CAROUSEL ============================================== -->
-            <div id="brands-carousel" class="logo-slider wow fadeInUp">
-                <div class="logo-slider-inner">
-                    <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
-                        <div class="item m-t-15"> <a href="#" class="image"> <img
-                                    data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif" alt="">
-                            </a>
-                        </div>
-                        <!--/.item-->
+            @include('frontend.body.brand')
 
-                        <div class="item m-t-10"> <a href="#" class="image"> <img
-                                    data-echo="assets/images/brands/brand2.png" src="assets/images/blank.gif" alt="">
-                            </a>
-                        </div>
-                        <!--/.item-->
-
-                        <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand3.png"
-                                    src="assets/images/blank.gif" alt=""> </a> </div>
-                        <!--/.item-->
-
-                        <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand4.png"
-                                    src="assets/images/blank.gif" alt=""> </a> </div>
-                        <!--/.item-->
-
-                        <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand5.png"
-                                    src="assets/images/blank.gif" alt=""> </a> </div>
-                        <!--/.item-->
-
-                        <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand6.png"
-                                    src="assets/images/blank.gif" alt=""> </a> </div>
-                        <!--/.item-->
-
-                        <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand2.png"
-                                    src="assets/images/blank.gif" alt=""> </a> </div>
-                        <!--/.item-->
-
-                        <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand4.png"
-                                    src="assets/images/blank.gif" alt=""> </a> </div>
-                        <!--/.item-->
-
-                        <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand1.png"
-                                    src="assets/images/blank.gif" alt=""> </a> </div>
-                        <!--/.item-->
-
-                        <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand5.png"
-                                    src="assets/images/blank.gif" alt=""> </a> </div>
-                        <!--/.item-->
-                    </div>
-                    <!-- /.owl-carousel #logo-slider -->
-                </div>
-                <!-- /.logo-slider-inner -->
-
-            </div>
-            <!-- /.logo-slider -->
             <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
 
         </form>

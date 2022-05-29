@@ -115,8 +115,9 @@ class IndexController extends Controller
         }
     }  
     public function ProductWithTag($tag){
-        $products = Product::where('status' , 1)->where('product_tags_en' ,'like', '%'.$tag.'%')->orWhere('product_tags_ar' ,'like', '%'.$tag.'%')->orderby('id','DESC')->paginate(12);;
-        return view('frontend.tags.tags_view', compact('products'));
+        $products = Product::where('status' , 1)->where('product_tags_en' ,'like', '%'.$tag.'%')->orWhere('product_tags_ar' ,'like', '%'.$tag.'%')->orderby('id','DESC')->paginate(9);
+        $count = Product::where('status' , 1)->where('product_tags_en' ,'like', '%'.$tag.'%')->orWhere('product_tags_ar' ,'like', '%'.$tag.'%')->count();
+        return view('frontend.tags.tags_view', compact('products', 'count'));
     }
     
     // Subcategory wise data
@@ -168,8 +169,9 @@ class IndexController extends Controller
         ]);// prevent the empty search input from redirect the user to search page 
         $item = $request->search;
         // new idea get all the fields that contains a word $item
-        $products = Product::where('product_name_en', 'LIKE' , "%$item%")->get();
-        return view('frontend.product.search_result' , compact('products','item'));
+        $products = Product::where('product_name_en', 'LIKE' , "%$item%")->paginate(9);
+        $count = Product::where('product_name_en', 'LIKE' , "%$item%")->count();
+        return view('frontend.product.search_result' , compact('products','item','count'));
     }
 
     // Advanced search options

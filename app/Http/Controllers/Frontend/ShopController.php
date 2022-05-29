@@ -22,18 +22,23 @@ class ShopController extends Controller
         if (!empty($_GET['category'])) {
             $slugs = explode(',',$_GET['category']);
             $catIds = Category::select('id')->whereIn('category_slug_en',$slugs)->pluck('id')->toArray();
-            $products = $productQ->whereIn('category_id',$catIds)->paginate(3);
+            $products = $productQ->whereIn('category_id',$catIds)->paginate(9);
+            $count = $productQ->whereIn('category_id',$catIds)->count();
+
          }
          if (!empty($_GET['brand'])) {
             $slugs = explode(',',$_GET['brand']);
             $brandIds = Brand::select('id')->whereIn('brand_slug_en',$slugs)->pluck('id')->toArray();
-            $products = $productQ->whereIn('brand_id',$brandIds)->paginate(3);
+            $products = $productQ->whereIn('brand_id',$brandIds)->paginate(9);
+            $count = $productQ->whereIn('brand_id',$brandIds)->count();
+
         }
         if(empty($_GET['category']) && empty($_GET['brand'])){
-             $products = Product::where('status',1)->orderBy('id','DESC')->paginate(3);
+             $products = Product::where('status',1)->orderBy('id','DESC')->paginate(9);
+             $count = Product::where('status',1)->count();
         }
 
-        return view('frontend.shop.shop_view',compact('products','categories','brands'));
+        return view('frontend.shop.shop_view',compact('products','categories','brands','count'));
     }
 
     // view filtered results of categories filter
