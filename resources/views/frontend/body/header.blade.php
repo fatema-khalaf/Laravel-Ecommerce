@@ -94,7 +94,7 @@
                         <form method="get" action="{{route('search.product')}}">
                             @csrf
                             <div class="control-group">
-                                <ul class="categories-filter animate-dropdown">
+                                {{-- <ul class="categories-filter animate-dropdown">
                                     <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown"
                                             href="category.html">
                                             @if(session()->get('language')== 'arabic') الفئات @else Categories
@@ -113,7 +113,7 @@
                                                     href="category.html">- Watches</a></li>
                                         </ul>
                                     </li>
-                                </ul>
+                                </ul> --}}
                                 {{-- new idea --}}
                                 <input class="search-field" onfocus="search_result_show()" onblur="search_result_hide()"
                                     id="search" name="search" placeholder="Search here..." />

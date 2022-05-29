@@ -34,6 +34,9 @@ use App\Models\User;
 //     return view("welcome");
 // });
 
+
+//  ============================================== BACK END : ROUTES ============================================== -->
+
 //NOTE: Admin Route
 Route::group(
     ["prefix" => "admin", "middleware" => ["admin:admin"]],
@@ -88,7 +91,7 @@ Route::middleware([
         return view("admin.index");
     })->name("dashboard")->middleware('auth:admin');
 });
-});
+
 // Note: Brands All routes
 Route::prefix('brand')->group(function(){
     // View All Brands
@@ -246,119 +249,6 @@ Route::prefix('shipping')->group(function(){
     Route::get("/state/delete/{id}", [ShippingAreaController::class, "StateDelete"])->name('state.delete');
 });
 
-//NOTE: User Route 
-//View user account
-Route::middleware([
-    "auth:sanctum,web",
-    config("jetstream.auth_session"),
-    "verified",
-])->group(function () {
-    Route::get("/dashboard", function () {
-        $id= Auth::user()->id;
-        $user = User::find($id);
-        return view("dashboard",compact('user'));
-    })->name("dashboard");
-});
-// View Home page
-Route::get("/", [IndexController::class, "index"]);
-// Log out user
-Route::get("/user/logout", [IndexController::class, "UserLogout"])->name('user.logout');
-// View user profile
-Route::get("/user/profile", [IndexController::class, "UserProfile"])->name('user.profile');
-// Store updated user data
-Route::post("/user/profile/store", [IndexController::class, "UserProfileStore"])->name('user.profile.store');
-// View Change passwrod
-Route::get("/user/change/password", [IndexController::class, "UserChangePassword"])->name('change.password');
-// Store new password
-Route::post("/user/password/update", [IndexController::class, "UserUpdateChangePassword"])->name('user.password.update');
-
-//  ============================================== FRONT END : ROUTES ============================================== -->
-
-//NOTE: Multi language Routes
-
-Route::get("/english/language", [LanguageController::class, "English"])->name('english.language');
-Route::get("/arabic/language", [LanguageController::class, "Arabic"])->name('arabic.language');
-// View product details
-Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']); 
-// View product with tag
-Route::get('/product/tag/{tag}', [IndexController::class, 'ProductWithTag']); 
-// View product wise subcategory
-Route::get('/subcategory/product/{subcat_id}/{slug}', [IndexController::class, 'SubCatWiseProduct']); 
-// View product wise subcategory
-Route::get('/sub-subcategory/product/{subsubcat_id}/{slug}', [IndexController::class, 'SubSubCatWiseProduct']); 
-// Product View Modal with Ajax
-Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']); 
-// Add to cart store data with Ajax
-Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']); 
-// Get cart items 
-Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']); 
-// Remove mini cart
-Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']); 
-// Add to wishlist data with Ajax
-Route::post('/add-to-wishlist/{id}', [WishlistController::class, 'AddToWishlist']); 
-
-// new idea protected route only logged in user
-// Frontend Routes 👇👇
-Route::group(['prefix' => 'user' , 'middleware' =>['user','auth'],'namespace' => 'User'],
-function(){
-    // View wishlist
-    Route::get('/wishlist', [WishlistController::class, 'ViewWishlist'])->name('wishlist'); 
-    // Get wishlist data
-    Route::get('/view-wishlist-products', [WishlistController::class, 'GetWishlistProduct']); 
-    // Remove wishlist
-    Route::get('/wishlist/product-remove/{id}', [WishlistController::class, 'RemoveWishlist']); 
-    
-    // note: Stripe payment
-    Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order'); 
-    // note: Cash payment
-    Route::post('/cash/order', [CashController::class, 'CashOrder'])->name('cash.order'); 
-    
-    // Note: user order route
-    Route::get('/my/orders', [AllUserController::class, 'MyOrders'])->name('my.orders'); 
-    //  user order route
-    Route::get('/order-details/{id}', [AllUserController::class, 'OrderDetails']); 
-    // user order download invoice  route
-    Route::get('/invoice-download/{id}', [AllUserController::class, 'InvoiceDownload']); 
-    // return order Request
-    Route::post('/return/order/{id}', [AllUserController::class, 'ReturnOrder'])->name('return.order'); 
-    // View return orders list
-    Route::get('/return/order/list', [AllUserController::class, 'ReturnOrdersList'])->name('return.orders.list'); 
-    // View cancled order list
-    Route::get('/canceled/order/list', [AllUserController::class, 'CanceledOrdersList'])->name('cancel.orders'); 
-
-    // Note: track orders
-    Route::post('/track/order',[AllUserController::class, 'TrackOrder'])->name('tracking.order');
-});
-// note: my cart routes
-// View my cart
-Route::get('/my-cart', [CartPageController::class, 'ViewMyCart'])->name('mycart'); 
-// Get mycart data
-Route::get('/view-my-cart-products', [CartPageController::class, 'GetMyCartProduct']); 
-// Remove mycart
-Route::get('/my-cart/product-remove/{rowId}', [CartPageController::class, 'RemoveMyCart']); 
-// cart increment
-Route::get('/cart-increment/{rowId}', [CartPageController::class, 'IncrementCart']); 
-// cart decrement 
-Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'DecrementCart']); 
-
-// Note: frontend coupon Route
-// apply coupon
-Route::post('/coupon-apply', [CartController::class, 'ApplyCoupon']); 
-// calculate coupon 
-Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']); 
-// Remove coupon 
-Route::get('/coupon-remove', [CartController::class, 'CouponRemove']); 
-
-// Note: checkout route
-// View Checkout
-Route::get('/checkout', [CheckoutController::class, 'ViewCheckout'])->name('checkout'); 
-// Get district ajax
-Route::get('/division/district/ajax/{id}', [CheckoutController::class, 'GetDistricts']); 
-// Get state ajax
-Route::get('/district/state/ajax/{id}', [CheckoutController::class, 'GetStates']); 
-//  store checkout data
-Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store'); 
-
 // Note: Orders backend All routes
 Route::prefix('orders')->group(function(){
     // View All pending orders
@@ -447,15 +337,7 @@ Route::prefix('blog')->group(function(){
      Route::post('/add/comment',[BlogController::class, "AddComment"])->name('add.comment');
 
     });
-    
-    // Note: Frontend blog routs
-    // View blog Page
-    Route::get("/blog", [HomeBlogController::class, "BlogView"])->name('home.blog');
-    // View blog Post details
-    Route::get("/blog/details/{id}", [HomeBlogController::class, "BlogPostDetailsView"])->name('post.details');
-    // Get blog Post of a category
-    Route::get("/blog/category/{category_id}", [HomeBlogController::class, "BlogCatPost"]);
-    
+       
 // Note: Dashboard Settings all routes
 Route::prefix('setting')->group(function(){
     // View Update setting page
@@ -477,10 +359,7 @@ Route::prefix('return')->group(function(){
     // View all approved return requests
     Route::get("/approved/requests", [ReturnController::class, "RequestApprovedView"])->name('all.requests');
 });
-
-// Note: product review all routes
-// frontend add review 
-Route::post('/add/review',[ReviewController::class, "AddReview"])->name('add.review');
+    
 // dashboard view pending reviews page
 Route::get('/pending/reviews',[ReviewController::class, "PendingReviewsView"])->name('pending.reviews');
 // dashboard approve to publish review 
@@ -505,6 +384,135 @@ Route::prefix('adminRole')->group(function(){
     // View add admin page
     Route::get("/delete/{id}", [AdminUserController::class, "DeleteAdmin"])->name('delete.admin');
 });
+});
+
+//  ============================================== FRONT END : ROUTES ============================================== -->
+
+//NOTE: User Route 
+//View user account
+Route::middleware([
+    "auth:sanctum,web",
+    config("jetstream.auth_session"),
+    "verified",
+])->group(function () {
+    Route::get("dashboard", function () {
+        $id= Auth::user()->id;
+        $user = User::find($id);
+        return view("dashboard",compact('user'));
+    })->name("dashboard");
+});
+// View Home page
+Route::get("/", [IndexController::class, "index"]);
+// Log out user
+Route::get("/user/logout", [IndexController::class, "UserLogout"])->name('user.logout');
+// View user profile
+Route::get("/user/profile", [IndexController::class, "UserProfile"])->name('user.profile');
+// Store updated user data
+Route::post("/user/profile/store", [IndexController::class, "UserProfileStore"])->name('user.profile.store');
+// View Change passwrod
+Route::get("/user/change/password", [IndexController::class, "UserChangePassword"])->name('change.password');
+// Store new password
+Route::post("/user/password/update", [IndexController::class, "UserUpdateChangePassword"])->name('user.password.update');
+
+
+//NOTE: Multi language Routes
+
+Route::get("/english/language", [LanguageController::class, "English"])->name('english.language');
+Route::get("/arabic/language", [LanguageController::class, "Arabic"])->name('arabic.language');
+// View product details
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']); 
+// View product with tag
+Route::get('/product/tag/{tag}', [IndexController::class, 'ProductWithTag']); 
+// View product wise subcategory
+Route::get('/subcategory/product/{subcat_id}/{slug}', [IndexController::class, 'SubCatWiseProduct']); 
+// View product wise subcategory
+Route::get('/sub-subcategory/product/{subsubcat_id}/{slug}', [IndexController::class, 'SubSubCatWiseProduct']); 
+// Product View Modal with Ajax
+Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']); 
+// Add to cart store data with Ajax
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']); 
+// Get cart items 
+Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']); 
+// Remove mini cart
+Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']); 
+// Add to wishlist data with Ajax
+Route::post('/add-to-wishlist/{id}', [WishlistController::class, 'AddToWishlist']); 
+
+// new idea protected route only logged in user
+// Frontend Routes 👇👇
+Route::group(['prefix' => 'user' , 'middleware' =>['user','auth'],'namespace' => 'User'],
+function(){
+    // View wishlist
+    Route::get('/wishlist', [WishlistController::class, 'ViewWishlist'])->name('wishlist'); 
+    // Get wishlist data
+    Route::get('/view-wishlist-products', [WishlistController::class, 'GetWishlistProduct']); 
+    // Remove wishlist
+    Route::get('/wishlist/product-remove/{id}', [WishlistController::class, 'RemoveWishlist']); 
+    
+    // note: Stripe payment
+    Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order'); 
+    // note: Cash payment
+    Route::post('/cash/order', [CashController::class, 'CashOrder'])->name('cash.order'); 
+    
+    // Note: user order route
+    Route::get('/my/orders', [AllUserController::class, 'MyOrders'])->name('my.orders'); 
+    //  user order route
+    Route::get('/order-details/{id}', [AllUserController::class, 'OrderDetails']); 
+    // user order download invoice  route
+    Route::get('/invoice-download/{id}', [AllUserController::class, 'InvoiceDownload']); 
+    // return order Request
+    Route::post('/return/order/{id}', [AllUserController::class, 'ReturnOrder'])->name('return.order'); 
+    // View return orders list
+    Route::get('/return/order/list', [AllUserController::class, 'ReturnOrdersList'])->name('return.orders.list'); 
+    // View cancled order list
+    Route::get('/canceled/order/list', [AllUserController::class, 'CanceledOrdersList'])->name('cancel.orders'); 
+
+    // Note: track orders
+    Route::post('/track/order',[AllUserController::class, 'TrackOrder'])->name('tracking.order');
+});
+// note: my cart routes
+// View my cart
+Route::get('/my-cart', [CartPageController::class, 'ViewMyCart'])->name('mycart'); 
+// Get mycart data
+Route::get('/view-my-cart-products', [CartPageController::class, 'GetMyCartProduct']); 
+// Remove mycart
+Route::get('/my-cart/product-remove/{rowId}', [CartPageController::class, 'RemoveMyCart']); 
+// cart increment
+Route::get('/cart-increment/{rowId}', [CartPageController::class, 'IncrementCart']); 
+// cart decrement 
+Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'DecrementCart']); 
+
+// Note: frontend coupon Route
+// apply coupon
+Route::post('/coupon-apply', [CartController::class, 'ApplyCoupon']); 
+// calculate coupon 
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']); 
+// Remove coupon 
+Route::get('/coupon-remove', [CartController::class, 'CouponRemove']); 
+
+// Note: checkout route
+// View Checkout
+Route::get('/checkout', [CheckoutController::class, 'ViewCheckout'])->name('checkout'); 
+// Get district ajax
+Route::get('/division/district/ajax/{id}', [CheckoutController::class, 'GetDistricts']); 
+// Get state ajax
+Route::get('/district/state/ajax/{id}', [CheckoutController::class, 'GetStates']); 
+//  store checkout data
+Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store'); 
+
+    // Note: Frontend blog routs
+    // View blog Page
+    Route::get("/blog", [HomeBlogController::class, "BlogView"])->name('home.blog');
+    // View blog Post details
+    Route::get("/blog/details/{id}", [HomeBlogController::class, "BlogPostDetailsView"])->name('post.details');
+    // Get blog Post of a category
+    Route::get("/blog/category/{category_id}", [HomeBlogController::class, "BlogCatPost"]);
+ 
+
+// Note: product review all routes
+// frontend add review 
+Route::post('/add/review',[ReviewController::class, "AddReview"])->name('add.review');
+
 
 //  Note: Frontend search product
 // Bring the result of the search input and view them.
