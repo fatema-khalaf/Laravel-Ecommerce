@@ -3,6 +3,7 @@
 @section('title')
 {{ $post->post_title_en }}
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <div class="breadcrumb">
     <div class="container">
@@ -57,32 +58,17 @@
                         </div>
                     </div>
                     <hr>
-                    @php
-                    $comments =
-                    App\Models\Blog\BlogComment::where('post_id',$post->id)->latest()->get();
-                    @endphp
-                    <div class="blog-review wow fadeInUp animated"
+
+                    <div class="blog-review wow fadeInUp animated" id="comments"
                         style="visibility: visible; animation-name: fadeInUp;">
-                        <div class="row">
+                        <div class="row" id="comments_view">
                             <div class="col-md-12">
                                 <h3 class="title-review-comments">All comments</h3>
                             </div>
-                            @foreach($comments as $item)
-                            <div class="col-md-2 col-sm-2">
-                                <img src="{{ (!empty($item->user->profile_photo_path))? url('upload/user_images/'.$item->user->profile_photo_path):url('upload/no_image.jpg') }}"
-                                    alt="Responsive image" class="img-rounded img-responsive">
-                            </div>
-                            <div class="col-md-10 col-sm-10">
-                                <div class="blog-comment inner-bottom-xs">
-                                    <h4>{{$item->user->name }}</h4>
-                                    <span class="review-action pull-right">
-                                        {{Carbon\Carbon::parse($item->created_at)->diffForHumans()}}
-                                    </span>
-                                    <p>{{$item->comment}}</p>
-                                </div>
-                            </div>
-                            @endforeach
-                            <div class="post-load-more col-md-12"><a class="btn btn-upper btn-primary" href="#">Load
+                            @include('frontend.blog.comments_view')
+
+                            <div class="post-load-more col-md-12" id="loadmore"><a class="btn btn-upper btn-primary"
+                                    href="#/" id="load">Load
                                     more</a></div>
                         </div>
                     </div>
@@ -163,5 +149,35 @@
     {{-- Share buttons --}}
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6284db9d254f7cc9"></script>
+
+    <script>
+        function loadmoreProduct(page){
+          $.ajax({
+            type: "get",
+            url: "?page="+page,
+            beforeSend: function(response){
+              $('#load').text('Loading...'); // display the loader
+            }
+          })
+          .done(function(data){
+            if (data.comments == "" ) {
+                $('#load').text('No more comments'); // display the loader
+              return;
+            }
+            $('#load').text('Load more'); // display the loader
+             $('#loadmore').before(data.comments);
+          })
+          .fail(function(){
+            alert('Something Went Wrong');
+          })
+        }
+        var page = 1;
+        $('#load').click(function (){
+            page ++;
+            loadmoreProduct(page);
+            console.log('ht');
+          }); 
+        
+    </script>
 
     @endsection

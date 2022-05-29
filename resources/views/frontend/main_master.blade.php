@@ -42,6 +42,7 @@ $seo = App\Models\Seo::find(1);
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <!-- Icons/Glyphs -->
     <link rel="stylesheet" href="{{asset('frontend/assets/css/font-awesome.css')}}">
+    <link rel="icon" href=" {{asset('frontend/assets/images/fav-icon1.png')}}">
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
