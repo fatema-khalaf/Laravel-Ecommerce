@@ -43,6 +43,7 @@ $route = Route::current()->getName();
       $orders = (auth()->guard('admin')->user()->orders == 1);
       $reports = (auth()->guard('admin')->user()->reports == 1);
       $users = (auth()->guard('admin')->user()->users == 1);
+      $newsletter = (auth()->guard('admin')->user()->newsletter == 1);
       $adminRole = (auth()->guard('admin')->user()->adminRole == 1);
 
       @endphp
@@ -99,6 +100,22 @@ $route = Route::current()->getName();
       </li>
       @endif
 
+      @if($newsletter == true)
+      <li class="treeview {{($prefix == '/newsletter' )? 'active' : ''}}">
+        <a href="#">
+          <i data-feather="message-circle"></i>
+          <span>Newsletter</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="  {{($route == 'all.subscribers' )? 'active' : ''}}"><a href="{{route('all.subscribers')}}"><i
+                class="ti-more"></i>Manage
+              Newsletter</a></li>
+        </ul>
+      </li>
+      @endif
       @if($slider == true)
       <li class="treeview {{($prefix == '/slider' )? 'active' : ''}}">
         <a href="#">

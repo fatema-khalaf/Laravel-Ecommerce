@@ -196,6 +196,18 @@ Route::prefix('slider')->group(function(){
     Route::get('/inactivate/slider/{id}', [SliderController::class, 'SliderInactivate'])->name('slider.inactivate');
 });
 
+// Note: newsletter All routes
+Route::prefix('newsletter')->group(function(){
+    // View All subscribers
+    Route::get("/view", [NewsletterController::class, "NewsletterView"])->name('all.subscribers');
+    // Activate subscriber
+    Route::get('/activate/subscriber/{id}', [NewsletterController::class, 'NewsletterActivate'])->name('subscriber.activate');
+    // Inactivate subscriber
+    Route::get('/inactivate/subscriber/{id}', [NewsletterController::class, 'NewsletterInactivate'])->name('subscriber.inactivate');
+    // Delete suscriber
+    Route::get("/delete/{id}", [NewsletterController::class, "NewsletterDelete"])->name('subscriber.delete');
+});
+
 // Note: Coupons All routes
 Route::prefix('coupons')->group(function(){
     // View All Coupons

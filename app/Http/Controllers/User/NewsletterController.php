@@ -6,9 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Newsletter;
 use Carbon\Carbon;
+use App\Traits\StoreTrait;
+use App\Traits\UpdateTrait;
+use App\Traits\DeleteTrait;
+use App\Traits\ActivateTrait;
 
 class NewsletterController extends Controller
 {
+    use StoreTrait;
+    use UpdateTrait;
+    use DeleteTrait;
+    use ActivateTrait;
     // add suscribe to news letter 
     public function Subscribe(Request $request){
         $request->validate(['email' =>'required|email|unique:newsletters']);
@@ -30,4 +38,25 @@ class NewsletterController extends Controller
         );
         return redirect()->back()->with($notification); 
     }
+
+    // View all subscribers in dashboard
+    public function NewsletterView (){
+        $emails = Newsletter::latest()->get();
+        return view('backend.newsletter.newsletter_view', compact('emails'));
+    }
+     // Delete Subscriber 
+     public function NewsletterDelete($id){
+        $notification = $this->Delete('App\Models\Newsletter',$id, false,'Subscriber deleted successfully');
+        return redirect()->back()->with($notification);
+    }
+
+    public function NewsletterInactivate($id){
+        $notification = $this->Inactivate('App\Models\Newsletter', $id, 'Subscriber Inactivated');
+        return redirect()->back()->with($notification);
+        
+    } // end method 
+    public function NewsletterActivate($id){
+        $notification = $this->Activate('App\Models\Newsletter', $id, 'Subscriber Activated');
+        return redirect()->back()->with($notification);
+    } // end method 
 }
