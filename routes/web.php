@@ -28,6 +28,7 @@ use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\CashController; 
 use App\Http\Controllers\User\AllUserController; 
 use App\Http\Controllers\User\ReviewController; 
+use App\Http\Controllers\User\NewsletterController; 
 use App\Models\User;
 
 // Route::get("/", function () {
@@ -526,3 +527,5 @@ Route::get("/shop", [ShopController::class, "ShopView"])->name('shop-page');
 Route::post("/shop/filter", [ShopController::class, "ShopFilter"])->name('shop.filter');
 // Note: FAQ view page
 Route::get("/faq", [IndexController::class, "FAQView"])->name('faq-page');
+// Note: newsletter all routes
+Route::post("/subscribe/newsletter", [NewsletterController::class, "Subscribe"])->name('subscribe.newsletter');
