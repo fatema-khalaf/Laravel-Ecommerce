@@ -33,7 +33,7 @@ class SliderController extends Controller
             'inputs'=>$inputs,
             'image_path'=>'upload/slider/',
             'new_image'=>'slider_img',
-            "image_width" => 870,
+            "image_width" => 850,
             "image_height" => 370,
             'model'=>'App\Models\Slider',
         ]);
@@ -55,7 +55,7 @@ class SliderController extends Controller
                 'inputs'=>$inputs,
                 'model'=>'App\Models\Slider',
                 'new_image'=>'slider_img', 
-                "image_width" => 870,
+                "image_width" => 850,
                 "image_height" => 370,
                 'image_path'=>'upload/slider/', 
                 'message'=>'Slider Updated successfully',
