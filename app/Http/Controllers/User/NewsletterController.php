@@ -12,7 +12,8 @@ class NewsletterController extends Controller
     // add suscribe to news letter 
     public function Subscribe(Request $request){
         $request->validate(['email' =>'required|email|unique:newsletters']);
-       try{
+    //   new Idea
+        try{
            Newsletter::insert([
                'email'=>$request->email,
                'created_at' => Carbon::now()
