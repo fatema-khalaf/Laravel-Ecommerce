@@ -524,4 +524,5 @@ Route::post("search-items", [IndexController::class, "SearchItems"]);
 Route::get("/shop", [ShopController::class, "ShopView"])->name('shop-page');
 // Shop categories filter 
 Route::post("/shop/filter", [ShopController::class, "ShopFilter"])->name('shop.filter');
-
+// Note: FAQ view page
+Route::get("/faq", [IndexController::class, "FAQView"])->name('faq-page');

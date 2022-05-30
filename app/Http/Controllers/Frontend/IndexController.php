@@ -186,5 +186,10 @@ class IndexController extends Controller
         ->limit(5)->get();
         return view('frontend.product.search_product', compact('products','item'));
     }
+
+     // View FQA page 
+     public function FAQView(){
+        return view('frontend.footerpages.FAQ');
+    }
 }
  

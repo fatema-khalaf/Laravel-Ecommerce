@@ -5,7 +5,7 @@
     <div class="container">
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
-                <li><a href="home.html">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li class='active'>Login</li>
             </ul>
         </div><!-- /.breadcrumb-inner -->
@@ -111,7 +111,7 @@
                 <!-- create a new account -->
             </div><!-- /.row -->
         </div><!-- /.sigin-in-->
+        <hr>
     </div><!-- /.container -->
-    @include('frontend.body.brand')
 </div><!-- /.body-content -->
 @endsection

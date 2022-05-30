@@ -171,7 +171,7 @@
                                         <span class='price' id="cartSubTotal"></span>
                                     </div>
                                     <div class="clearfix"></div>
-                                    <a href="checkout.html"
+                                    <a href="{{route('checkout')}}"
                                         class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
                                 </div>
                                 <!-- /.cart-total-->
@@ -276,8 +276,7 @@
                                 @endforeach
                                 <li><a href="{{route('shop-page')}}">Shop</a></li>
                                 <!-- // End Category Foreach -->
-                                <li class="dropdown  navbar-right special-menu"> <a
-                                        href="{{route('home.blog')}}">Blog</a> </li>
+                                <li> <a href="{{route('home.blog')}}">Blog</a> </li>
                             </ul>
                             <!-- /.navbar-nav -->
                             <div class="clearfix"></div>

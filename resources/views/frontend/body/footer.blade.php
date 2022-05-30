@@ -48,11 +48,21 @@
 
                     <div class="module-body">
                         <ul class='list-unstyled'>
-                            <li class="first"><a href="#" title="Contact us">My Account</a></li>
-                            <li><a href="#" title="About us">Order History</a></li>
-                            <li><a href="#" title="faq">FAQ</a></li>
-                            <li><a href="#" title="Popular Searches">Specials</a></li>
-                            <li class="last"><a href="#" title="Where is my order?">Help Center</a></li>
+                            @auth
+                            <li class="first"><a href="{{route('dashboard')}}">
+                                    @if(session()->get('language')== 'arabic') حساب المستخدم @else User Profile @endif
+                                </a></li>
+                            @else
+                            <li class="first"><a href="{{route('login')}}">
+                                    @if(session()->get('language')== 'arabic') دخول/تسجيل @else Login/Register @endif
+                                </a></li>
+                            @endauth
+                            {{-- <li class="first"><a href="#" title="Contact us">My Account</a></li> --}}
+                            <li><a href="{{route('my.orders')}}" title="About us">Order History</a></li>
+                            <li><a href="{{route('faq-page')}}" title="faq">FAQ</a></li>
+                            <li><a href="{{route('wishlist')}}">
+                                    @if(session()->get('language')== 'arabic') قائمة الرغبات @else Wishlist @endif
+                                </a></li>
                         </ul>
                     </div>
                     <!-- /.module-body -->
@@ -67,11 +77,17 @@
 
                     <div class="module-body">
                         <ul class='list-unstyled'>
-                            <li class="first"><a title="Your Account" href="#">About us</a></li>
-                            <li><a title="Information" href="#">Customer Service</a></li>
-                            <li><a title="Addresses" href="#">Company</a></li>
-                            <li><a title="Addresses" href="#">Investor Relations</a></li>
-                            <li class="last"><a title="Orders History" href="#">Advanced Search</a></li>
+                            <li class="first"><a title="Your Account" href="/blog">About us</a></li>
+                            <li><a href="{{route('mycart')}}">
+                                    @if(session()->get('language')== 'arabic') السلة @else My Cart @endif
+                                </a></li>
+                            <li><a href="{{route('checkout')}}">
+                                    @if(session()->get('language')== 'arabic') الدفع @else Checkout @endif
+                                </a></li>
+                            <li class="last"><a href="" type="button" data-toggle="modal" data-target="#trackingOrders">
+                                    @if(session()->get('language')== 'arabic') متابعة الطلبات @else Tracking Orders
+                                    @endif
+                                </a></li>
                         </ul>
                     </div>
                     <!-- /.module-body -->
@@ -86,11 +102,9 @@
 
                     <div class="module-body">
                         <ul class='list-unstyled'>
-                            <li class="first"><a href="#" title="About us">Shopping Guide</a></li>
+                            <li class="first"><a href="{{route('shop-page')}}" title="About us">Shop</a></li>
                             <li><a href="/blog" title="Blog">Blog</a></li>
-                            <li><a href="#" title="Company">Company</a></li>
-                            <li><a href="#" title="Investor Relations">Investor Relations</a></li>
-                            <li class=" last"><a href="contact-us.html" title="Suppliers">Contact Us</a></li>
+                            <li class="last"><a href="/blog" title="Suppliers">Contact Us</a></li>
                         </ul>
                     </div>
                     <!-- /.module-body -->
