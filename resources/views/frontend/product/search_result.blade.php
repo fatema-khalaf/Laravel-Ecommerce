@@ -64,7 +64,7 @@
                         <!-- /.sidebar-widget -->
                         <!-- ============================================== PRICE SILDER : END ============================================== -->
                         <!-- ============================================== MANUFACTURES============================================== -->
-                        <div class="sidebar-widget wow fadeInUp">
+                        {{-- <div class="sidebar-widget wow fadeInUp">
                             <div class="widget-header">
                                 <h4 class="widget-title">Manufactures</h4>
                             </div>
@@ -80,7 +80,7 @@
                                 <!--<a href="#" class="lnk btn btn-primary">Show Now</a>-->
                             </div>
                             <!-- /.sidebar-widget-body -->
-                        </div>
+                        </div> --}}
                         <!-- /.sidebar-widget -->
                         <!-- ============================================== MANUFACTURES: END ============================================== -->
                         <!-- ============================================== COLOR============================================== -->
@@ -118,11 +118,11 @@
                         <!-- ============================================== PRODUCT TAGS ============================================== -->
                         @include('frontend.common.product_tags')
                         <!-- /.sidebar-widget -->
-                        <!----------- Testimonials------------->
+                        <!----------- NEWSLETTER------------->
 
-                        @include('frontend.common.testmonial')
+                        @include('frontend.common.newsletter')
 
-                        <!-- ============================================== Testimonials: END ============================================== -->
+                        <!-- ============================================== NEWSLETTER: END ============================================== -->
 
                         <div class="home-banner"> <img src="assets/images/banners/LHS-banner.jpg" alt="Image"> </div>
                     </div>

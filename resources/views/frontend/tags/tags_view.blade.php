@@ -110,11 +110,11 @@ Products with tag
                         <!-- ============================================== PRODUCT TAGS ============================================== -->
                         @include('frontend.common.product_tags')
                         <!-- /.sidebar-widget -->
-                        <!----------- Testimonials------------->
+                        <!----------- NEWSLETTER------------->
 
-                        @include('frontend.common.testmonial')
+                        @include('frontend.common.newsletter')
 
-                        <!-- ============================================== Testimonials: END ============================================== -->
+                        <!-- ============================================== NEWSLETTER: END ============================================== -->
 
                         <div class="home-banner"> <img src="assets/images/banners/LHS-banner.jpg" alt="Image"> </div>
                     </div>

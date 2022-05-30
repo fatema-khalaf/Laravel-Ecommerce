@@ -1,3 +1,8 @@
+@php
+$categories
+=App\Models\Category::orderBy('category_name_en','ASC')->get();
+
+@endphp
 <header class="header-style-1">
 
     <!-- ============================================== TOP MENU ============================================== -->
@@ -94,7 +99,7 @@
                         <form method="get" action="{{route('search.product')}}">
                             @csrf
                             <div class="control-group">
-                                {{-- <ul class="categories-filter animate-dropdown">
+                                <ul class="categories-filter animate-dropdown">
                                     <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown"
                                             href="category.html">
                                             @if(session()->get('language')== 'arabic') الفئات @else Categories
@@ -102,18 +107,19 @@
 
                                             <b class="caret"></b></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li class="menu-header">Computer</li>
+                                            @foreach($categories as $category)
                                             <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Clothing</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Electronics</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Shoes</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Watches</a></li>
+                                                    href="{{url('/shop?category='.$category->category_name_en)}}">
+                                                    @if (session()->get('language') == 'arabic')
+                                                    {{$category->category_name_ar}}
+                                                    @else
+                                                    {{$category->category_name_en}}
+                                                    @endif
+                                                </a></li>
+                                            @endforeach
                                         </ul>
                                     </li>
-                                </ul> --}}
+                                </ul>
                                 {{-- new idea --}}
                                 <input class="search-field" onfocus="search_result_show()" onblur="search_result_hide()"
                                     id="search" name="search" placeholder="Search here..." />
@@ -211,11 +217,7 @@
                                 <li class="active dropdown yamm-fw"> <a href="{{url('/')}}">
                                         @if(session()->get('language')== 'arabic') الرئيسية @else Home @endif
                                     </a> </li>
-                                @php
-                                $categories
-                                =App\Models\Category::orderBy('category_name_en','ASC')->get();
 
-                                @endphp
                                 @foreach($categories as $category)
                                 <li class="dropdown yamm mega-menu"> <a href="#" data-hover="dropdown"
                                         class="dropdown-toggle" data-toggle="dropdown">
@@ -227,6 +229,19 @@
                                         <li>
                                             <div class="yamm-content ">
                                                 <div class="row">
+                                                    <a href="{{url('/shop?category='.$category->category_name_en)}}">
+                                                        <h4 style="color:rgba(0, 0, 0, 0.763);" class="title"><i
+                                                                class="icon {{$category->category_image}}"
+                                                                aria-hidden="true"></i>
+                                                            View All
+                                                            @if (session()->get('language') == 'arabic')
+                                                            {{$category->category_name_ar}}
+                                                            @else
+                                                            {{$category->category_name_en}}
+                                                            @endif
+                                                        </h4>
+                                                    </a>
+                                                    <hr>
                                                     <!--   // Get SubCategory Table Data -->
                                                     @php
                                                     $subcategories =
