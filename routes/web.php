@@ -541,3 +541,4 @@ Route::post("/shop/filter", [ShopController::class, "ShopFilter"])->name('shop.f
 Route::get("/faq", [IndexController::class, "FAQView"])->name('faq-page');
 // Note: newsletter all routes
 Route::post("/subscribe/newsletter", [NewsletterController::class, "Subscribe"])->name('subscribe.newsletter');
+Route::post("/shop/price", [ShopController::class, "PriceFilter"])->name('shop.price');
