@@ -69,16 +69,22 @@
                             <div class="action">
                                 <ul class="list-unstyled">
                                     <li class="add-cart-button btn-group">
-                                        <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                            <i class="fa fa-shopping-cart"></i>
+                                        <button class="btn btn-primary icon" type="button" title="Add Cart"
+                                            data-toggle="modal" data-target="#exampleModal" id="{{$item->id}}"
+                                            onclick="productView(this.id)">
+                                            <i class="fa fa-shopping-cart"></i> </button>
+                                        <button class="btn btn-primary cart-btn" data-toggle="modal"
+                                            data-target="#exampleModal" id="{{$item->id}}"
+                                            onclick="productView(this.id)" type="button">Add to
+                                            cart</button>
+                                    </li>
+                                    <li class="add-cart-button btn-group">
+                                        <button class="btn btn-primary" style="background: #0f6cb2;" type="button"
+                                            title="Wishlist" id='{{$item->id}}' onclick="AddToWishlist(this.id)">
+                                            <i class="fa fa-heart"></i>
                                         </button>
-                                        <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                     </li>
-                                    <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html"
-                                            title="Wishlist"> <i class="icon fa fa-heart"></i> </a>
-                                    </li>
-                                    <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare"> <i
-                                                class="fa fa-signal"></i> </a> </li>
+
                                 </ul>
                             </div>
                             <!-- /.action -->

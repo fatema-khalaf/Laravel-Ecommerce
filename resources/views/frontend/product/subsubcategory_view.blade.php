@@ -170,7 +170,9 @@
                         <div class="tab-pane active " id="grid-container">
                             <div class="category-product">
                                 <div class="row">
-                                    @foreach ($products as $item)
+                                    @include('frontend.product.grid_view_product')
+
+                                    {{-- @foreach ($products as $item)
                                     <div class="col-sm-6 col-md-4 wow fadeInUp" style="    height: 422px;">
                                         <div class="products">
                                             <div class="product">
@@ -280,7 +282,7 @@
                                         </div>
                                         <!-- /.products -->
                                     </div>
-                                    @endforeach
+                                    @endforeach --}}
 
                                     <!-- /.item -->
                                 </div>
@@ -296,7 +298,9 @@
                         <!-- ============================================= LIST STYLE: START ============================================== -->
                         <div class="tab-pane " id="list-container">
                             <div class="category-product">
-                                @foreach ($products as $item)
+                                @include('frontend.product.list_view_product')
+
+                                {{-- @foreach ($products as $item)
                                 <div class="category-product-inner wow fadeInUp">
                                     <div class="products">
                                         <div class="product-list product">
@@ -406,7 +410,7 @@
                                     </div>
                                     <!-- /.products -->
                                 </div>
-                                @endforeach
+                                @endforeach --}}
                                 <!-- /.category-product-inner -->
                             </div>
                             <!-- /.category-product -->

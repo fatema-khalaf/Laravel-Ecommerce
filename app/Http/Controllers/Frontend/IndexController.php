@@ -122,7 +122,7 @@ class IndexController extends Controller
     
     // Subcategory wise data
 	public function SubCatWiseProduct(Request $request, $subcat_id,$slug){
-		$products = Product::where('status',1)->where('subcategory_id',$subcat_id)->orderBy('id','DESC')->paginate(3);
+		$products = Product::where('status',1)->where('subcategory_id',$subcat_id)->orderBy('id','DESC')->paginate(6);
         $breadsubcat = SubCategory::with(['category'])->where('id',$subcat_id)->get(); // for page navigation
         $items = Product::where('status',1)->where('subcategory_id',$subcat_id)->get(); // for product count
 		// new idea video 464  Load More Product with Ajax 
@@ -136,7 +136,7 @@ class IndexController extends Controller
 	}
     // Sub-subcategory wise data
     public function SubSubCatWiseProduct($subsubcat_id,$slug){
-        $products = Product::where('status',1)->where('subsubcategory_id', $subsubcat_id)->orderby('id','DESC')->paginate(3);
+        $products = Product::where('status',1)->where('subsubcategory_id', $subsubcat_id)->orderby('id','DESC')->paginate(9);
         $items = Product::where('status',1)->where('subsubcategory_id',$subsubcat_id)->get(); // for product count
         $breadsubsubcat = SubSubcategory::with(['category','subcategory'])->where('id',$subsubcat_id)->get(); // for page navigation
         return view('frontend.product.subsubcategory_view',compact('products','slug','breadsubsubcat','items'));
