@@ -79,30 +79,8 @@ shop
                                     <!-- /.accordion -->
                                     @endforeach
                                 </div>
-                                {{--
 
-
-
-                                <div class="sidebar-widget-body">
-                                    <div class="accordion">
-                                        <div class="accordion-group">
-                                            <div class="accordion-heading">
-                                                <label class="form-check-label">
-                                                    <input type="checkbox" class="form-check-input" name="price[]"
-                                                        value="item" onchange="this.form.submit()">ggggggggg
-
-                                                </label>
-                                            </div>
-                                            <!-- /.accordion-heading -->
-
-                                            <!-- /.accordion-body -->
-                                        </div>
-                                        <!-- /.accordion-group -->
-                                    </div>
-                                    <!-- /.accordion -->
-                                </div>
-                                <!-- /.sidebar-widget-body -->
-                                <!--  /////////// This is for Brand Filder /////////////// --> --}}
+                                <!--  /////////// This is for Brand Filder /////////////// -->
 
 
                                 <hr>

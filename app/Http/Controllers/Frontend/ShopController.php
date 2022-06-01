@@ -32,6 +32,8 @@ class ShopController extends Controller
             $min_price = $_GET['min'];
             $max_price = $_GET['max'];
             $products = $productQ->where('status',1)->whereBetween('selling_price', [$min_price, $max_price])->orderBy('id','DESC')->paginate(9);
+            $priceProds = $productQ->where('status',1)->whereBetween('selling_price', [$min_price, $max_price])->get();
+
          }
          
          // If ther is a brand in the request filter the product

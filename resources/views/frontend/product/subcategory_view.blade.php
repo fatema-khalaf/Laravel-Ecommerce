@@ -47,144 +47,35 @@
                 @include('frontend.common.vertical_menu')
                 <!-- = ==== TOP NAVIGATION : END === ===== -->
 
-
-
-
                 <div class="sidebar-module-container">
                     <div class="sidebar-filter">
                         <!-- ============================================== SIDEBAR CATEGORY ============================================== -->
-                        {{-- <div class="sidebar-widget wow fadeInUp">
-                            <h3 class="section-title">shop by</h3>
-                            <div class="widget-header">
-                                <h4 class="widget-title">Category</h4>
-                            </div>
-                            <div class="sidebar-widget-body">
-                                @foreach ($categories as $item)
-                                <div class="accordion">
-                                    <div class="accordion-group">
-                                        <div class="accordion-heading"> <a href="#cat{{$item->id}}"
-                                                data-toggle="collapse" class="accordion-toggle collapsed">
-                                                @if(session('language') == 'arabic')
-                                                {{$item->category_name_ar}}
-                                                @else
-                                                {{$item->category_name_en}}
-                                                @endif
-                                            </a> </div>
-                                        <!-- /.accordion-heading -->
-                                        <div class="accordion-body collapse" id="cat{{$item->id}}" style="height: 0px;">
-                                            <div class="accordion-inner">
-                                                @php
-                                                $subcategories =
-                                                App\Models\Subcategory::where('category_id',$item->id)->orderBy('subcategory_name_en','ASC')->get();
-                                                @endphp
-                                                @foreach($subcategories as $item)
-                                                <ul>
-                                                    <li><a href="#">
-                                                            @if(session('language') == 'arabic')
-                                                            {{$item->subcategory_name_ar}}
-                                                            @else
-                                                            {{$item->subcategory_name_en}}
-                                                            @endif</a></li>
-                                                </ul>
-                                                @endforeach
-                                            </div>
-                                            <!-- /.accordion-inner -->
-                                        </div>
-                                        <!-- /.accordion-body -->
-                                    </div>
-                                    <!-- /.accordion-group -->
-                                </div>
-                                <!-- /.accordion -->
-                                @endforeach
-                            </div>
-                            <!-- /.sidebar-widget-body -->
-                        </div> --}}
                         @include('frontend.common.sidebar_category_accordion')
                         <!-- /.sidebar-widget -->
                         <!-- ============================================== SIDEBAR CATEGORY : END ============================================== -->
 
                         <!-- ============================================== PRICE SILDER============================================== -->
-                        <div class="sidebar-widget wow fadeInUp">
-                            <div class="widget-header">
-                                <h4 class="widget-title">Price Slider</h4>
-                            </div>
-                            <div class="sidebar-widget-body m-t-10">
-                                <div class="price-range-holder"> <span class="min-max"> <span
-                                            class="pull-left">$200.00</span> <span class="pull-right">$800.00</span>
-                                    </span>
-                                    <input type="text" id="amount"
-                                        style="border:0; color:#666666; font-weight:bold;text-align:center;">
-                                    <input type="text" class="price-slider" value="">
-                                </div>
-                                <!-- /.price-range-holder -->
-                                <a href="#" class="lnk btn btn-primary">Show Now</a>
-                            </div>
-                            <!-- /.sidebar-widget-body -->
-                        </div>
-                        <!-- /.sidebar-widget -->
+
                         <!-- ============================================== PRICE SILDER : END ============================================== -->
                         <!-- ============================================== MANUFACTURES============================================== -->
-                        @php
-                        $brands = App\Models\Brand::orderBy('id','DESC')->get();
-                        @endphp
-                        <div class="sidebar-widget wow fadeInUp">
-                            <div class="widget-header">
-                                <h4 class="widget-title">Manufactures</h4>
-                            </div>
-                            <div class="sidebar-widget-body">
-                                <ul class="list">
-                                    @foreach ($brands as $item)
-                                    <li><a href="#">{{$item->brand_name_en}}</a></li>
-                                    @endforeach
-                                </ul>
-                                <!--<a href="#" class="lnk btn btn-primary">Show Now</a>-->
-                            </div>
-                            <!-- /.sidebar-widget-body -->
-                        </div>
-                        <!-- /.sidebar-widget -->
+
                         <!-- ============================================== MANUFACTURES: END ============================================== -->
                         <!-- ============================================== COLOR============================================== -->
-                        {{-- <div class="sidebar-widget wow fadeInUp">
-                            <div class="widget-header">
-                                <h4 class="widget-title">Colors</h4>
-                            </div>
-                            <div class="sidebar-widget-body">
-                                <ul class="list">
-                                    <li><a href="#">Red</a></li>
-                                    <li><a href="#">Blue</a></li>
-                                    <li><a href="#">Yellow</a></li>
-                                    <li><a href="#">Pink</a></li>
-                                    <li><a href="#">Brown</a></li>
-                                    <li><a href="#">Teal</a></li>
-                                </ul>
-                            </div>
-                            <!-- /.sidebar-widget-body -->
-                        </div> --}}
-                        <!-- /.sidebar-widget -->
+
                         <!-- ============================================== COLOR: END ============================================== -->
                         <!-- ============================================== COMPARE============================================== -->
-                        <div class="sidebar-widget wow fadeInUp outer-top-vs">
-                            <h3 class="section-title">Compare products</h3>
-                            <div class="sidebar-widget-body">
-                                <div class="compare-report">
-                                    <p>You have no <span>item(s)</span> to compare</p>
-                                </div>
-                                <!-- /.compare-report -->
-                            </div>
-                            <!-- /.sidebar-widget-body -->
-                        </div>
-                        <!-- /.sidebar-widget -->
+
                         <!-- ============================================== COMPARE: END ============================================== -->
                         <!-- ============================================== PRODUCT TAGS ============================================== -->
                         @include('frontend.common.product_tags')
                         <!-- /.sidebar-widget -->
-                        <!----------- NEWSLETTER------------->
+
+                        <!-- ============================================== NEWSLETTER ============================================== -->
 
                         @include('frontend.common.newsletter')
 
                         <!-- ============================================== NEWSLETTER: END ============================================== -->
 
-                        <div class="home-banner"> <img src="assets/images/banners/LHS-banner.jpg" alt="Image"> </div>
                     </div>
                     <!-- /.sidebar-filter -->
                 </div>
@@ -194,26 +85,9 @@
             <div class='col-md-9'>
                 <!-- ========================================== SECTION – HERO ========================================= -->
 
-                {{-- <div id="category" class="category-carousel hidden-xs">
-                    <div class="item">
-                        <div class="image"> <img src="assets/images/banners/cat-banner-1.jpg" alt=""
-                                class="img-responsive"> </div>
-                        <div class="container-fluid">
-                            <div class="caption vertical-top text-left">
-                                <div class="big-text"> Big Sale </div>
-                                <div class="excerpt hidden-sm hidden-md"> Save up to 49% off </div>
-                                <div class="excerpt-normal hidden-sm hidden-md"> Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit </div>
-                            </div>
-                            <!-- /.caption -->
-                        </div>
-                        <!-- /.container-fluid -->
-                    </div>
-                </div> --}}
-
-
                 <div class="clearfix filters-container m-t-10">
-                    <h4> {{ count($products) }} </span>products </h4>
+
+                    <h4> {{ count($items) }} </span>products </h4>
                     <hr>
                     <div class="row">
                         <div class="col col-sm-6 col-md-2">
@@ -275,22 +149,6 @@
                             <!-- /.col -->
                         </div>
                         <!-- /.col -->
-
-                        {{-- <div class="col col-sm-6 col-md-4 text-right">
-                            <div class="pagination-container">
-                                <ul class="list-inline list-unstyled">
-                                    <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li class="active"><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                                </ul>
-                                <!-- /.list-inline -->
-                            </div>
-                            <!-- /.pagination-container -->
-                        </div> --}}
-                        <!-- /.col -->
                     </div>
                     <!-- /.row -->
                 </div>
@@ -323,24 +181,6 @@
 
                         <!-- /.tab-pane #list-container -->
                     </div>
-
-                    <!-- /.tab-content -->
-                    {{-- <div class="clearfix filters-container">
-                        <div class="text-right">
-
-                            <div class="pagination-container">
-                                <ul class="list-inline list-unstyled">
-                                    {{ $products->links() }}
-
-                                </ul>
-                                <!-- /.list-inline -->
-                            </div>
-                            <!-- /.pagination-container -->
-                        </div>
-                        <!-- /.text-right -->
-
-                    </div> --}}
-                    <!-- /.filters-container -->
 
                 </div>
                 <!-- /.search-result-container -->

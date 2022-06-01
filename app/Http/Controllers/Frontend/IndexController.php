@@ -124,15 +124,15 @@ class IndexController extends Controller
 	public function SubCatWiseProduct(Request $request, $subcat_id,$slug){
 		$products = Product::where('status',1)->where('subcategory_id',$subcat_id)->orderBy('id','DESC')->paginate(3);
         $breadsubcat = SubCategory::with(['category'])->where('id',$subcat_id)->get(); // for page navigation
+        $items = Product::where('status',1)->where('subcategory_id',$subcat_id)->get(); // for product count
 		// new idea video 464  Load More Product with Ajax 
 		if ($request->ajax()) {
-  
             $grid_view = view('frontend.product.grid_view_product',compact('products'))->render();
             $list_view = view('frontend.product.list_view_product',compact('products'))->render();
             return response()->json(['grid_view' => $grid_view,'list_view' => $list_view]);	
             }
                  ///  End Load More Product with Ajax 
-        return view('frontend.product.subcategory_view',compact('products','slug','breadsubcat'));
+        return view('frontend.product.subcategory_view',compact('products','slug','breadsubcat','items'));
 	}
     // Sub-subcategory wise data
     public function SubSubCatWiseProduct($subsubcat_id,$slug){
