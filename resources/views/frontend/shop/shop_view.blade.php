@@ -37,7 +37,7 @@ shop
                 <!-- = ==== TOP NAVIGATION : END === ===== -->
 
                 <div class="sidebar-module-container outer-bottom-xs">
-                    <form action="{{route('shop.filter')}}" method="post">
+                    <form id="cat" action="{{route('shop.filter')}}" method="post" onsubmit="dis()">
                         @csrf
                         <div class="sidebar-filter">
                             <!-- ============================================== SIDEBAR CATEGORY ============================================== -->
@@ -62,7 +62,7 @@ shop
                                                     {{-- name="category[]" to select multiple category at once--}}
                                                     <input type="checkbox" class="form-check-input" name="category[]"
                                                         value="{{ $category->category_slug_en }}"
-                                                        onchange="this.form.submit()" @if(!empty($filterCat) &&
+                                                        onchange="dis() ; this.form.submit()" @if(!empty($filterCat) &&
                                                         in_array($category->category_slug_en,$filterCat)) checked @endif
                                                     >
                                                     @if(session()->get('language') == 'arabic') {{
@@ -79,8 +79,30 @@ shop
                                     <!-- /.accordion -->
                                     @endforeach
                                 </div>
+                                {{--
+
+
+
+                                <div class="sidebar-widget-body">
+                                    <div class="accordion">
+                                        <div class="accordion-group">
+                                            <div class="accordion-heading">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" name="price[]"
+                                                        value="item" onchange="this.form.submit()">ggggggggg
+
+                                                </label>
+                                            </div>
+                                            <!-- /.accordion-heading -->
+
+                                            <!-- /.accordion-body -->
+                                        </div>
+                                        <!-- /.accordion-group -->
+                                    </div>
+                                    <!-- /.accordion -->
+                                </div>
                                 <!-- /.sidebar-widget-body -->
-                                <!--  /////////// This is for Brand Filder /////////////// -->
+                                <!--  /////////// This is for Brand Filder /////////////// --> --}}
 
 
                                 <hr>
@@ -103,7 +125,7 @@ shop
                                                     <input type="checkbox" class="form-check-input" name="brand[]"
                                                         value="{{ $brand->brand_slug_en }}" @if(!empty($filterBrand) &&
                                                         in_array($brand->brand_slug_en,$filterBrand)) checked @endif
-                                                    onchange="this.form.submit()">
+                                                    onchange="dis() ;this.form.submit()">
 
                                                     @if(session()->get('language') == 'arabic') {{ $brand->brand_name_ar
                                                     }} @else {{ $brand->brand_name_en }} @endif
@@ -135,21 +157,6 @@ shop
                         <div class="widget-header">
                             <h4 class="widget-title">Price Slider</h4>
                         </div>
-                        {{-- <div class="sidebar-widget-body m-t-10">
-                            <div class="price-range-holder"> <span class="min-max"> <span
-                                        class="pull-left">$200.00</span> <span class="pull-right">$800.00</span>
-                                </span>
-                                <form action="{{route('shop.price')}} " method="post">
-                                    @csrf
-                                    <input type="text" id="amount" min="20" max="1000"
-                                        style="border:0; color:#666666; font-weight:bold;text-align:center;">
-                                    <input name="max" type="text" class="price-slider" value="" min="20" max="1000">
-
-                            </div>
-                            <!-- /.price-range-holder -->
-                            <button type="submit" class="lnk btn btn-primary">Show Now</button>
-                            </form>
-                        </div> --}}
                         <div class="sidebar-widget-body m-t-10">
 
                             @include('frontend.shop.priceSlider')
@@ -199,7 +206,7 @@ shop
 
 
             <div class="clearfix filters-container m-t-10">
-                <h4> {{ $products->total() }} </span>products </h4>
+                <h4> {{ $priceProds->count() }} </span>products </h4>
                 <hr>
                 <div class="row">
                     <div class="col col-sm-6 col-md-2">
@@ -278,122 +285,8 @@ shop
 
                     <div class="tab-pane active " id="grid-container">
                         <div class="category-product">
-                            <div class="row">
-                                @foreach ($products as $item)
-                                <div class="col-sm-6 col-md-4 wow fadeInUp" style="    height: 422px;">
-                                    <div class="products">
-                                        <div class="product">
-                                            <div class="product-image">
-                                                <div class="image"> <a
-                                                        href="{{ url('product/details/'.$item->id.'/'.$item->product_slug_en ) }}"><img
-                                                            src="{{asset($item->product_thambnail)}}" alt=""></a>
-                                                </div>
-                                                <!-- /.image -->
-
-                                                @php
-                                                $amount = $item->selling_price - $item->discount_price;
-                                                $discount = ($amount/ $item->selling_price)*100;
-                                                @endphp
-                                                @if ($item->discount_price == NULL)
-                                                <div class="tag new"><span>new</span></div>
-                                                @else
-                                                <div class="tag sale"><span>{{round($discount)}}%</span>
-                                                </div>
-
-                                                @endif
-                                            </div>
-                                            <!-- /.product-image -->
-
-                                            <div class="product-info text-left">
-                                                <h3 class="name"><a
-                                                        href="{{ url('product/details/'.$item->id.'/'.$item->product_slug_en ) }}">
-                                                        @if(session('language') == 'arabic')
-                                                        {{$item->product_name_ar}}
-                                                        @else
-                                                        {{$item->product_name_en}}
-                                                        @endif
-
-                                                    </a>
-                                                </h3>
-                                                @php
-                                                $reviewcount =
-                                                App\Models\Review::where('product_id',$item->id)->where('status',1)->latest()->get();
-                                                $avarage =
-                                                App\Models\Review::where('product_id',$item->id)->where('status',1)->avg('rating');
-                                                @endphp
-
-                                                <div class="rating-reviews m-t-20">
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            @if($avarage == 0)
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            @else
-                                                            <span
-                                                                class="fa fa-star {{$avarage >= 1 ? 'checked' : ''}} "></span>
-                                                            <span
-                                                                class="fa fa-star {{$avarage >= 2 ? 'checked' : ''}}"></span>
-                                                            <span
-                                                                class="fa fa-star {{$avarage >= 3 ? 'checked' : ''}}"></span>
-                                                            <span
-                                                                class="fa fa-star {{$avarage >= 4 ? 'checked' : ''}}"></span>
-                                                            <span
-                                                                class="fa fa-star {{$avarage >= 5 ? 'checked' : ''}}"></span>
-                                                            @endif
-                                                        </div>
-                                                    </div><!-- /.row -->
-                                                </div><!-- /.rating-reviews -->
-                                                @if ($item->discount_price == Null)
-                                                <div class="product-price"> <span class="price">
-                                                        ${{$item->selling_price}}</span>
-                                                </div>
-                                                @else
-                                                <div class="product-price"> <span class="price">
-                                                        ${{$item->discount_price}}</span>
-                                                    <span class="price-before-discount">${{$item->selling_price}}</span>
-                                                </div>
-                                                @endif
-
-
-                                                <!-- /.product-price -->
-
-                                            </div>
-                                            <!-- /.product-info -->
-                                            <div class="cart clearfix animate-effect">
-                                                <div class="action">
-                                                    <ul class="list-unstyled">
-                                                        <li class="add-cart-button btn-group">
-                                                            <button class="btn btn-primary icon" data-toggle="dropdown"
-                                                                type="button"> <i class="fa fa-shopping-cart"></i>
-                                                            </button>
-                                                            <button class="btn btn-primary cart-btn" type="button">Add
-                                                                to
-                                                                cart</button>
-                                                        </li>
-                                                        <li class="lnk wishlist"> <a class="add-to-cart"
-                                                                href="detail.html" title="Wishlist"> <i
-                                                                    class="icon fa fa-heart"></i> </a>
-                                                        </li>
-                                                        <li class="lnk"> <a class="add-to-cart" href="detail.html"
-                                                                title="Compare"> <i class="fa fa-signal"></i> </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <!-- /.action -->
-                                            </div>
-                                            <!-- /.cart -->
-                                        </div>
-                                        <!-- /.product -->
-
-                                    </div>
-                                    <!-- /.products -->
-                                </div>
-                                @endforeach
-
-                                <!-- /.item -->
+                            <div class="row" id="grid_view_product">
+                                @include('frontend.product.grid_view_product')
                             </div>
                             <!-- /.row -->
                         </div>
@@ -406,126 +299,10 @@ shop
 
                     <!-- ============================================= LIST STYLE: START ============================================== -->
                     <div class="tab-pane " id="list-container">
-                        <div class="category-product">
-                            @foreach ($products as $item)
-                            <div class="category-product-inner wow fadeInUp">
-                                <div class="products">
-                                    <div class="product-list product">
-                                        <div class="row product-list-row">
-                                            <div class="col col-sm-4 col-lg-4">
-                                                <div class="product-image">
-                                                    <div class="image"> <img src="{{asset($item->product_thambnail)}}"
-                                                            alt="">
-                                                    </div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                            </div>
-                                            <!-- /.col -->
-                                            <div class="col col-sm-8 col-lg-8">
-                                                <div class="product-info">
-                                                    <h3 class="name"><a
-                                                            href="{{ url('product/details/'.$item->id.'/'.$item->product_slug_en ) }}">
-                                                            @if(session('language') == 'arabic')
-                                                            {{$item->product_name_ar}}
-                                                            @else
-                                                            {{$item->product_name_en}}
-                                                            @endif
-                                                        </a>
-                                                    </h3>
-                                                    @php
-                                                    $reviewcount =
-                                                    App\Models\Review::where('product_id',$item->id)->where('status',1)->latest()->get();
-                                                    $avarage =
-                                                    App\Models\Review::where('product_id',$item->id)->where('status',1)->avg('rating');
-                                                    @endphp
-
-                                                    <div class="rating-reviews m-t-20">
-                                                        <div class="row">
-                                                            <div class="col-sm-12">
-                                                                @if($avarage == 0)
-                                                                <span class="fa fa-star-o"></span>
-                                                                <span class="fa fa-star-o"></span>
-                                                                <span class="fa fa-star-o"></span>
-                                                                <span class="fa fa-star-o"></span>
-                                                                <span class="fa fa-star-o"></span>
-                                                                @else
-                                                                <span
-                                                                    class="fa fa-star {{$avarage >= 1 ? 'checked' : ''}} "></span>
-                                                                <span
-                                                                    class="fa fa-star {{$avarage >= 2 ? 'checked' : ''}}"></span>
-                                                                <span
-                                                                    class="fa fa-star {{$avarage >= 3 ? 'checked' : ''}}"></span>
-                                                                <span
-                                                                    class="fa fa-star {{$avarage >= 4 ? 'checked' : ''}}"></span>
-                                                                <span
-                                                                    class="fa fa-star {{$avarage >= 5 ? 'checked' : ''}}"></span>
-                                                                @endif
-                                                            </div>
-                                                        </div><!-- /.row -->
-                                                    </div><!-- /.rating-reviews -->
-                                                    @if ($item->discount_price == Null)
-                                                    <div class="product-price"> <span class="price">
-                                                            ${{$item->selling_price}}</span>
-                                                    </div>
-                                                    @else
-                                                    <div class="product-price"> <span class="price">
-                                                            ${{$item->discount_price}}</span>
-                                                        <span
-                                                            class="price-before-discount">${{$item->selling_price}}</span>
-                                                    </div>
-                                                    @endif
-                                                    <!-- /.product-price -->
-                                                    <div class="description m-t-10">
-                                                        @if(session('language') == 'arabic')
-                                                        {{$item->short_descp_ar}}
-                                                        @else
-                                                        {{$item->short_descp_en}}
-                                                        @endif
-                                                    </div>
-                                                    <div class="cart clearfix animate-effect">
-                                                        <div class="action">
-                                                            <ul class="list-unstyled">
-                                                                <li class="add-cart-button btn-group">
-                                                                    <button class="btn btn-primary icon"
-                                                                        data-toggle="dropdown" type="button"> <i
-                                                                            class="fa fa-shopping-cart"></i>
-                                                                    </button>
-                                                                    <button class="btn btn-primary cart-btn"
-                                                                        type="button">Add
-                                                                        to
-                                                                        cart</button>
-                                                                </li>
-                                                                <li class="lnk wishlist"> <a class="add-to-cart"
-                                                                        href="detail.html" title="Wishlist">
-                                                                        <i class="icon fa fa-heart"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="lnk"> <a class="add-to-cart"
-                                                                        href="detail.html" title="Compare">
-                                                                        <i class="fa fa-signal"></i>
-                                                                    </a> </li>
-                                                            </ul>
-                                                        </div>
-                                                        <!-- /.action -->
-                                                    </div>
-                                                    <!-- /.cart -->
-
-                                                </div>
-                                                <!-- /.product-info -->
-                                            </div>
-                                            <!-- /.col -->
-                                        </div>
-                                        <!-- /.product-list-row -->
-                                        <div class="tag new"><span>new</span></div>
-                                    </div>
-                                    <!-- /.product-list -->
-                                </div>
-                                <!-- /.products -->
-                            </div>
-                            @endforeach
-                            <!-- /.category-product-inner -->
+                        <div class="category-product" id="list_view_product">
+                            @include('frontend.product.list_view_product')
                         </div>
-                        <!-- /.category-product -->
+
                     </div>
 
                     <!-- /.tab-pane #list-container -->
@@ -554,5 +331,10 @@ shop
 
 </div>
 <!-- /.body-content -->
-
+<script>
+    // disable price button when the user chek on any checkbox
+    function dis(){
+        $('#show').attr('disabled', true);
+    }
+</script>
 @endsection

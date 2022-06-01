@@ -93,17 +93,15 @@
 
 <form action="{{route('shop.price')}} " method="post">
     @csrf
+    <span id="min">Min:</span>
+    <span id="max">Max:</span>
     <div class="middle">
         <div class="multi-range-slider">
-            <span id="min">Min:</span>
-            <span id="max">Max:</span>
-            {{-- @php
-            dd($minPrice);
-            @endphp --}}
-            <input name="in1" type="range" id="input-left" min="{{$priceProds->min('selling_price')}}"
-                max="{{$priceProds->max('selling_price')}}">
-            <input name="in2" type="range" id="input-right" min="{{$priceProds->min('selling_price')}}"
-                max="{{$priceProds->max('selling_price')}}">
+
+            <input name="min_p" type="range" id="input-left" min="{{$priceProds->min('selling_price')}}"
+                max="{{$priceProds->max('selling_price')}}" value="{{$priceProds->min('selling_price')}}">
+            <input name="max_p" type="range" id="input-right" min="{{$priceProds->min('selling_price')}}"
+                max="{{$priceProds->max('selling_price')}}" value="{{$priceProds->max('selling_price')}}">
 
             <div class="slider">
                 <div class="track"></div>
@@ -113,7 +111,8 @@
             </div>
         </div>
     </div>
-    <button type="submit" class="lnk btn btn-primary">Show Now</button>
+    <button type='submit' class="lnk btn btn-primary">Show Now</button>
+
 </form>
 
 <script>
@@ -181,15 +180,46 @@
         thumbRight.classList.remove("active");
     });
 </script>
+
+{{-- control spans min and max price --}}
 <script type="text/javascript">
     $(document).ready(function() {
       $('#input-left').on('change', function(){
-          var in1 = $(this).val();
-          $('#min').text('Min: '+in1);   
+          var min_p = $(this).val();
+          $('#min').text('Min: $'+min_p);   
       });
       $('#input-right').on('change', function(){
-          var in2 = $(this).val();
-          $('#max').text('Max: '+in2);   
+          var max_p = $(this).val();
+          $('#max').text('Max: $'+max_p);   
       });
     });
+</script>
+
+<script>
+    //  this is for ajax this function is NOT inuse 
+    function loadProduct(){
+        var min_price = $('#input-left').val();
+        var max_price = $('#input-right').val();
+      $.ajax({
+        type: "post",
+        dataType: 'json',
+        url: "?min_price="+min_price+"?max_price="+max_price,
+        data: {max_price:max_price, min_price:min_price},
+      })
+      .done(function(data){
+          if (data.grid_view == " " || data.list_view == " ") {
+              return;
+            }
+            $('#grid_view_product').html(data.grid_view);
+            $('#list_view_product').html(data.list_view);
+      })
+      .fail(function(data){
+        alert(data.responseText);
+      })
+    }
+    // disable the button while the page is loading
+    $(document).ready(function(){
+    $('#show').attr('disabled',false);
+});
+
 </script>
