@@ -289,7 +289,8 @@ $categories
                                     </ul>
                                 </li>
                                 @endforeach
-                                <li><a href="{{route('shop-page')}}">Shop</a></li>
+                                <li style="background-color: #fdd922;"><a style=" color:black "
+                                        href="{{route('shop-page')}}">Shop</a></li>
                                 <!-- // End Category Foreach -->
                                 <li> <a href="{{route('home.blog')}}">Blog</a> </li>
                             </ul>
