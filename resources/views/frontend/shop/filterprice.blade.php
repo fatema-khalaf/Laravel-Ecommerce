@@ -109,7 +109,7 @@
         </div>
     </div>
 </div>
-<a id='submit' href="#/" class="lnk btn btn-primary">Show Now</a>
+<a id='pricefilter' onclick='filter()' href="#/" class="lnk btn btn-primary">Show Now</a>
 
 
 <script>
