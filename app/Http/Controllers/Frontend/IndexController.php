@@ -136,9 +136,10 @@ class IndexController extends Controller
 	}
     // Sub-subcategory wise data
     public function SubSubCatWiseProduct($subsubcat_id,$slug){
-        $products = Product::where('status',1)->where('subsubcategory_id', $subsubcat_id)->orderby('id','DESC')->paginate(12);
+        $products = Product::where('status',1)->where('subsubcategory_id', $subsubcat_id)->orderby('id','DESC')->paginate(3);
+        $items = Product::where('status',1)->where('subsubcategory_id',$subsubcat_id)->get(); // for product count
         $breadsubsubcat = SubSubcategory::with(['category','subcategory'])->where('id',$subsubcat_id)->get(); // for page navigation
-        return view('frontend.product.subsubcategory_view',compact('products','slug','breadsubsubcat'));
+        return view('frontend.product.subsubcategory_view',compact('products','slug','breadsubsubcat','items'));
     }
 
     
