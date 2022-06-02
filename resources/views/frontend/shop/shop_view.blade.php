@@ -27,6 +27,7 @@ shop
 <div class="body-content outer-top-xs">
     <div class='container'>
 
+        {{-- {{$products->lastPage()}} --}}
         <div class='row'>
             <div class='col-md-3 sidebar'>
                 @php
@@ -35,9 +36,9 @@ shop
                 <!-- ===== == TOP NAVIGATION ======= ==== -->
                 @include('frontend.common.vertical_menu')
                 <!-- = ==== TOP NAVIGATION : END === ===== -->
-                <!-- ============================================== FILTER ============================================== -->
+                <!-- ============================================== SIDE FILTER ============================================== -->
                 @include('frontend.shop.filter')
-                <!-- ============================================== FILTER ============================================== -->
+                <!-- ============================================== SIDE FILTER ============================================== -->
 
 
                 <!-- /.sidebar-filter -->
@@ -54,19 +55,22 @@ shop
             <!-- /.sidebar-module-container -->
         </div>
         <!-- /.sidebar -->
-        <div class='col-md-9' id="all_product">
-            <!-- ========================================== Products ========================================= -->
 
-            @include('frontend.product.products')
-            <!-- /.search-result-container -->
-
+        <!-- ========================================== PRODUCTS BOX ========================================= -->
+        <div class='col-md-9'>
+            {{-- NOTE: top filter should not be inside product.products as "product.products" rerended after each filter
+            change --}}
+            @include('frontend.shop.topfilter')
+            <div class="search-result-container " id="all_product">
+                @include('frontend.product.products')
+            </div>
         </div>
+        <!-- ========================================== PRODUCTS BOX : END ========================================= -->
         <!-- /.col -->
     </div>
     <!-- /.row -->
     <!-- ============================================== BRANDS CAROUSEL ============================================== -->
     @include('frontend.body.brand')
-
     <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
 
 </div>
@@ -74,34 +78,9 @@ shop
 
 </div>
 <!-- /.body-content -->
-<script>
-    // disable price button when the user chek on any checkbox
-    function dis(){
-        $('#show').attr('disabled', true);
-    }
-</script>
-
-
-var uno = [];
-$('input[name="uno[]"]').each( function() {
-uno.push(this.value);
-});
-and send it
-
-$.ajax({
-type: "POST",
-url: "procesa.php",
-data: {uno: uno}
-})
-$('input[name="status"]:checked').val()
 
 <script>
-    // $.ajaxSetup({
-    //         headers:{
-    //             'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
-    //         }
-    //     })
-    function filter(){
+    function filter(page){
         var min_price = $('#input-left').val();
         var max_price = $('#input-right').val();
         var categories = [];
@@ -114,53 +93,40 @@ $('input[name="status"]:checked').val()
         });
         var sort = $("#sort:checked").val();
         var paginate = $("#paginate:checked").val();
- console.log( categories);
       $.ajax({
         type: "post",
         dataType: 'json',
         url: "{{  url('/filter/ajax') }}",
-        data: {        "_token": "{{ csrf_token() }}",
-
-            max_price:max_price, min_price:min_price,categories: categories , brands:brands, paginate:paginate, sort:sort },
+        data: {       
+            "_token": "{{ csrf_token() }}",
+            page:page,
+            max_price:max_price,
+            min_price:min_price,
+            categories: categories,
+            brands:brands,
+            paginate:paginate,
+            sort:sort
+            },
       })
       .done(function(data){
-        //   if (data.grid_view == " " || data.list_view == " ") {
-        //       return;
-        //     }
-        //     $('#grid_view_product').html(data.grid_view);
-        //     $('#list_view_product').html(data.list_view);
           if (data.productlist == " " ) {
               return;
             }
-            $('#all_product').html(data.productlist);
-            // $('#list_view_product').html(data.list_view);
+            $('#all_product').html(data.productlist); // update product.products page
       })
       .fail(function(data){
-        alert(data.responseJSON);
+        alert('Some Thing Went Wrong!');
       })
     }
+    // new idea:👇👇👇This is the solution to jaxa pagination links that dose not render the
+    // result as it was view the source code instade so I create 
+    // this function to update a tag href value to make request on the next page of ajax result
+    // and re render the correct page 
+    $(document).on('click', '.pagenate', function(event){
+        event.preventDefault();
+        var page = $(this).attr('href').split('page=')[1];
+    filter(page);
+ });
 </script>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-      $('select[name="category_id"]').on('change', function(){
-          var category_id = $(this).val();
-          if(category_id) {
-              $.ajax({
-                  url: "{{  url('/category/subcategory/ajax') }}/"+category_id,
-                  type:"GET",
-                  dataType:"json",
-                  success:function(data) {
-                     var d =$('select[name="subcategory_id"]').empty();
-                        $.each(data, function(key, value){
-                            $('select[name="subcategory_id"]').append('<option value="'+ value.id +'">' + value.subcategory_name_en + '</option>');
-                        });
-                  },
-              });
-          } else {
-              alert('danger');
-          }
-      });
-  });
-</script>
 @endsection

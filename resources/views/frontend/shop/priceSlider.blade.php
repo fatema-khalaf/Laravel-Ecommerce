@@ -97,7 +97,6 @@
     <span id="max">Max:</span>
     <div class="middle">
         <div class="multi-range-slider">
-
             <input name="min_p" type="range" id="input-left" min="{{$priceProds->min('selling_price')}}"
                 max="{{$priceProds->max('selling_price')}}" value="{{$priceProds->min('selling_price')}}">
             <input name="max_p" type="range" id="input-right" min="{{$priceProds->min('selling_price')}}"
