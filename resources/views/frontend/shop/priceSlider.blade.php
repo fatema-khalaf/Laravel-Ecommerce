@@ -6,7 +6,6 @@
         position: relative;
         max-width: 500px;
         margin: 40px 0;
-
     }
 
     .slider {
@@ -87,10 +86,8 @@
         -webkit-appearance: none;
     }
 
-
     /*--- /.price-range-slider ---*/
 </style>
-
 <form action="{{route('shop.price')}} " method="post">
     @csrf
     <span id="min">Min:</span>
@@ -102,7 +99,6 @@
                 max="{{$priceProds->max('selling_price')}}" value="{{$priceProds->min('selling_price')}}">
             <input name="max_p" type="range" id="input-right" min="{{$priceProds->min('selling_price')}}"
                 max="{{$priceProds->max('selling_price')}}" value="{{$priceProds->max('selling_price')}}">
-
             <div class="slider">
                 <div class="track"></div>
                 <div class="range"></div>
@@ -112,48 +108,35 @@
         </div>
     </div>
     <button type='submit' class="lnk btn btn-primary">Show Now</button>
-
 </form>
-
 <script>
     var inputLeft = document.getElementById("input-left");
     var inputRight = document.getElementById("input-right");
-
     var thumbLeft = document.querySelector(".slider > .thumb.left");
     var thumbRight = document.querySelector(".slider > .thumb.right");
     var range = document.querySelector(".slider > .range");
-
     function setLeftValue() {
         var _this = inputLeft,
             min = parseInt(_this.min),
             max = parseInt(_this.max);
-
         _this.value = Math.min(parseInt(_this.value), parseInt(inputRight.value) - 1);
-
         var percent = ((_this.value - min) / (max - min)) * 100;
-
         thumbLeft.style.left = percent + "%";
         range.style.left = percent + "%";
     }
     setLeftValue();
-
     function setRightValue() {
         var _this = inputRight,
             min = parseInt(_this.min),
             max = parseInt(_this.max);
-
         _this.value = Math.max(parseInt(_this.value), parseInt(inputLeft.value) + 1);
-
         var percent = ((_this.value - min) / (max - min)) * 100;
-
         thumbRight.style.right = (100 - percent) + "%";
         range.style.right = (100 - percent) + "%";
     }
     setRightValue();
-
     inputLeft.addEventListener("input", setLeftValue);
     inputRight.addEventListener("input", setRightValue);
-
     inputLeft.addEventListener("mouseover", function() {
         thumbLeft.classList.add("hover");
     });
@@ -166,7 +149,6 @@
     inputLeft.addEventListener("mouseup", function() {
         thumbLeft.classList.remove("active");
     });
-
     inputRight.addEventListener("mouseover", function() {
         thumbRight.classList.add("hover");
     });
@@ -180,7 +162,6 @@
         thumbRight.classList.remove("active");
     });
 </script>
-
 {{-- control spans min and max price --}}
 <script type="text/javascript">
     $(document).ready(function() {
@@ -194,7 +175,6 @@
       });
     });
 </script>
-
 <script>
     //  this is for ajax this function is NOT inuse 
     function loadProduct(){
@@ -221,5 +201,4 @@
     $(document).ready(function(){
     $('#show').attr('disabled',false);
 });
-
 </script>

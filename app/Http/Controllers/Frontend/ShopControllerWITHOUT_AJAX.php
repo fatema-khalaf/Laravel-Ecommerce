@@ -9,7 +9,14 @@ use App\Models\Brand;
 use App\Models\Product;
 use Illuminate\Support\Facades\URL;
 
-
+/*
+******************************************************
+******************************************************
+THIS FILE HERE FOR REFERENCE THIS FILE DOSE NOT MAKE 
+ANY THING 
+******************************************************
+******************************************************
+*/
 class ShopController extends Controller
 {
     // View shop page
