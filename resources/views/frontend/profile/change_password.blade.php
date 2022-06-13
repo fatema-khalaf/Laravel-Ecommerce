@@ -19,19 +19,20 @@ $user = DB::table('users')->where('id',Auth::user()->id)->first();
 
                         <div class="form-group">
                             <label class="info-title" for="exampleInputEmaill">Current password <span> </span></label>
-                            <input id="current_password" name="oldPassword" type="password" class="form-control">
+                            <input id="current_password" name="oldPassword" type="password" class="form-control"
+                                required>
                             {{-- Note: the next error handler work with all errors --}}
-                            @if($errors->any())
+                            {{-- @if($errors->any())
                             <span class="text-danger">{{$errors->first()}}</span>
-                            @endif
-                            {{-- Note: the next error handler work only with requierd feild --}}
-                            {{-- @error('oldPassword')
+                            @endif --}}
+                            {{-- Note: the next error handler work only with 'oldPassword' named errors --}}
+                            @error('oldPassword')
                             <span class="text-danger">{{$message}}</span>
-                            @enderror --}}
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="info-title" for="exampleInputEmail1">New password <span> </span></label>
-                            <input id="password" type="password" name="password" class="form-control">
+                            <input id="password" type="password" name="password" class="form-control" required>
                             @error('password')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
@@ -40,8 +41,8 @@ $user = DB::table('users')->where('id',Auth::user()->id)->first();
                             <label class="info-title" for="exampleInputEmail1">Confirm Password <span>
                                 </span></label>
                             <input id="password_confirmation" name="password_confirmation" type="password"
-                                class="form-control">
-                            @error('password_confirmation')
+                                class="form-control" required>
+                            @error('password')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>
