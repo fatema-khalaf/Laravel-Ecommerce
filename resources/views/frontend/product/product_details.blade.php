@@ -186,18 +186,11 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="favorite-button m-t-10">
-                                                <a class="btn btn-primary" data-toggle="tooltip" data-placement="right"
-                                                    title="" href="#" data-original-title="Wishlist">
+                                                <button class="btn btn-primary" style="background: #0f6cb2;"
+                                                    type="button" title="Wishlist" id='{{$product->id}}'
+                                                    onclick="AddToWishlist(this.id)">
                                                     <i class="fa fa-heart"></i>
-                                                </a>
-                                                <a class="btn btn-primary" data-toggle="tooltip" data-placement="right"
-                                                    title="" href="#" data-original-title="Add to Compare">
-                                                    <i class="fa fa-signal"></i>
-                                                </a>
-                                                <a class="btn btn-primary" data-toggle="tooltip" data-placement="right"
-                                                    title="" href="#" data-original-title="E-mail">
-                                                    <i class="fa fa-envelope"></i>
-                                                </a>
+                                                </button>
                                             </div>
                                         </div>
 
@@ -746,13 +739,15 @@
 </div>
 
 
-{{-- new idea shar buttons --}}
+{{-- new idea share buttons --}}
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6284db9d254f7cc9"></script>
+
 {{-- <script>
     $('a.horizontal-thumb').click(function(e) {
         e.preventDefault();
-        $('a.someclass').append(e.target);
+         owl-single-product
+        // $('a.someclass').append(e.target);
         console.log(e.target);
     });
 </script> --}}
