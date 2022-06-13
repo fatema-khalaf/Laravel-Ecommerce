@@ -61,7 +61,7 @@ trait StoreTrait
         }
         // Add slugs
         foreach ($slugs as $key => $val) {
-            $slg = strtolower(str_replace(" ", "-", $request->$val));
+            $slg = strtolower(str_replace(str_split('\\/:*?"<>| '), "-", $request->$val));  // remove all these chars as they cause problems in routing 'URL'
             $data += [$key => $slg];
         }
         // Insert
