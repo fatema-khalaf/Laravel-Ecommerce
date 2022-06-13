@@ -42,6 +42,9 @@
                                         <div class="controls">
                                             <input id="current_password" type="password" name="oldPassword"
                                                 class="form-control" required="">
+                                            @error('oldPassword')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -49,6 +52,9 @@
                                         <div class="controls">
                                             <input id="password" type="password" name="password" class="form-control"
                                                 required="">
+                                            @error('password')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -56,6 +62,9 @@
                                         <div class="controls">
                                             <input id="password_confirmation" type="password"
                                                 name="password_confirmation" class="form-control" required="">
+                                            @error('password')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
                                         </div>
                                     </div>
 

@@ -62,6 +62,9 @@ class AdminProfileController extends Controller
         $validateData = $request->validate([ 
            'oldPassword' => 'required',
            'password'=> 'required|confirmed'
+        ],
+        [
+            'password.confirmed' => 'The password confirmation does not match!'
         ]);
         $hashedPassword = Admin::find(Auth::user()->id)->password;
         if(Hash::check($request->oldPassword, $hashedPassword)){ // Hash::check laravel build in method
@@ -71,7 +74,7 @@ class AdminProfileController extends Controller
             Auth::logout();
             return redirect()->route('admin.logout');
         } else{
-            return redirect()->back();
+            return redirect()->back()->withErrors(["oldPassword"=>"Wrong password!"]);
         }
 
     }
