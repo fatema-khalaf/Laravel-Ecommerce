@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ class ShopController extends Controller
          $products = Product::where('status',1)->orderBy('id','DESC')->paginate(9);
          $priceProds =Product::where('status',1)->get(); //get products without pagination to define min and max price  
          $count =$priceProds->count();
+        
       return view('frontend.shop.shop_view',compact('products','categories','brands','priceProds','type','count'));
   }
   // NEW idea My own code
@@ -27,10 +29,11 @@ class ShopController extends Controller
                  $categories = $request->categories; //all cheked box categories slugs
          $brands= $request->brands; //all cheked box brands slugs
          $paginate = $request->paginate ? $request->paginate : 9;
-         $sort= $request->sort;
+         $sort= $request->sort ? $request->sort :'id-DESC';
          $type = 1; // this controlles the type of pagination links page in products.blade.php
           $by = (explode("-",$sort))[0] ? (explode("-",$sort))[0] :'id';
           $type = (explode("-",$sort))[1] ? (explode("-",$sort))[1] : 'DESC';
+         
 
          if (!empty($categories)) {
                $catIds = Category::select('id')->whereIn('category_slug_en',$categories)->pluck('id')->toArray();
