@@ -494,6 +494,7 @@
                             <form method="post" action="{{route('product.image.update')}}"
                                 enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" name="product_id" value="{{$product->id}}">
                                 <div class="row row-sm">
                                     @foreach($multiImgs as $img)
                                     <div class="col-md-3">
@@ -525,6 +526,24 @@
                                     @endforeach
 
                                 </div>
+
+                                <div class="col-md-4">
+
+                                    <div class="form-group">
+                                        <h5>Add More Images <span class="text-danger">*</span></h5>
+                                        <div class="controls">
+                                            {{-- NOTE: multi_img[] to convert the inputs into array--}}
+                                            <input type="file" name="new_img[]" class="form-control" multiple=""
+                                                id="newImg">
+                                            @error('new_img')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                            <div class="row" id="preview_img"></div>
+                                        </div>
+                                    </div>
+
+
+                                </div> <!-- end col md 4 -->
 
                                 <div class="text-xs-right">
                                     <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update Image">
@@ -658,13 +677,12 @@
 
 <script>
     $(document).ready(function(){
-   $('#multiImg').on('change', function(){ //on file input change
+   $('#newImg').on('change', function(){ //on file input change
       if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
       {
           var data = $(this)[0].files; //this file data
-           
+           console.log(data)
           $.each(data, function(index, file){ //loop though each file
-              if(/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)){ //check supported file type
                   var fRead = new FileReader(); //new filereader
                   fRead.onload = (function(file){ //trigger function on successful read
                   return function(e) {
@@ -674,7 +692,6 @@
                   };
                   })(file);
                   fRead.readAsDataURL(file); //URL representing the file's data.
-              }
           });
            
       }else{

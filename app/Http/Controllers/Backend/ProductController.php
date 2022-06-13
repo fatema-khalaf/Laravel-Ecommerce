@@ -190,6 +190,24 @@ class ProductController extends Controller
                 ]);
             }
         } // end foreach
+        $imgs = $request->file("new_img");
+        if($imgs){
+        foreach ($imgs as $img) {
+            $make_name =
+                hexdec(uniqid()) . "." . $img->getClientOriginalExtension();
+            Image::make($img)
+                ->resize(917, 1000)
+                ->save("upload/products/multi-image/" . $make_name);
+            $uploadPath = "upload/products/multi-image/" . $make_name;
+
+            MultiImg::insert([
+                "product_id" => $request->product_id,
+                "photo_name" => $uploadPath,
+                "created_at" => Carbon::now(),
+            ]);
+        } // end foreach
+    }
+
         $notification = [
             "message" => "Product Image Updated Successfully",
             "alert-type" => "info",
@@ -202,11 +220,12 @@ class ProductController extends Controller
     // Update thambnail image
     public function ThambnailImageUpdate(Request $request)
     {
+        $image = $request->file("product_thambnail");
+        if($image){
         $pro_id = $request->id;
         $oldImage = $request->old_img;
-        unlink($oldImage);
+        // unlink($oldImage);
 
-        $image = $request->file("product_thambnail");
         $name_gen =
             hexdec(uniqid()) . "." . $image->getClientOriginalExtension();
         Image::make($image)
@@ -221,9 +240,14 @@ class ProductController extends Controller
 
         $notification = [
             "message" => "Product Image Thambnail Updated Successfully",
-            "alert-type" => "info",
+            "alert-type" => "success",
         ];
-
+    }else{
+        $notification = [
+            "message" => "No Image Selected",
+            "alert-type" => "error",
+        ];
+    }
         return redirect()
             ->back()
             ->with($notification);
