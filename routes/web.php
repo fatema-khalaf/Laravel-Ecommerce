@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\AdminUserController;
+use App\Http\Controllers\Backend\NotificationController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController; 
 use App\Http\Controllers\Frontend\CartController; 
@@ -544,3 +545,7 @@ Route::post("/subscribe/newsletter", [NewsletterController::class, "Subscribe"])
 Route::post("/shop/price", [ShopController::class, "PriceFilter"])->name('shop.price');
 // NOTE: filter ajax
 Route::any('/filter/ajax', [ShopController::class, 'GetFiltered']);
+
+//NOTE: Notification routs 
+// mark notification as read when admin clicks on one notification or clicks on clear all notifications
+Route::post('admin/mark-as-read', [NotificationController::class, 'markNotification'])->name('admin.markNotification');

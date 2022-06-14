@@ -85,6 +85,9 @@ class CashController extends Controller
         }
         Cart::destroy();// empty the cart
 
+        //new idea by me" Add new order event when ever new order happens
+        event(new NewOrder($order_id)); // create NewOrder event and send order id as event data
+        
         $notification = array(
             'message' => 'Your order has been placed successfully',
             'alert-type' => 'success'

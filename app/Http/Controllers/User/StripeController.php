@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderMail;
 use Auth;
 use DB;
-
+use App\Events\NewOrder;
 class StripeController extends Controller
 {
     // stripe oreder
@@ -96,6 +96,9 @@ class StripeController extends Controller
             Session::forget('coupon');
         }
         Cart::destroy();// empty the cart
+
+        //new idea by me" Add new order event when ever new order happens
+        event(new NewOrder($order_id)); // create NewOrder event and send order id as event data
 
         $notification = array(
             'message' => 'Your order has been placed successfully',

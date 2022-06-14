@@ -1,3 +1,6 @@
+{{-- for ajax 👇 --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <header class="main-header">
 	<!-- Header Navbar -->
 	<nav class="navbar navbar-static-top pl-30">
@@ -52,7 +55,7 @@
 										<h4 class="mb-0 mt-0">Notifications</h4>
 									</div>
 									<div>
-										<a href="#" class="text-danger">Clear All</a>
+										<a href="#!" id="mark-all" class="text-danger">Clear All</a>
 									</div>
 								</div>
 							</div>
@@ -60,8 +63,22 @@
 
 						<li>
 							<!-- inner menu: contains the actual data -->
-							<ul class="menu sm-scrol">
+							@php
+							// all unread notification oft he current admin
+							$nots = auth()->guard('admin')->user()->unreadNotifications;
+							@endphp
+							<ul class="menu sm-scrol notification">
+								@foreach ($nots as $not)
 								<li>
+									<a href="{{route('order.details',$not->data['order_id'])}}" class="mark-as-read"
+										data-id="{{ $not->id }}">
+										<!-- new idea data-id="" to use this.data('id') in jquery -->
+										<i class=" fa fa-shopping-cart text-success"></i> New order needs to be
+										comfirmed
+									</a>
+								</li>
+								@endforeach
+								{{-- <li>
 									<a href="#">
 										<i class="fa fa-users text-info"></i> Curabitur id eros quis nunc suscipit
 										blandit.
@@ -72,19 +89,14 @@
 										<i class="fa fa-warning text-warning"></i> Duis malesuada justo eu sapien
 										elementum, in semper diam posuere.
 									</a>
-								</li>
-								<li>
+								</li> --}}
+								{{-- <li>
 									<a href="#">
 										<i class="fa fa-users text-danger"></i> Donec at nisi sit amet tortor commodo
 										porttitor pretium a erat.
 									</a>
-								</li>
-								<li>
-									<a href="#">
-										<i class="fa fa-shopping-cart text-success"></i> In gravida mauris et nisi
-									</a>
-								</li>
-								<li>
+								</li> --}}
+								{{-- <li>
 									<a href="#">
 										<i class="fa fa-user text-danger"></i> Praesent eu lacus in libero dictum
 										fermentum.
@@ -100,7 +112,7 @@
 										<i class="fa fa-user text-success"></i> Nullam euismod dolor ut quam interdum,
 										at scelerisque ipsum imperdiet.
 									</a>
-								</li>
+								</li> --}}
 							</ul>
 						</li>
 						<li class="footer">
@@ -147,3 +159,29 @@
 		</div>
 	</nav>
 </header>
+
+<script>
+	function sendMarkRequest(id = null) {
+        return $.ajax("{{ route('admin.markNotification') }}", {
+            method: 'POST',
+            data: {
+				"_token": "{{ csrf_token() }}",
+                id
+            }
+        });
+    }
+    $(function() {
+        $('.mark-as-read').click(function() {
+			let request = sendMarkRequest($(this).data('id')); // send ajax request to notification table to mark the notification as read
+            request.done(() => {
+                $(this).parent().remove(); // remove the notification when admin clicks on it
+            });
+        });
+        $('#mark-all').click(function() {
+            let request = sendMarkRequest();
+            request.done(() => {
+                $('.notification').children().remove();
+            })
+        });
+    });
+</script>
