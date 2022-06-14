@@ -12,6 +12,7 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderMail;
+use App\Events\NewOrder;
 use Auth;
 use DB;
 

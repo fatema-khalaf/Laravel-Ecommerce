@@ -33,6 +33,7 @@
                     $item = App\Models\Product::where('status',1)->where('id',
                     $element->product_id)->first();
                     @endphp
+                    @if($item)
                     <div class="product">
                         <div class="product-micro">
                             <div class="row product-micro-row">
@@ -107,6 +108,7 @@
                         </div>
                         <!-- /.product-micro -->
                     </div>
+                    @endif
                     @endforeach
                     @endif
 
@@ -120,6 +122,7 @@
                     $item = App\Models\Product::where('status',1)->where('id',
                     $element->product_id)->first();
                     @endphp
+                    @if($item)
                     <div class="product">
                         <div class="product-micro">
                             <div class="row product-micro-row">
@@ -194,6 +197,7 @@
                         </div>
                         <!-- /.product-micro -->
                     </div>
+                    @endif
                     @endforeach
                     @endif
 
@@ -206,7 +210,9 @@
                     @php
                     $item = App\Models\Product::where('status',1)->where('id',
                     $element->product_id)->first();
+                    // dd($best_seller_3,$element->product_id);
                     @endphp
+                    @if($item)
                     <div class="product">
                         <div class="product-micro">
                             <div class="row product-micro-row">
@@ -281,6 +287,7 @@
                         </div>
                         <!-- /.product-micro -->
                     </div>
+                    @endif
                     @endforeach
                     @endif
 
@@ -294,6 +301,7 @@
                     $item = App\Models\Product::where('status',1)->where('id',
                     $element->product_id)->first();
                     @endphp
+                    @if($item)
                     <div class="product">
                         <div class="product-micro">
                             <div class="row product-micro-row">
@@ -368,6 +376,7 @@
                         </div>
                         <!-- /.product-micro -->
                     </div>
+                    @endif
                     @endforeach
                     @endif
 

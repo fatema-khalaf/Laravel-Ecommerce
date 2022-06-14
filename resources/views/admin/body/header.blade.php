@@ -1,6 +1,16 @@
 {{-- for ajax 👇 --}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+	.notification {
+		overflow-y: scroll !important;
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
 
+	.notification::-webkit-scrollbar {
+		display: none;
+	}
+</style>
 <header class="main-header">
 	<!-- Header Navbar -->
 	<nav class="navbar navbar-static-top pl-30">
@@ -114,9 +124,6 @@
 									</a>
 								</li> --}}
 							</ul>
-						</li>
-						<li class="footer">
-							<a href="#">View all</a>
 						</li>
 					</ul>
 				</li>
