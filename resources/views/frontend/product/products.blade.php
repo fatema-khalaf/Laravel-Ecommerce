@@ -1,6 +1,6 @@
 <div id="myTabContent" class="tab-content category-list">
     <hr>
-    <h4>{{$count}}Products </h4>
+    <h4>{{$count}} Products </h4>
     <hr>
     <!-- ============================================= GRID STYLE: SATART ============================================== -->
 

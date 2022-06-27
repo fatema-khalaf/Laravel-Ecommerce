@@ -18,16 +18,16 @@
                 @endif
                 @foreach ($breadsubcat as $item)
                 @if (session()->get('language') == 'arabic')
-                <li class="active">{{ $item->category->category_name_ar}}</li>
+                <li class="active" style="display:inline;">{{ $item->category->category_name_ar}}</li>
                 @else
-                <li class="active">{{ $item->category->category_name_en}}</li>
+                <li class="active" style="display:inline;">{{ $item->category->category_name_en}}</li>
                 @endif
                 @endforeach
                 @foreach ($breadsubcat as $item)
                 @if (session()->get('language') == 'arabic')
-                <li class="active">{{ $item->subcategory_name_ar}}</li>
+                <li class="active" style="display:inline;">{{ $item->subcategory_name_ar}}</li>
                 @else
-                <li class="active">{{ $item->subcategory_name_en}}</li>
+                <li class="active" style="display:inline;">{{ $item->subcategory_name_en}}</li>
                 @endif
                 @endforeach
             </ul>
