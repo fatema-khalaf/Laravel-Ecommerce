@@ -21,8 +21,8 @@ $categories = App\Models\Category::orderby('category_name_en','ASC')->get();
                 <!-- ================================== MEGAMENU VERTICAL ================================== -->
                 <ul class="dropdown-menu mega-menu">
                     <li class="yamm-content">
-                        <h4><a href="{{url('/shop?category='.$item->category_name_en)}}"><i
-                                    class="icon {{$item->category_image}}" aria-hidden="true"></i>
+                        <h4><a href="{{url('shop/'.$item->id)}}"><i class="icon {{$item->category_image}}"
+                                    aria-hidden="true"></i>
                                 View All
                                 @if (session()->get('language') == 'arabic')
                                 {{$item->category_name_ar}}

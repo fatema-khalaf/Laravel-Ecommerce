@@ -535,7 +535,7 @@ Route::get("/search", [IndexController::class, "SearchProduct"])->name('search.p
 Route::post("search-items", [IndexController::class, "SearchItems"]);
 
 // Note: shop page route
-Route::any("/shop", [ShopController::class, "ShopView"])->name('shop-page');
+Route::any("/shop/{cat_id?}", [ShopController::class, "ShopView"])->name('shop-page');
 // Shop categories filter 
 Route::post("/shop/filter", [ShopController::class, "ShopFilter"])->name('shop.filter');
 // Note: FAQ view page

@@ -10,12 +10,18 @@ use Illuminate\Support\Facades\URL;
 class ShopController extends Controller
 {
     // View shop page
-    public function ShopView(Request $request){
-         $categories = Category::orderBy('category_name_en','ASC')->get();
-         $brands = Brand::orderBy('brand_name_en','ASC')->get();
-         $type = 0; // this controlles the type of pagination links page in products.blade.php
-         $products = Product::where('status',1)->orderBy('id','DESC')->paginate(9);
-         $priceProds =Product::where('status',1)->get(); //get products without pagination to define min and max price  
+    public function ShopView(Request $request , $cat_id = null){
+        $categories = Category::orderBy('category_name_en','ASC')->get();
+        $brands = Brand::orderBy('brand_name_en','ASC')->get();
+        $type = 0; // this controlles the type of pagination links page in products.blade.php
+        //  $products = Product::where('status',1)->orderBy('id','DESC')->paginate(9);
+         $products = Product::where('status',1)->when($cat_id,function($query, $cat_id){
+            return $query->where('category_id',$cat_id);
+        })->orderBy('id','DESC')->paginate(9);
+
+         $priceProds =Product::where('status',1)->when($cat_id,function($query, $cat_id){
+            return $query->where('category_id',$cat_id);
+        })->get(); //get products without pagination to define min and max price  
          $count =$priceProds->count();
         
       return view('frontend.shop.shop_view',compact('products','categories','brands','priceProds','type','count'));

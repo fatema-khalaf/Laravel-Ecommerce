@@ -108,14 +108,15 @@ $categories
                                             <b class="caret"></b></a>
                                         <ul class="dropdown-menu" role="menu">
                                             @foreach($categories as $category)
-                                            <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="{{url('/shop?category='.$category->category_name_en)}}">
+                                            <li role="presentation">
+                                                <a role="menuitem" tabindex="-1" href="{{url('shop/'.$category->id)}}">
                                                     @if (session()->get('language') == 'arabic')
                                                     {{$category->category_name_ar}}
                                                     @else
                                                     {{$category->category_name_en}}
                                                     @endif
-                                                </a></li>
+                                                </a>
+                                            </li>
                                             @endforeach
                                         </ul>
                                     </li>
@@ -229,7 +230,7 @@ $categories
                                         <li>
                                             <div class="yamm-content ">
                                                 <div class="row">
-                                                    <a href="{{url('/shop?category='.$category->category_name_en)}}">
+                                                    <a href="{{url('shop/'.$category->id)}}">
                                                         <h4 style="color:rgba(0, 0, 0, 0.763);" class="title"><i
                                                                 class="icon {{$category->category_image}}"
                                                                 aria-hidden="true"></i>
@@ -267,8 +268,10 @@ $categories
                                                             <li><a
                                                                     href="{{ url('sub-subcategory/product/'.$subsubcategory->id.'/'.$subsubcategory->subsubcategory_slug_en ) }}">
                                                                     @if(session()->get('language') == 'arabic') {{
-                                                                    $subsubcategory->subsubcategory_name_ar }} @else {{
-                                                                    $subsubcategory->subsubcategory_name_en }} @endif
+                                                                    $subsubcategory->subsubcategory_name_ar }} @else
+                                                                    {{
+                                                                    $subsubcategory->subsubcategory_name_en }}
+                                                                    @endif
 
                                                                 </a></li>
                                                         </ul>
@@ -278,10 +281,11 @@ $categories
                                                     <!-- /.col -->
                                                     @endforeach
                                                     <!-- // End SubCategory Foreach -->
-                                                    <div class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image"> <img
-                                                            class="img-responsive"
+                                                    <div class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image">
+                                                        <img class="img-responsive"
                                                             src="{{ asset('frontend/assets/images/banners/top-menu-banner.jpg') }}"
-                                                            alt=""> </div>
+                                                            alt="">
+                                                    </div>
                                                     <!-- /.yamm-content -->
                                                 </div>
                                             </div>
