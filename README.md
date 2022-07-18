@@ -9,6 +9,9 @@
 
 ## About Pro-Ecommerce
 
+A fully featured e-commerce website, includes interactive user interfaces as well as a handy
+dashboard, where admins can manage the entire work as they can perform many operations on the user interfaces (review, add, update and delete), the dashboard is designed and developed in a way where admins can manage every single data displayed on user interfaces.
+
 ## Featuers
 
 -   Multi Authentication system.
@@ -31,24 +34,6 @@
 -   Products details managing System.
 -   Generate a downloadable Order Invoice in PDF.
 -   Upload Digital Product.
-
-Advance JavaScript Uses
-
-Image Upload System
-
-Multiple Image Upload System
-
-Laravel 8 Multi Auth with Jetstream Fortify
-
-Laravel 8 A-Z Basic Fundamentals
-
-Ecommerce
-
-Checkout Page Setup
-
-Lecture By Lecture Project Source Code
-
-Change Password Option
 
 ## Technologies Used
 
