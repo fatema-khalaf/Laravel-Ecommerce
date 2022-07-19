@@ -26,7 +26,9 @@ class ShopController extends Controller
         //     return $query->where('category_id',$cat_id);
         // })->get(); //get products without pagination to define min and max price  
         
-        $count =$priceProds->count();
+        $count =Product::where('status',1)->when($cat_id,function($query, $cat_id){
+                return $query->where('category_id',$cat_id);
+            })->count();
       return view('frontend.shop.shop_view',compact('products','categories','brands','priceProds','type','count','cat_id'));
   }
   // NEW idea My own code
