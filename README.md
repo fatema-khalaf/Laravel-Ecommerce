@@ -34,6 +34,8 @@ dashboard, where admins can manage the entire work as they can perform many oper
 -   Products details managing System.
 -   Generate a downloadable Order Invoice in PDF.
 -   Upload Digital Product.
+-   NEWSLETTERS System.
+-   Share Product and Blog Post Ability.
 
 ## Technologies Used
 

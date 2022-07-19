@@ -15,16 +15,19 @@ class ShopController extends Controller
         $brands = Brand::orderBy('brand_name_en','ASC')->get();
         $type = 0; // this controlles the type of pagination links page in products.blade.php
         //  $products = Product::where('status',1)->orderBy('id','DESC')->paginate(9);
-         $products = Product::where('status',1)->when($cat_id,function($query, $cat_id){
+        $products = Product::where('status',1)->when($cat_id,function($query, $cat_id){
             return $query->where('category_id',$cat_id);
         })->orderBy('id','DESC')->paginate(9);
 
-         $priceProds =Product::where('status',1)->when($cat_id,function($query, $cat_id){
-            return $query->where('category_id',$cat_id);
-        })->get(); //get products without pagination to define min and max price  
-         $count =$priceProds->count();
+        //get products without pagination to define min and max price 👇 Note: here we get all products NOT products with the selected cat_id because it make bug when prices are limited by cat_id  
+        $priceProds =Product::where('status',1)->get(); 
+        // this 👇 code limit the prices by cat_id and it causes bug in filtering
+        //  $priceProds =Product::where('status',1)->when($cat_id,function($query, $cat_id){
+        //     return $query->where('category_id',$cat_id);
+        // })->get(); //get products without pagination to define min and max price  
         
-      return view('frontend.shop.shop_view',compact('products','categories','brands','priceProds','type','count'));
+        $count =$priceProds->count();
+      return view('frontend.shop.shop_view',compact('products','categories','brands','priceProds','type','count','cat_id'));
   }
   // NEW idea My own code
     // filter ajax method

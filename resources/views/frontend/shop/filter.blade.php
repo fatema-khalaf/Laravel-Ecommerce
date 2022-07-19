@@ -22,7 +22,8 @@
                             <label class="form-check-label">
                                 {{-- name="category[]" to select multiple category at once--}}
                                 <input type="checkbox" class="form-check-input" name="category[]"
-                                    value="{{ $category->category_slug_en }}" onchange="filter()">
+                                    value="{{ $category->category_slug_en }}" onchange="filter()" {{$category->id ==
+                                $cat_id ? 'checked' : ''}}>
                                 @if(session()->get('language') == 'arabic') {{
                                 $category->category_name_ar }} @else {{ $category->category_name_en
                                 }} @endif
