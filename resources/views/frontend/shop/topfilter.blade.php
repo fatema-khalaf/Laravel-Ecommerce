@@ -1,13 +1,15 @@
 <style>
     input[type="radio"] {
-        /* display: none; */
+        display: none;
     }
 
     .radio-lable {
+        width: 100%;
+        margin-left: 6px;
         color: rgb(25, 23, 23)
     }
 
-    .radio-lable :hover {
+    .radio-lable:hover {
         cursor: pointer;
         color: rgba(25, 23, 23, 0.587)
     }
@@ -33,15 +35,15 @@
                             <button data-toggle="dropdown" type="button" class="btn dropdown-toggle">
                                 Select <span class="caret"></span> </button>
                             <ul role="menu" class="dropdown-menu">
-                                <li><input onchange="filter()" type="radio" id="sort" name="sort"
-                                        value="created_at-DESC"><label class='radio-lable' for="sort">Newest</label>
+                                <li><input onchange="filter()" type="radio" id="Newest" name="sort"
+                                        value="created_at-DESC"><label class='radio-lable' for="Newest">Newest</label>
                                 </li>
-                                <li><input onchange="filter()" type="radio" id="sort" name="sort"
-                                        value="selling_price-ASC"><label class='radio-lable' for="sort">Price
+                                <li><input onchange="filter()" type="radio" id="Low-High" name="sort"
+                                        value="selling_price-ASC"><label class='radio-lable' for="Low-High">Price
                                         [Low-High]</label>
                                 </li>
-                                <li><input onchange="filter()" type="radio" id="sort" name="sort"
-                                        value="selling_price-DESC"><label class='radio-lable' for="sort">Price
+                                <li><input onchange="filter()" type="radio" id="High-Low" name="sort"
+                                        value="selling_price-DESC"><label class='radio-lable' for="High-Low">Price
                                         [High-Low]</label>
                                 </li>
 
@@ -60,16 +62,16 @@
                             <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> 1
                                 <span class="caret"></span> </button>
                             <ul role="menu" class="dropdown-menu">
-                                <li><input onchange="filter()" type="radio" id="paginate" name="paginate"
-                                        value="10"><label class='radio-lable' for="paginate">10</label>
+                                <li><input onchange="filter()" type="radio" id="10" name="paginate" value="10"><label
+                                        class='radio-lable' for="10">10</label>
                                 </li>
-                                <li><input onchange="filter()" type="radio" id="paginate" name="paginate"
-                                        value="25"><label class='radio-lable' for="paginate">25</label>
+                                <li><input onchange="filter()" type="radio" id="25" name="paginate" value="25"><label
+                                        class='radio-lable' for="25">25</label>
                                 </li>
-                                <li><input onchange="filter()" type="radio" id="paginate" name="paginate"
-                                        value="lowest"><label for="paginate">50</label></li>
-                                <li><input onchange="filter()" type="radio" id="paginate" name="paginate"
-                                        value="100"><label class='radio-lable' for="paginate">100</label></li>
+                                <li><input onchange="filter()" type="radio" id="50" name="paginate" value="50"><label
+                                        class='radio-lable' for="50">50</label></li>
+                                <li><input onchange="filter()" type="radio" id="100" name="paginate" value="100"><label
+                                        class='radio-lable' for="100">100</label></li>
 
                             </ul>
                         </div>

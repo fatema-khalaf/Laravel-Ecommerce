@@ -91,8 +91,8 @@ shop
         $('input[name="brand[]"]:checked').each( function() {
             brands.push(this.value);
         });
-        var sort = $("#sort:checked").val();
-        var paginate = $("#paginate:checked").val();
+        var sort = $("input[name='sort']:checked").val();
+        var paginate = $("input[name='paginate']:checked").val();
         console.log(sort);
       $.ajax({
         type: "post",
