@@ -20,11 +20,13 @@
                 @endif
 
                 @if (session()->get('language') == 'arabic')
-                <li><a href="#">
-                        {{$product['category']['category_name_ar']}}</a></li>
+                <li>
+                    <a href="#">{{$product['category']['category_name_ar']}}</a>
+                </li>
                 @else
-                <li><a href="#">
-                        {{$product['category']['category_name_en']}}</a></li>
+                <li>
+                    <a href="#">{{$product['category']['category_name_en']}}</a>
+                </li>
                 @endif
                 <li class="active">
                     @if (session()->get('language') == 'arabic')
@@ -152,7 +154,8 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <div class="stock-box">
-                                                <span class="value">In Stock</span>
+                                                <span class="value">{{$product->product_qty == 0 ? 'Stock out' : 'In
+                                                    Stock'}}</span>
                                             </div>
                                         </div>
                                     </div><!-- /.row -->
@@ -217,7 +220,7 @@
                                                     </span></label>
                                                 <select class="form-control unicase-form-control selectpicker"
                                                     style="display: none;" id="color">
-                                                    <option selected="" disabled="">--Choose Color--</option>
+                                                    {{-- <option selected="" disabled="">--Choose Color--</option> --}}
                                                     @foreach($product_color_en as $color)
                                                     <option value="{{ $color }}">{{ ucwords($color) }}</option>
                                                     @endforeach
@@ -237,7 +240,7 @@
                                                     </span></label>
                                                 <select class="form-control unicase-form-control selectpicker"
                                                     style="display: none;" id="size">
-                                                    <option selected="" disabled="">--اختر القياس--</option>
+                                                    {{-- <option selected="" disabled="">--اختر القياس--</option> --}}
                                                     @foreach($product_size_ar as $size)
                                                     <option value="{{ $size }}">{{ $size }}</option>
                                                     @endforeach
@@ -247,8 +250,8 @@
                                                     </span></label>
                                                 <select class="form-control unicase-form-control selectpicker"
                                                     style="display: none;" id="size">
-                                                    <option selected="" disabled="">--choose size--</option>
-                                                    @foreach($product_size_ar as $size)
+                                                    {{-- <option selected="" disabled="">--choose size--</option> --}}
+                                                    @foreach($product_size_en as $size)
                                                     <option value="{{ $size }}">{{ ucwords($size) }}</option>
                                                     @endforeach
                                                 </select>
@@ -271,19 +274,24 @@
                                         <div class="col-sm-2">
                                             <div class="cart-quantity">
                                                 <div class="quant-input">
-                                                    <div class="arrows">
+                                                    {{-- <div class="arrows">
                                                         <div class="arrow plus gradient"><span class="ir"><i
                                                                     class="icon fa fa-sort-asc"></i></span></div>
                                                         <div class="arrow minus gradient"><span class="ir"><i
                                                                     class="icon fa fa-sort-desc"></i></span></div>
-                                                    </div>
-                                                    <input type="text" id='qty' min="1" value="1">
+                                                    </div> --}}
+                                                    <input style="padding: 0 6px 0 8px;" type="number" id='qty'
+                                                        min={{$product->product_qty == 0 ? '0' : '1'}}
+                                                    value={{$product->product_qty == 0 ? '0' : '1'}}
+                                                    max={{$product->product_qty}}>
                                                 </div>
                                             </div>
                                         </div>
                                         <input type="hidden" id="product_id" value="{{$product->id}}">
                                         <div class="col-sm-7">
-                                            <button type="submit" onclick="addToCart()" class="btn btn-primary"><i
+                                            <button {{$product->product_qty == 0 ? 'disabled' : ''}} type="submit"
+                                                onclick="addToCart()"
+                                                class="btn btn-primary"><i
                                                     class="fa fa-shopping-cart inner-right-vs"></i>
                                                 ADD TO CART</button>
                                         </div>
@@ -554,10 +562,14 @@
                                         <div class="action">
                                             <ul class="list-unstyled">
                                                 <li class="add-cart-button btn-group">
-                                                    <button class="btn btn-primary icon" data-toggle="dropdown"
+                                                    {{-- <button class="btn btn-primary icon" data-toggle="dropdown"
                                                         type="button">
                                                         <i class="fa fa-shopping-cart"></i>
-                                                    </button>
+                                                    </button> --}}
+                                                    <button class="btn btn-primary icon" type="button" title="Add Cart"
+                                                        data-toggle="modal" data-target="#exampleModal"
+                                                        id="{{$item->id}}" onclick="productView(this.id)">
+                                                        <i class="fa fa-shopping-cart"></i> </button>
                                                     <button class="btn btn-primary cart-btn" type="button">Add
                                                         to cart</button>
 

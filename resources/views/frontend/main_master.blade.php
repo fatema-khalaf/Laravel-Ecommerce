@@ -168,7 +168,8 @@ $seo = App\Models\Seo::find(1);
                                 <input type="number" class="form-control" id="qty" value="1" min="1">
                             </div> <!-- // end form group -->
                             <input type="hidden" id='product_id' />
-                            <button type="submit" class="btn btn-primary mb-2" onclick="addToCart()">Add to
+                            <button id="addToCart" type="submit" class="btn btn-primary mb-2" onclick="addToCart()">Add
+                                to
                                 Cart</button>
                         </div><!-- // end col md -->
 
@@ -202,6 +203,7 @@ $seo = App\Models\Seo::find(1);
                 $('#pimage').attr('src','/'+data.product.product_thambnail)
                 // Product id and quantity
                 $('#product_id').val(id);
+                $("#qty").attr({"max" : data.product.product_qty});
                 $('#qty').val(1);
                 // Product Price 
                 if (data.product.discount_price == null) {
@@ -218,6 +220,9 @@ $seo = App\Models\Seo::find(1);
                     $('#stockout').text('');
                     $('#aviable').text('aviable');
                 }else{
+                    $('#addToCart').prop('disabled', true);
+                    $('#qty').val(0);
+                    $("#qty").attr({"min" : 0});
                     $('#aviable').text('');
                     $('#stockout').text('');
                     $('#stockout').text('stockout');
