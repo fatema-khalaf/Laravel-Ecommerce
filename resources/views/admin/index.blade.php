@@ -3,7 +3,9 @@
 
 @php
 // new idea
-$date= date('d-m-y'); // today's date
+$date= date('d F Y'); // today's date
+// dd($date);
+
 $today = App\Models\Order::where('order_date' , $date)->sum('amount');
 $month= date('F'); // current month
 $month_sales = App\Models\Order::where('order_month' , $month)->sum('amount');
