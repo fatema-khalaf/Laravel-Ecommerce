@@ -78,6 +78,12 @@ class CashController extends Controller
             // reduce product quantity
             Product::where('id',$cart->id)
                     ->update(['product_qty' => DB::raw('product_qty-'.$cart->qty)]);
+
+             // make product status 0 if qty became 0
+             $prod = Product::findOrFail($cart->id);
+             if($prod->product_qty == 0){
+                $prod->update(['status' => 0]);
+             }
         }
 
         // delete the coupon from the session
