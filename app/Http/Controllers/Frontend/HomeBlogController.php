@@ -30,8 +30,8 @@ class HomeBlogController extends Controller
     }
     // Get posts of one category
     public function BlogCatPost($category_id){
-        $blogPosts = BlogPost::where('category_id',$category_id)->with('BlogCategory')->orderBy('id','DESC')->get();
+        $blogPosts = BlogPost::where('category_id',$category_id)->with('BlogCategory')->orderBy('id','DESC')->paginate(2);
         $blogCategories = BlogPostCategory::latest()->get();
-        return view('frontend.blog.Cat_posts_view', compact('blogPosts','blogCategories'));
+        return view('frontend.blog.blog_view', compact('blogPosts','blogCategories'));
     }
 }
