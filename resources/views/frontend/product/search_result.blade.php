@@ -137,7 +137,7 @@
                         </div>
                         <!-- /.col -->
                         {{-- custom pagination video 644--}}
-                        {{ $products->links('vendor.pagination.custom') }}
+                        {{ $products->appends(['search' => $item])->links('vendor.pagination.custom') }}
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->
@@ -295,7 +295,10 @@
                         <!-- /.tab-pane #list-container -->
                     </div>
                     {{-- custom pagination video 644--}}
-                    {{ $products->links('vendor.pagination.custom') }}
+                    {{-- NOTE: use appends to add text to links url, as each "page link url" must be the same as the
+                    first page url
+                    this bug fixed by me using laravel documents --}}
+                    {{ $products->appends(['search' => $item])->links('vendor.pagination.custom') }}
                 </div>
                 <!-- /.search-result-container -->
 

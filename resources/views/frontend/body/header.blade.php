@@ -97,7 +97,8 @@ $categories
                     <div class="search-area">
                         {{-- new idea method get this is my own "bug fix improvment" not from course videos --}}
                         <form method="get" action="{{route('search.product')}}">
-                            @csrf
+                            {{-- Get method dose not need csrf --}}
+                            {{-- @csrf --}}
                             <div class="control-group">
                                 <ul class="categories-filter animate-dropdown">
                                     <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown"
