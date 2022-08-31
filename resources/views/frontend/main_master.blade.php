@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 @if (session()->get('language') == 'arabic')
-<html lang="ar">
+<html lang="ar" dir="rtl">
 @else
 <html lang="en">
 @endif
@@ -16,7 +16,11 @@ $seo = App\Models\Seo::find(1);
     <meta name="description" content="{{ $seo->meta_description }}">
     {{-- wseet alert --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Noto+Kufi+Arabic:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     {{-- 👇new idea related to ajax script in the of this file --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- 👆👆👆👆--}}
@@ -32,7 +36,9 @@ $seo = App\Models\Seo::find(1);
     <title>@yield('title')</title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/bootstrap.min.css')}}">
+    {{--
+    <link rel="stylesheet" href="{{asset('frontend/assets/css/bootstrap.min.css')}}"> --}}
+    <link rel="stylesheet" href="{{asset('frontend/assets/css/bootstrap.css')}}">
 
     <!-- Customizable CSS -->
     <link rel="stylesheet" href="{{asset('frontend/assets/css/main.css')}}">

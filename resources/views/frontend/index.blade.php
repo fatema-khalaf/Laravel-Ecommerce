@@ -37,7 +37,7 @@ Home| Pro-Ecommerce
                                     <div class="product">
                                         <div class="product-micro">
                                             <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
+                                                <div class="col col-xs-5" style="float: left">
                                                     <div class="product-image">
                                                         <div class="image"> <a
                                                                 href="{{ url('product/details/'.$item->id.'/'.$item->product_slug_en ) }}">
