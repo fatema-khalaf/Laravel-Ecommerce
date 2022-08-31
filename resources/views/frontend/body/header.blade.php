@@ -10,7 +10,7 @@ $categories
         <div class="container">
             <div class="header-top-inner">
                 <div class="cnt-account">
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled" style="direction: ltr;">
                         {{-- <li><a href="#"><i class="icon fa fa-user"></i>
                                 @if(session()->get('language')== 'arabic') حسابي @else My Account @endif
                             </a></li> --}}
@@ -47,12 +47,11 @@ $categories
                 </div>
                 <!-- /.cnt-account -->
 
-                <div class="cnt-block">
+                {{-- <div class="cnt-block">
                     <ul class="list-unstyled list-inline">
 
                         <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown"
                                 data-toggle="dropdown"><span class="value">
-                                    {{-- NOTE: chang the content depending on session laguage --}}
                                     @if(session()->get('language')== 'arabic') اللغة @else Language @endif
                                 </span><b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -66,7 +65,7 @@ $categories
                         </li>
                     </ul>
                     <!-- /.list-unstyled -->
-                </div>
+                </div> --}}
                 <!-- /.cnt-cart -->
                 <div class="clearfix"></div>
             </div>
@@ -78,13 +77,17 @@ $categories
     <!-- ============================================== TOP MENU : END ============================================== -->
     <div class="main-header">
         <div class="container">
-            <div class="row">
+            <div class="row" style="display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            flex-wrap:wrap">
                 <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
                     <!-- ============================================================= LOGO ============================================================= -->
                     @php
                     $setting = App\Models\Setting::find(1);
                     @endphp
-                    <div class="logo"> <a href="{{url('/')}}"> <img src="{{asset($setting->logo)}}" alt="logo"> </a>
+                    <div class="logo" style="float:left"> <a href="{{url('/')}}"> <img src="{{asset($setting->logo)}}"
+                                alt="logo"> </a>
                     </div>
                     <!-- /.logo -->
                     <!-- ============================================================= LOGO : END ============================================================= -->
@@ -124,7 +127,7 @@ $categories
                                 </ul>
                                 {{-- new idea --}}
                                 <input class="search-field" onfocus="search_result_show()" onblur="search_result_hide()"
-                                    id="search" name="search" placeholder="Search here..." />
+                                    id="search" name="search" placeholder="ابحث هنا..." />
                                 <button class="search-button" type="submit"></button>
                             </div>
                         </form>
@@ -295,9 +298,9 @@ $categories
                                 </li>
                                 @endforeach
                                 <li style="background-color: #fdd922;"><a style=" color:black "
-                                        href="{{route('shop-page')}}">Shop</a></li>
+                                        href="{{route('shop-page')}}">المتجر</a></li>
                                 <!-- // End Category Foreach -->
-                                <li> <a href="{{route('home.blog')}}">Blog</a> </li>
+                                <li> <a href="{{route('home.blog')}}">المدونة</a> </li>
                             </ul>
                             <!-- /.navbar-nav -->
                             <div class="clearfix"></div>
