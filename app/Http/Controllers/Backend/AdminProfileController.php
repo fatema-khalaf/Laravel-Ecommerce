@@ -9,6 +9,7 @@ use App\models\User;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use Image;
+
 class AdminProfileController extends Controller
 {
     // View profile
@@ -32,9 +33,9 @@ class AdminProfileController extends Controller
         $data->email = $request->email;
         if ($request->file("profile_photo_path")) {
             $image = $request->file('profile_photo_path');
-            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalextension();
-            Image::make($image)->resize(225,225)->save('upload/admin_images/'.$name_gen);
-            $save_url='upload/admin_images/'.$name_gen;
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalextension();
+            Image::make($image)->resize(225, 225)->save('upload/admin_images/' . $name_gen);
+            $save_url = 'upload/admin_images/' . $name_gen;
             @unlink(public_path($data->profile_photo_path));
 
             // $file = $request->file("profile_photo_path");
@@ -44,7 +45,7 @@ class AdminProfileController extends Controller
         }
         $data->save();
 
-        $notification= array(
+        $notification = array(
             'message' => 'Admin profile Updated successfully',
             'alert-type' => 'success'
         );
@@ -52,35 +53,39 @@ class AdminProfileController extends Controller
     }
 
     // View change password
-    public function AdminChangePassword(){
+    public function AdminChangePassword()
+    {
         return view("admin.admin_change_password");
     }
 
     // Store new password
-    public function AdminUpdateChangePassword(Request $request){
+    public function AdminUpdateChangePassword(Request $request)
+    {
         // NOTE: $request has many default methods, e.x -> validate
-        $validateData = $request->validate([ 
-           'oldPassword' => 'required',
-           'password'=> 'required|confirmed'
-        ],
-        [
-            'password.confirmed' => 'The password confirmation does not match!'
-        ]);
+        $validateData = $request->validate(
+            [
+                'oldPassword' => 'required',
+                'password' => 'required|confirmed'
+            ],
+            [
+                'password.confirmed' => 'The password confirmation does not match!'
+            ]
+        );
         $hashedPassword = Admin::find(Auth::user()->id)->password;
-        if(Hash::check($request->oldPassword, $hashedPassword)){ // Hash::check laravel build in method
+        if (Hash::check($request->oldPassword, $hashedPassword)) { // Hash::check laravel build in method
             $admin = Admin::find(Auth::user()->id);
             $admin->password = Hash::make($request->password);
             $admin->save();
             Auth::logout();
             return redirect()->route('admin.logout');
-        } else{
-            return redirect()->back()->withErrors(["oldPassword"=>"Wrong password!"]);
+        } else {
+            return redirect()->back()->withErrors(["oldPassword" => "Wrong password!"]);
         }
-
     }
 
     // View all users
-    public function UsersView(){
+    public function UsersView()
+    {
         $users = User::latest()->get();
         return view('backend.user.users_view', compact('users'));
     }

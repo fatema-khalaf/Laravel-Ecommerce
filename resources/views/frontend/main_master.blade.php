@@ -1,5 +1,9 @@
 <!DOCTYPE html>
+@if (session()->get('language') == 'arabic')
+<html lang="ar">
+@else
 <html lang="en">
+@endif
 @php
 $seo = App\Models\Seo::find(1);
 @endphp
