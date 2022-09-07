@@ -6,6 +6,7 @@
 @endif
 @php
 $seo = App\Models\Seo::find(1);
+Session::put('language', 'arabic');
 @endphp
 
 <head>
